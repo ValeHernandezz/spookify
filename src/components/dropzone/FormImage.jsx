@@ -7,11 +7,11 @@ export default function FormImage() {
   const { getRootProps, getInputProps, open } = useDropzone({
     noClick: true,
     accept: {
-      'image/*': [],
+      'image/*': []
     },
     onDrop: (acceptedFiles) => {
       handleDrop(acceptedFiles)
-    },
+    }
   })
 
   const handleDrop = async (acceptedFiles) => {
@@ -23,26 +23,27 @@ export default function FormImage() {
 
     const response = await fetch('/api/upload', {
       method: 'POST',
-      body: formData,
+      body: formData
     })
 
-    const {data} = await response.json()
+    const { data } = await response.json()
 
     console.log(data)
     changeImage(data)
+    window.location.href = '/editar'
   }
 
   return (
     <section
       {...getRootProps({ className: 'dropzone' })}
-      className='card flex flex-col p-10'
+      className="card flex flex-col p-10"
     >
       <div>
         <h2
-          className='text-center px-2 text-xl lg:text-2xl font-black text-white uppercase pb-5 sombra'
+          className="text-center px-2 text-xl lg:text-2xl font-black text-white uppercase pb-5 sombra"
           style={{ lineHeight: '1.2', wordWrap: 'break-word' }}
         >
-{/*    <span className='block px-4'>
+          {/*    <span className='block px-4'>
             <>
               <span className='block'>
                 ¡Sube una
@@ -62,11 +63,11 @@ export default function FormImage() {
 
       <div>
         <input {...getInputProps()} />
-        <div className='flex flex-col gap-4'>
+        <div className="flex flex-col gap-4">
           <button
-            type='button'
+            type="button"
             onClick={open}
-            className='hover:cursor-pointer hover:underline text-white rounded-full bg-gradient-to-r from-blue-500 to-violet-600 text-bold px-6 py-4'
+            className="hover:cursor-pointer hover:underline text-white rounded-full bg-gradient-to-r from-blue-500 to-violet-600 text-bold px-6 py-4"
           >
             Subir imagen
           </button>

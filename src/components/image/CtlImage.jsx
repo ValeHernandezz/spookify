@@ -7,15 +7,13 @@ export default function CtlImage({ publicId }) {
   console.log(image)
 
   const url = getCldImageUrl({
-    width: 600,
-    height: 600,
     src: `${publicId}`,
   })
 
   console.log(url)
   return (
     <div className='max-w-[300px]'>
-      <img className='' src={url} alt='Imagen a editar' />
+      <img className='' src={image.url} alt='Imagen a editar' />
     </div>
   )
 }

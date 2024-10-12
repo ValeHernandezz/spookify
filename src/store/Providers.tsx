@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, createContext, useContext } from 'react'
 import { CloudinaryUploadResponse } from '@/lib/types'
+import { useRouter } from 'next/router'
 
 const EditorContext = createContext({})
 

@@ -45,13 +45,15 @@ h1 {
   }
 }
 
-/*   #app {
+#app {
   width: 100%;
   min-height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
   grid-template-rows: auto 1fr auto;
-} */
+}
 
 ::-webkit-scrollbar {
   width: 10px;
