@@ -20,3 +20,9 @@ export interface CloudinaryUploadResponse {
   access_mode: string
   original_filename: string
 }
+
+export enum ViewImageStateEnum {
+  ORIGINAL = 'original',
+  EDIT = 'edit',
+  COMPARE = 'compare',
+}
