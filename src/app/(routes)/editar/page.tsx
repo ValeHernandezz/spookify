@@ -1,14 +1,14 @@
 import React from 'react'
 import ViewImage from '@/components/image/ViewImage'
-import Cut from '@/components/tools/Cut'
+import ChangeImage from '@/components/image/ChangeImage'
 
 export default function EditorPage() {
   return (
-    <main>
-      <h2>Edita tu imagen</h2>
+    <main className='text-center text-white'>
+      <h2 className='text-3xl font-bold'>Edita tu imagen</h2>
       <section>
+        <ChangeImage/>
         <ViewImage />
-        <Cut/>
       </section>
     </main>
   )
