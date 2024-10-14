@@ -15,7 +15,7 @@ export default function CtlImageCompare({ publicId }) {
   })
 
   return (
-    <div className='flex justify-center py-5'>
+    <div className='flex justify-center py-5 max-w-[600px]'>
       <two-up>
         <Image
           id='original'
