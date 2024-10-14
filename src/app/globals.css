@@ -5,8 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --accent: 136, 58, 234;
-  --accent-light: 224, 204, 250;
+  --accent: 249, 129, 40;
+  --accent-light: 254, 216, 170;
   --accent-gradient: linear-gradient(
     45deg,
     rgb(var(--accent)),
@@ -14,7 +14,7 @@
     white 60%
   );
 
-  --color-primary: #2c003e;
+  --color-primary: #f98128;
   --color-secondary: #1c1c1c;
   --color-tertiary: #ffffff;
   --color-fourth: #b00020;
@@ -74,82 +74,80 @@ h1 {
 ::-webkit-scrollbar-corner {
   background: var(--background-image);
 }
+
 .card {
-  background: #07182e;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  width: 350px;
+  height: 200px;
+  border-radius: 15px;
+  background: rgb(9, 9, 9, 0.25);
   display: flex;
-  place-content: center;
-  place-items: center;
+  flex-direction: column;
+  position: relative;
   overflow: hidden;
-  min-height: 270px;
-  border-radius: 20px;
-  max-width: 460px;
-}
-.card div {
-  z-index: 1;
-  color: white;
-}
-@keyframes load012323 {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .card::before {
-  content: '';
-  position: absolute;
+  content: "";
+  height: 100px;
   width: 100px;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgb(0, 183, 255)),
-    to(rgb(255, 48, 255))
-  );
-  background-image: linear-gradient(
-    180deg,
-    rgb(0, 183, 255),
-    rgb(255, 48, 255)
-  );
-  height: 200%;
-  -webkit-animation: rotBGimg 4s linear infinite;
-  animation: rotBGimg 4s linear infinite;
-  -webkit-transition: all 2s linear;
-  transition: all 2s linear;
-}
-
-@-webkit-keyframes rotBGimg {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotBGimg {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.card::after {
-  content: '';
   position: absolute;
-  background: #07182e;
-  inset: 5px;
-  border-radius: 15px;
+  top: 0%;
+  left: -20%;
+  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><path d="M21 17.2V6.8L12 2L3 6.8v10.4l9 4.8Zm-19 .6L22 6.2m-20 0l20 11.6M12 2v20"/><path d="M17 14.9V9.1l-5-2.6l-5 2.6v5.8l5 2.6Z"/></g></svg>');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.102);
+  transition: all .8s ease;
+  filter: blur(.5rem);
+}
+
+.text {
+  flex-grow: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.subtitle {
+  font-size: .7em;
+  font-weight: 300;
+  color: rgba(240, 248, 255, 0.691);
+}
+
+.icons {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 350px;
+  border-radius: 0px 0px 15px 15px;
+  overflow: hidden;
+}
+
+.btn {
+  border: none;
+  width: 100%;
+  height: 35px;
+  background-color: var(--color-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background-color: var(--color-primary);
+}
+
+.card:hover::before {
+  width: 140px;
+  height: 140px;
+  top: -30%;
+  left: 50%;
+  filter: blur(0rem);
 }
 
 .loader {
