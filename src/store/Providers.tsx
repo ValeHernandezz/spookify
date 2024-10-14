@@ -17,6 +17,7 @@ export const Providers = ({ children }: Props) => {
   const [viewImage, setViewImage] = useState<{ state: ViewImageStateEnum }>({
     state: ViewImageStateEnum.ORIGINAL,
   })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const imageOld = JSON.parse(localStorage.getItem('image') ?? '{}')
@@ -40,9 +41,20 @@ export const Providers = ({ children }: Props) => {
     setViewImage(newState)
   }
 
+  function changeLoading(newState: boolean) {
+    setLoading(newState)
+  }
+
   return (
     <EditorContext.Provider
-      value={{ image, changeImage, viewImage, changeViewImage }}
+      value={{
+        image,
+        changeImage,
+        viewImage,
+        changeViewImage,
+        loading,
+        changeLoading,
+      }}
     >
       {children}
     </EditorContext.Provider>

@@ -1,68 +1,42 @@
 'use client'
-import { useEffect, useState, useRef } from "react";
-import { getCldImageUrl } from "next-cloudinary";
-
-type UseTransformState = {
-  state: "idle" | "loading" | "error" | "success";
-  url: string | null;
-  error: Error | null;
-};
+import { getCldImageUrl } from 'next-cloudinary'
+import useEditor from '@/store/Providers'
 
 type TransformOptions = {
-  publicId: string;
-  transformations: object;
-};
+  publicId: string
+  transformations: object
+}
 
-export default function useTransform({ publicId, transformations }: TransformOptions) {
-  const [transformState, setTransformState] = useState<UseTransformState>({
-    state: "idle",
-    url: null,
-    error: null,
-  });
+export default function useTransform() {
+  const { changeLoading } = useEditor()
 
-  const hasTransformed = useRef(false); 
+  const transformImage = async ({
+    publicId,
+    transformations,
+  }: TransformOptions) => {
+    try {
+      changeLoading(true)
 
-  useEffect(() => {
-    if (hasTransformed.current) return;
-
-    async function transformImage() {
-      try {
-        console.log('Cargando');
-        setTransformState({
-          state: "loading",
-          url: null,
-          error: null,
-        });
-
-        console.log('Generando URL');
-        const url = getCldImageUrl({
+      const url = await Promise.resolve(
+        getCldImageUrl({
           src: publicId,
           ...transformations,
-        });
+        })
+      )
 
-        if (url) {
-          setTransformState({
-            url,
-            state: "success",
-            error: null,
-          });
-          hasTransformed.current = true; // Marca que ya se hizo la transformación
-        } else {
-          throw new Error("Transformación fallida");
-        }
-      } catch (error) {
-        setTransformState({
-          url: null,
-          state: "error",
-          error: error as Error,
-        });
+      if (url) {
+        changeLoading(false)
+
+        return url
+      } else {
+        throw new Error('Transformación fallida')
       }
+    } catch (error) {
+      console.log(error)
+      changeLoading(false)
+      return null
     }
+  }
 
-    if (publicId && !hasTransformed.current) {
-      transformImage();
-    }
-  }, [publicId, transformations]);
-
-  return transformState;
+  return { transformImage }
 }
