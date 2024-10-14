@@ -27,11 +27,7 @@ export const Providers = ({ children }: Props) => {
       localStorage.getItem('view') ?? '{"state": "original"}'
     )
 
-    if (Object.values(ViewImageStateEnum).includes(viewImageOld.state)) {
-      setViewImage(viewImageOld)
-    } else {
-      setViewImage({ state: ViewImageStateEnum.ORIGINAL })
-    }
+    setViewImage(viewImageOld)
   }, [])
 
   function changeImage(newImage: CloudinaryUploadResponse) {
