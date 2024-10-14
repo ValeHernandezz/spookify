@@ -1,22 +1,20 @@
 'use client'
 import React from 'react'
-import { getCldImageUrl } from 'next-cloudinary'
 import Image from 'next/image'
+import useEditor from '@/store/Providers'
 
-export default function CtlImage({ publicId }) {
-  const urlOriginal = getCldImageUrl({
-    src: publicId,
-  })
+export default function CtlImage() {
+  const { image } = useEditor()
 
   return (
     <div className='flex justify-center py-5 max-w-[600px]'>
       <Image
         id='original'
-        src={urlOriginal}
+        src={image.url}
         width={1000}
         height={1000}
         priority={true}
-        alt='iamgen'
+        alt={`Imagen ${image.original_filename}`}
       />
     </div>
   )

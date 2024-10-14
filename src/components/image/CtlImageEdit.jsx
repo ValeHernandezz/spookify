@@ -5,16 +5,16 @@ import useEditor from '@/store/Providers'
 import Loader from '@/components/utils/Loader'
 
 export default function CtlImageEdit() {
-  const { image, loading } = useEditor()
+  const { image, loading, changeLoading } = useEditor()
 
-  const url = image.transformedUrl || image.originalUrl
-  
+  const { transformedUrl } = image
+
   if (loading) return <Loader />
 
-  if (!url) {
+  if (!transformedUrl) {
     return (
       <div>
-        No se ha aplicado ningun efecto. Por favor, selecciona una herramienta.
+        No se ha aplicado ningún efecto. Por favor, selecciona una herramienta.
       </div>
     )
   }
@@ -23,11 +23,12 @@ export default function CtlImageEdit() {
     <div className='flex justify-center py-5 max-w-[600px]'>
       <Image
         id='preview'
-        src={url}
+        src={transformedUrl}
         width={1000}
         height={1000}
         priority={true}
-        alt='imagen editada'
+        alt={`Imagen editada ${image.original_filename}`}
+        onLoad={() => changeLoading(false)}
       />
     </div>
   )

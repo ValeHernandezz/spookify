@@ -18,6 +18,5 @@ export default function ViewImage() {
   if (viewImage === ViewImageStateEnum.EDIT)
     return <CtlImageEdit publicId={image.public_id} />
 
-  if (viewImage === ViewImageStateEnum.COMPARE)
-    return <CtlImageCompare publicId={image.public_id} />
+  if (viewImage === ViewImageStateEnum.COMPARE) return <CtlImageCompare />
 }

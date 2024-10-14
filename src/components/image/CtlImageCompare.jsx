@@ -1,37 +1,33 @@
 'use client'
 import React from 'react'
 import 'two-up-element'
-import { getCldImageUrl } from 'next-cloudinary'
 import Image from 'next/image'
+import useEditor from '@/store/Providers'
 
-export default function CtlImageCompare({ publicId }) {
-  const urlOriginal = getCldImageUrl({
-    src: publicId,
-  })
+export default function CtlImageCompare() {
+  const { image } = useEditor()
+  const { transformedUrl } = image
 
-  const url = getCldImageUrl({
-    src: publicId,
-    replaceBackground: 'Add scary ghosts to the background',
-  })
+  if (!transformedUrl) return <div>No has editado la imagen</div>
 
   return (
     <div className='flex justify-center py-5 max-w-[600px]'>
       <two-up>
         <Image
           id='original'
-          src={urlOriginal}
+          src={image.url}
           width={1000}
           height={1000}
           priority={true}
-          alt='iamgen'
+          alt={`Imagen original ${image.original_filename}`}
         />
         <Image
           id='preview'
-          src={url}
+          src={transformedUrl}
           width={1000}
           height={1000}
           priority={true}
-          alt='iamgen'
+          alt={`Imagen editada ${image.original_filename}`}
         />
       </two-up>
     </div>
