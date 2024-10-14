@@ -1,15 +1,15 @@
 'use client'
 import { useState, useEffect, createContext, useContext } from 'react'
-import { CloudinaryUploadResponse, ViewImageStateEnum } from '@/lib/types'
+import {
+  CloudinaryUploadResponse,
+  ViewImageState,
+  ViewImageStateEnum,
+} from '@/lib/types'
 
 const EditorContext = createContext({})
 
 interface Props {
   children: React.ReactNode
-}
-
-type ViewImageState = {
-  state: ViewImageStateEnum
 }
 
 export const Providers = ({ children }: Props) => {
