@@ -26,3 +26,13 @@ export enum ViewImageStateEnum {
   EDIT = 'edit',
   COMPARE = 'compare',
 }
+
+export type ViewImageState = {
+  state: ViewImageStateEnum
+}
+
+export interface Tool {
+  id: number
+  title: string
+  transformations: object
+}
