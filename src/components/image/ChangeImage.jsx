@@ -7,49 +7,46 @@ import Edit from '@/components/icons/Edit'
 import Compare from '@/components/icons/Compare'
 import Download from '@/components/icons/Download'
 import Share from '@/components/icons/Share'
+import Button from '@/components/utils/Button'
 
 export default function ChangeImage() {
   const { changeViewImage } = useEditor()
   return (
-    <div className='flex items-center justify-between'>
-      <div className='flex items-center gap-10 p-5'>
-        <button
-          className='flex items-center gap-x-2 p-3 bg-primary rounded-lg '
+    <div className='flex flex-col gap-y-5 xl:gap-y-0 xl:flex-row items-center xl:justify-between w-full max-w-[800px] mx-auto'>
+      <div className='flex items-center gap-5 xl:gap-10'>
+        <Button
+          color='bg-primary'
+          title='Original'
           onClick={() => changeViewImage(ViewImageStateEnum.ORIGINAL)}
         >
-          <Photo />
-          Original
-        </button>
-        <button
-          className='flex items-center gap-x-2 p-3 bg-primary rounded-lg '
+          <Photo size='size-4 xl:size-5' />
+        </Button>
+
+        <Button
+          color='bg-primary'
+          title='Editada'
           onClick={() => changeViewImage(ViewImageStateEnum.EDIT)}
         >
-          <Edit />
-          Editada
-        </button>
-        <button
-          className='flex items-center gap-x-2 p-3 bg-primary rounded-lg '
+          <Edit size='size-4 xl:size-5' />
+        </Button>
+
+        <Button
+          color='bg-primary'
+          title='Comparar'
           onClick={() => changeViewImage(ViewImageStateEnum.COMPARE)}
         >
-          <Compare />
-          Comparar
-        </button>
+          <Compare size='size-4 xl:size-5' />
+        </Button>
       </div>
-      <div className='flex items-center gap-10 p-5'>
-        <button
-          className='flex items-center gap-x-2 p-3 bg-primary rounded-lg '
-          onClick={() => {}}
-        >
-          <Download />
-          Descargar
-        </button>
-        <button
-          className='flex items-center gap-x-2 p-3 bg-primary rounded-lg '
-          onClick={() => {}}
-        >
-          <Share />
-          Compartir
-        </button>
+
+      <div className='flex items-center gap-5 xl:gap-10'>
+        <Button color='bg-primary' title='Descargar' onClick={() => {}}>
+          <Download size='size-4 xl:size-5' />
+        </Button>
+
+        <Button color='bg-primary' title='Compartir' onClick={() => {}}>
+          <Share size='size-4 xl:size-5' />
+        </Button>
       </div>
     </div>
   )
