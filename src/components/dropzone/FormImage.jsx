@@ -4,9 +4,10 @@ import { useDropzone } from 'react-dropzone'
 import { useRouter } from 'next/navigation'
 
 import Paperclip from '@/components/icons/PaperClip'
+import { ViewImageStateEnum } from '@/lib/types'
 
 export default function FormImage() {
-  const { changeImage, loading, changeLoading } = useEditor()
+  const { changeImage, loading, changeLoading, changeViewImage } = useEditor()
   const router = useRouter()
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -33,7 +34,7 @@ export default function FormImage() {
     })
 
     const { data } = await response.json()
-
+    changeViewImage(ViewImageStateEnum.ORIGINAL)
     changeImage(data)
     changeLoading(false)
     router.push('/editar')
