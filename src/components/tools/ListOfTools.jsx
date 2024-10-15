@@ -3,11 +3,11 @@ import React from 'react'
 import useTransform from '@/hooks/useTransform'
 import useEditor from '@/store/Providers'
 import { tools } from '@/lib'
-import { ToolCategory } from '@/lib/types'
+import { ToolCategory, ViewImageStateEnum } from '@/lib/types'
 import Trash from '@/components/icons/Trash'
 import Undo from '@/components/icons/Undo'
 export default function ListOfTools() {
-  const { image, changeImage } = useEditor()
+  const { image, changeImage, changeViewImage } = useEditor()
   const { transformImage } = useTransform()
 
   const handleTransform = async (newTransformations) => {
@@ -33,7 +33,7 @@ export default function ListOfTools() {
         },
         {}
       )
-
+      changeViewImage(ViewImageStateEnum.EDIT)
       const transformedUrl = await transformImage({
         publicId: image.public_id,
         transformations: combinedTransformations,
@@ -52,7 +52,7 @@ export default function ListOfTools() {
     }
   }
 
-  const handleUndo = () => {
+  const handleUndo = async () => {
     const appliedTransformations = image.appliedTransformations || []
 
     if (appliedTransformations.length > 0) {
@@ -66,9 +66,9 @@ export default function ListOfTools() {
         },
         {}
       )
-
+      changeViewImage(ViewImageStateEnum.EDIT)
       // Generamos la nueva URL con las transformaciones restantes
-      const transformedUrl = transformImage({
+      const transformedUrl = await transformImage({
         publicId: image.public_id,
         transformations: combinedTransformations,
       })
@@ -82,12 +82,12 @@ export default function ListOfTools() {
     }
   }
 
-  const handleReset = () => {
-    const transformedUrl = transformImage({
+  const handleReset = async () => {
+    const transformedUrl = await transformImage({
       publicId: image.public_id,
       transformations: {},
     })
-
+    changeViewImage(ViewImageStateEnum.ORIGINAL)
     changeImage({
       ...image,
       transformedUrl,
