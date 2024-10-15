@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Edit() {
+export default function Edit({ size }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -8,10 +8,11 @@ export default function Edit() {
       height='24'
       fill='none'
       stroke='currentColor'
+      viewBox='0 0 24 24'
       strokeWidth='2'
       strokeLinecap='round'
       strokeLinejoin='round'
-      className='size-6'
+      className={size}
     >
       <path d='M0 0h24v24H0z' stroke='none' />
       <path d='M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1' />

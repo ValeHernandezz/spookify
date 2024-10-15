@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Compare() {
+export default function Compare({ size }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -8,10 +8,11 @@ export default function Compare() {
       height='24'
       fill='none'
       stroke='currentColor'
+      viewBox='0 0 24 24'
       strokeWidth='2'
       strokeLinecap='round'
       strokeLinejoin='round'
-      className='size-6'
+      className={size}
     >
       <path d='M0 0h24v24H0z' stroke='none' />
       <path d='M4 6a2 2 0 1 0 4 0 2 2 0 1 0-4 0M16 18a2 2 0 1 0 4 0 2 2 0 1 0-4 0' />

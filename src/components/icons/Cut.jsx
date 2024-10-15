@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Share({ size }) {
+export default function Cut() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -12,14 +12,14 @@ export default function Share({ size }) {
       strokeWidth='2'
       strokeLinecap='round'
       strokeLinejoin='round'
-      className={size}
+      inejoin='round'
+      className='size-6'
     >
       <path stroke='none' d='M0 0h24v24H0z' fill='none' />
-      <path d='M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' />
-      <path d='M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' />
-      <path d='M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' />
-      <path d='M8.7 10.7l6.6 -3.4' />
-      <path d='M8.7 13.3l6.6 3.4' />
+      <path d='M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' />
+      <path d='M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' />
+      <path d='M9.15 14.85l8.85 -10.85' />
+      <path d='M6 4l8.85 10.85' />
     </svg>
   )
 }
