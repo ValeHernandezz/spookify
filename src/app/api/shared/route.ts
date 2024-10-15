@@ -7,6 +7,6 @@ export async function POST(request: Request) {
   if (!file) {
     return NextResponse.json({ data: null, error: 'No file provided' })
   }
-  
-  return NextResponse.json({ data: null })
+
+  return NextResponse.json({ data:null })
 }
