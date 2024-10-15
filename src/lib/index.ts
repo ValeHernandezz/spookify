@@ -1,9 +1,10 @@
-import { Tool } from './types'
+import { Tool, ToolCategory } from './types'
 
 export const tools: Tool[] = [
   {
     id: 1,
     title: 'Remplazar background',
+    category: ToolCategory.Background,
     transformations: {
       replaceBackground: 'Add scary ghosts to the background',
     },
@@ -11,6 +12,7 @@ export const tools: Tool[] = [
   {
     id: 2,
     title: 'Rellenar imagen',
+    category: ToolCategory.Crop,
     transformations: {
       width: 960,
       height: 600,
@@ -21,6 +23,7 @@ export const tools: Tool[] = [
   {
     id: 3,
     title: 'Parte importante',
+    category: ToolCategory.Crop,
     transformations: {
       width: 300,
       height: 300,
@@ -36,6 +39,7 @@ export const tools: Tool[] = [
   {
     id: 4,
     title: 'Remplazar fondo',
+    category: ToolCategory.Background,
     transformations: {
       removeBackground: true,
       underlay: 'c1v0fyzn8xphbkoqdbgb',

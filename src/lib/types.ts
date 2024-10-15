@@ -32,7 +32,15 @@ export type ViewImageState = {
 }
 
 export interface Tool {
-  id: number
-  title: string
-  transformations: object
+  id: number;
+  title: string;
+  category: ToolCategory;
+  transformations: Record<string, any>;
+}
+
+export enum ToolCategory {
+  Background = 'Background',
+  Crop = 'Crop',
+  Overlay = 'Overlay',
+  Detection = 'Detection',
 }
