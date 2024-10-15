@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import useEditor from '@/store/Providers'
 import CtlImage from './CtlImage'
