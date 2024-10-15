@@ -21,19 +21,29 @@
   --background-image: #000000;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .fondo {
   background-image: url('/background.webp');
   filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
   mask-image: linear-gradient(to bottom, white 80%, transparent 100%);
 }
+
 h1 {
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
   filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.8));
+}
+
+.sombra {
+  filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.4));
 }
 
 .text-gradient {
@@ -53,7 +63,7 @@ h1 {
 #app {
   width: 100%;
   min-height: 100vh;
-  max-width: 1600px;
+  max-width: 1700px;
   margin: 0 auto;
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
