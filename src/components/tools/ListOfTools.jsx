@@ -2,10 +2,11 @@
 import React from 'react'
 import useTransform from '@/hooks/useTransform'
 import useEditor from '@/store/Providers'
-import { tools } from '@/lib'
-import { ToolCategory, ViewImageStateEnum } from '@/lib/types'
+import { toolCategories, tools } from '@/lib'
+import { ViewImageStateEnum } from '@/lib/types'
 import Trash from '@/components/icons/Trash'
 import Undo from '@/components/icons/Undo'
+
 export default function ListOfTools() {
   const { image, changeImage, changeViewImage } = useEditor()
   const { transformImage } = useTransform()
@@ -98,13 +99,16 @@ export default function ListOfTools() {
   return (
     <div>
       <ul className='mt-6 space-y-1'>
-        {Object.values(ToolCategory).map((category) => (
+        {Object.values(toolCategories).map((category, index) => (
           <details
             className='group [&_summary::-webkit-details-marker]:hidden'
-            key={category}
+            key={index}
           >
             <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
-              <span className='text-sm font-medium'>{category}</span>
+              <span className='text-sm font-medium flex items-center'>
+                {category.icon()}
+                <span className='ml-2'>{category.label}</span>
+              </span>
               <span className='shrink-0 transition duration-300 group-open:-rotate-180'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -123,7 +127,7 @@ export default function ListOfTools() {
 
             <ul className='mt-2 space-y-1 px-4'>
               {tools
-                .filter((tool) => tool.category === category)
+                .filter((tool) => tool.category === category.label)
                 .map((tool) => (
                   <li key={tool.id}>
                     <button

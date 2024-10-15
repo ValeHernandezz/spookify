@@ -32,15 +32,20 @@ export type ViewImageState = {
 }
 
 export interface Tool {
-  id: number;
-  title: string;
-  category: ToolCategory;
-  transformations: Record<string, any>;
+  id: number
+  title: string
+  category: ToolCategoryEnum
+  transformations: Record<string, any>
 }
 
-export enum ToolCategory {
-  Background = 'Background',
-  Crop = 'Crop',
+export enum ToolCategoryEnum {
+  Background = 'Fondos',
+  Crop = 'Cortar',
   Overlay = 'Overlay',
-  Detection = 'Detection',
+  Detection = 'Detectar',
+}
+
+export interface ToolCategory {
+  label: string
+  icon: () => JSX.Element
 }
