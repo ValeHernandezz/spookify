@@ -54,7 +54,7 @@ export default function FormImage() {
         >
           {loading ? (
             <>
-              <div class='loaderCircle mr-2'></div> Subiendo
+              <div className='loaderCircle mr-2'></div> Subiendo
             </>
           ) : (
             <>
