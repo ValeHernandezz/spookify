@@ -24,11 +24,16 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.fondo {
+  background-image: url('/background.webp');
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
+  mask-image: linear-gradient(to bottom, white 80%, transparent 100%);
+}
 h1 {
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
+  filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.8));
 }
 
 .text-gradient {
@@ -62,7 +67,7 @@ h1 {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: theme('colors.fourth');
+  background-color: theme('colors.primary');
   border: 2px solid transparent;
   background-clip: content-box;
 }
@@ -74,12 +79,14 @@ h1 {
 ::-webkit-scrollbar-corner {
   background: var(--background-image);
 }
-
+header {
+  filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.8));
+}
 .card {
   width: 350px;
   height: 200px;
   border-radius: 15px;
-  background: rgb(9, 9, 9, 0.25);
+  background: rgb(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -87,18 +94,18 @@ h1 {
 }
 
 .card::before {
-  content: "";
+  content: '';
   height: 100px;
   width: 100px;
   position: absolute;
-  top: 0%;
-  left: -20%;
-  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><path d="M21 17.2V6.8L12 2L3 6.8v10.4l9 4.8Zm-19 .6L22 6.2m-20 0l20 11.6M12 2v20"/><path d="M17 14.9V9.1l-5-2.6l-5 2.6v5.8l5 2.6Z"/></g></svg>');
+  top: -10%;
+  left: -10%;
+  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="%23ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"><path d="M21 17.2V6.8L12 2L3 6.8v10.4l9 4.8Zm-19 .6L22 6.2m-20 0l20 11.6M12 2v20"/><path d="M17 14.9V9.1l-5-2.6l-5 2.6v5.8l5 2.6Z"/></g></svg>');
   mask-size: contain;
   mask-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.102);
-  transition: all .8s ease;
-  filter: blur(.5rem);
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.8s ease;
+  filter: blur(0.5rem);
 }
 
 .text {
@@ -114,7 +121,7 @@ h1 {
 }
 
 .subtitle {
-  font-size: .7em;
+  font-size: 0.7em;
   font-weight: 300;
   color: rgba(240, 248, 255, 0.691);
 }
@@ -141,12 +148,22 @@ h1 {
 .btn:hover {
   background-color: var(--color-primary);
 }
+.btn:disabled {
+  background-color: var(--color-tertiary);
+  cursor: not-allowed;
+}
+
+/* Evitar hover cuando está deshabilitado */
+.btn:disabled:hover {
+  background-color: var(--color-tertiary);
+  color: #000;
+}
 
 .card:hover::before {
   width: 140px;
   height: 140px;
   top: -30%;
-  left: 50%;
+  left: 78%;
   filter: blur(0rem);
 }
 
@@ -155,19 +172,39 @@ h1 {
   font-weight: bold;
   font-family: monospace;
   font-size: 30px;
-  background: radial-gradient(circle closest-side,#000 94%,#0000) right/calc(200% - 1em) 100%;
+  background: radial-gradient(circle closest-side, #000 94%, #0000)
+    right/calc(200% - 1em) 100%;
   animation: l24 1s infinite alternate linear;
 }
 .loader::before {
-  content: "Transformando...";
+  content: 'Transformando...';
   line-height: 1em;
   color: #0000;
   background: inherit;
-  background-image: radial-gradient(circle closest-side,#fff 94%,#000);
-  -webkit-background-clip:text;
-          background-clip:text;
+  background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
-@keyframes l24{
-  100%{background-position: left}
+@keyframes l24 {
+  100% {
+    background-position: left;
+  }
+}
+
+.loaderCircle {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #ffa516 94%, #0000) top/4px 4px
+      no-repeat,
+    conic-gradient(#0000 30%, #ffa516);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  animation: l13 1s infinite linear;
+}
+
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
