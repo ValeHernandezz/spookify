@@ -2,20 +2,20 @@
 import React from 'react'
 import Image from 'next/image'
 import useEditor from '@/store/Providers'
-
+import ImageContainer from './ImageContainer'
 export default function CtlImage() {
   const { image } = useEditor()
 
   return (
-    <div className='flex justify-center py-5 max-w-[600px]'>
+    <ImageContainer>
       <Image
-        id='original'
+        className='w-full object-cover'
         src={image.url}
         width={1000}
-        height={1000}
+        height={700}
         priority={true}
         alt={`Imagen ${image.original_filename}`}
       />
-    </div>
+    </ImageContainer>
   )
 }
