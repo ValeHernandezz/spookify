@@ -14,9 +14,9 @@ export default function CtlImageEdit() {
     return <Loader />
   }
 
-  if (!transformedUrl) {
+  if (!transformedUrl || JSON.stringify(transformedUrl) === '{}') {
     return (
-      <h3 className='text-black font-bold text-3xl'>
+      <h3 className='text-black font-bold text-3xl text-center py-10'>
         No has usado ningun efecto
       </h3>
     )
