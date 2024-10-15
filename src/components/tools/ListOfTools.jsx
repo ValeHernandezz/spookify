@@ -105,7 +105,7 @@ export default function ListOfTools() {
             key={index}
           >
             <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
-              <span className='text-sm font-medium flex items-center'>
+              <span className='text-sm font-medium text-black flex items-center'>
                 {category.icon()}
                 <span className='ml-2'>{category.label}</span>
               </span>
@@ -131,9 +131,10 @@ export default function ListOfTools() {
                 .map((tool) => (
                   <li key={tool.id}>
                     <button
-                      className='w-full text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                      className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
                       onClick={() => handleTransform(tool.transformations)}
                     >
+                      {tool.icon && tool.icon()}
                       {tool.title}
                     </button>
                   </li>
