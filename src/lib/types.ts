@@ -36,6 +36,7 @@ export interface Tool {
   title: string
   category: ToolCategoryEnum
   transformations: Record<string, any>
+  icon?: () => JSX.Element
 }
 
 export enum ToolCategoryEnum {

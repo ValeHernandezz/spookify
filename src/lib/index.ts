@@ -2,6 +2,10 @@ import { Tool, ToolCategory, ToolCategoryEnum } from './types'
 import Background from '@/components/icons/Background'
 import Cut from '@/components/icons/Cut'
 import Overlay from '@/components/icons/Overlay'
+import Sparkles from '@/components/icons/Sparkles'
+import PhotoSpark from '@/components/icons/PhotoSpark'
+import CropZone from '@/components/icons/CropZone'
+import InputSpark from '@/components/icons/InputSpark'
 import Detect from '@/components/icons/Detect'
 
 export const toolCategories: Record<string, ToolCategory> = {
@@ -27,6 +31,7 @@ export const tools: Tool[] = [
   {
     id: 1,
     title: 'Generar fondo con IA',
+    icon: Sparkles,
     category: ToolCategoryEnum.Background,
     transformations: {
       replaceBackground: 'Add scary ghosts to the background',
@@ -35,6 +40,7 @@ export const tools: Tool[] = [
   {
     id: 2,
     title: 'Rellenar imagen',
+    icon: InputSpark,
     category: ToolCategoryEnum.Crop,
     transformations: {
       width: 960,
@@ -46,6 +52,7 @@ export const tools: Tool[] = [
   {
     id: 3,
     title: 'Parte importante',
+    icon: CropZone,
     category: ToolCategoryEnum.Crop,
     transformations: {
       width: 300,
@@ -62,6 +69,7 @@ export const tools: Tool[] = [
   {
     id: 4,
     title: 'Remplazar fondo',
+    icon: PhotoSpark,
     category: ToolCategoryEnum.Background,
     transformations: {
       removeBackground: true,
