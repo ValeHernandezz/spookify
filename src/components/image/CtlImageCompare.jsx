@@ -1,9 +1,13 @@
 'use client'
 import React from 'react'
-import 'two-up-element'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import useEditor from '@/store/Providers'
 import ImageContainer from './ImageContainer'
+
+// Deshabilitamos SSR para el componente que usa Web Components (two-up)
+const TwoUpElement = dynamic(() => import('two-up-element'), { ssr: false })
+
 export default function CtlImageCompare() {
   const { image } = useEditor()
   const { transformedUrl } = image
@@ -12,7 +16,7 @@ export default function CtlImageCompare() {
 
   return (
     <ImageContainer>
-      <two-up className='w-full'>
+      <TwoUpElement className='w-full'>
         <Image
           id='original'
           className='w-full object-cover'
@@ -31,7 +35,7 @@ export default function CtlImageCompare() {
           priority={true}
           alt={`Imagen editada ${image.original_filename}`}
         />
-      </two-up>
+      </TwoUpElement>
     </ImageContainer>
   )
 }

@@ -10,7 +10,7 @@ export default function ListOfTools() {
   const { image, changeImage } = useEditor()
   const { transformImage } = useTransform()
 
-  const handleTransform = (newTransformations) => {
+  const handleTransform = async (newTransformations) => {
     // Usamos un array para acumular las transformaciones
     const appliedTransformations = image.appliedTransformations || []
 
@@ -34,7 +34,7 @@ export default function ListOfTools() {
         {}
       )
 
-      const transformedUrl = transformImage({
+      const transformedUrl = await transformImage({
         publicId: image.public_id,
         transformations: combinedTransformations,
       })
