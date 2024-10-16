@@ -35,15 +35,16 @@ export interface Tool {
   id: number
   title: string
   category: ToolCategoryEnum
-  transformations: Record<string, any>
+  transformations?: Record<string, any>
   icon?: () => JSX.Element
+  options?: object
 }
 
 export enum ToolCategoryEnum {
   Background = 'Fondos',
   Crop = 'Cortar',
   Overlay = 'Overlay',
-  Detection = 'Detectar',
+  Transform = 'Transformar',
 }
 
 export interface ToolCategory {
