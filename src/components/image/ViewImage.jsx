@@ -20,3 +20,26 @@ export default function ViewImage() {
 
   if (viewImage === ViewImageStateEnum.COMPARE) return <CtlImageCompare />
 }
+
+/* 
+'use client'
+import React from 'react'
+import ImageContainer from './ImageContainer'
+import Image from 'next/image'
+
+export default function ViewImage() {
+
+  return (
+    <ImageContainer>
+      <Image
+        className='w-full object-cover'
+        src='./background.webp'
+        width={1000}
+        height={700}
+        priority={true}
+        alt={`Imagen`}
+      />
+    </ImageContainer>
+  )
+
+} */
