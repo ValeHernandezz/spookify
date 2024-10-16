@@ -6,16 +6,17 @@ import { toolCategories, tools } from '@/lib'
 import { ViewImageStateEnum } from '@/lib/types'
 import Trash from '@/components/icons/Trash'
 import Undo from '@/components/icons/Undo'
+import Arrow from '@/components/icons/Arrow'
+import { applyGenerativeReplace } from '@/lib'
+import { pollForProcessingImage } from '@cloudinary-util/util'
 
 export default function ListOfTools() {
-  const { image, changeImage, changeViewImage } = useEditor()
+  const { image, changeImage, changeViewImage, changeLoading } = useEditor()
   const { transformImage } = useTransform()
-
-  const handleTransform = async (newTransformations) => {
-    // Usamos un array para acumular las transformaciones
+  const handleTransformBackground = async (newTransformations) => {
     const appliedTransformations = image.appliedTransformations || []
 
-    // Verificamos si ya se aplicó la transformación
+    // Verificamos si ya se aplicó la transformación de fondo
     const hasTransformationBeenApplied = appliedTransformations.some(
       (transformation) =>
         JSON.stringify(transformation) === JSON.stringify(newTransformations)
@@ -34,7 +35,9 @@ export default function ListOfTools() {
         },
         {}
       )
+
       changeViewImage(ViewImageStateEnum.EDIT)
+
       const transformedUrl = await transformImage({
         publicId: image.public_id,
         transformations: combinedTransformations,
@@ -49,7 +52,70 @@ export default function ListOfTools() {
         })
       }
     } else {
-      console.log('La transformación ya ha sido aplicada')
+      console.log('La transformación de fondo ya ha sido aplicada')
+    }
+  }
+
+  const handleTransform = async (tool) => {
+    const appliedTransformations = image.appliedTransformations || []
+
+    if (tool.category === 'Transformar') {
+      changeLoading(true)
+      const { fromObject, toObject } = tool.transformations
+      const transformedUrl = applyGenerativeReplace(
+        image.public_id,
+        fromObject,
+        toObject
+      )
+
+      changeViewImage(ViewImageStateEnum.EDIT)
+      changeImage({
+        ...image,
+        transformedUrl,
+        appliedTransformations: [
+          ...appliedTransformations,
+          { fromObject, toObject },
+        ],
+      })
+      await pollForProcessingImage({ src: transformedUrl })
+      changeLoading(false)
+    } else {
+      const hasTransformationBeenApplied = appliedTransformations.some(
+        (transformation) =>
+          JSON.stringify(transformation) ===
+          JSON.stringify(tool.transformations)
+      )
+
+      if (!hasTransformationBeenApplied) {
+        const updatedTransformations = [
+          ...appliedTransformations,
+          tool.transformations,
+        ]
+
+        const combinedTransformations = updatedTransformations.reduce(
+          (acc, transformation) => {
+            return { ...acc, ...transformation }
+          },
+          {}
+        )
+
+        changeViewImage(ViewImageStateEnum.EDIT)
+        const transformedUrl = await transformImage({
+          publicId: image.public_id,
+          transformations: combinedTransformations,
+        })
+
+        if (transformedUrl) {
+          // Guardamos la nueva URL y el historial de transformaciones
+          changeImage({
+            ...image,
+            transformedUrl,
+            appliedTransformations: updatedTransformations, // Guardamos el historial
+          })
+        }
+      } else {
+        console.log('La transformación ya ha sido aplicada')
+      }
     }
   }
 
@@ -57,24 +123,21 @@ export default function ListOfTools() {
     const appliedTransformations = image.appliedTransformations || []
 
     if (appliedTransformations.length > 0) {
-      // Quitamos la última transformación del array
       const updatedHistory = appliedTransformations.slice(0, -1)
 
-      // Reconstruimos el objeto de transformaciones acumuladas
       const combinedTransformations = updatedHistory.reduce(
         (acc, transformation) => {
           return { ...acc, ...transformation }
         },
         {}
       )
+
       changeViewImage(ViewImageStateEnum.EDIT)
-      // Generamos la nueva URL con las transformaciones restantes
       const transformedUrl = await transformImage({
         publicId: image.public_id,
         transformations: combinedTransformations,
       })
 
-      // Actualizamos la imagen con las transformaciones restantes
       changeImage({
         ...image,
         transformedUrl,
@@ -110,18 +173,7 @@ export default function ListOfTools() {
                 <span className='ml-2'>{category.label}</span>
               </span>
               <span className='shrink-0 transition duration-300 group-open:-rotate-180'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='size-5'
-                  viewBox='0 0 20 20'
-                  fill='currentColor'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                    clipRule='evenodd'
-                  />
-                </svg>
+                <Arrow />
               </span>
             </summary>
 
@@ -130,13 +182,50 @@ export default function ListOfTools() {
                 .filter((tool) => tool.category === category.label)
                 .map((tool) => (
                   <li key={tool.id}>
-                    <button
-                      className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
-                      onClick={() => handleTransform(tool.transformations)}
-                    >
-                      {tool.icon && tool.icon()}
-                      {tool.title}
-                    </button>
+                    {tool.id === 1 ? (
+                      <>
+                        <details className='group [&_summary::-webkit-details-marker]:hidden'>
+                          <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
+                            <span className='text-sm font-medium text-black flex items-center'>
+                              {tool.icon()}
+                              <span className='ml-2'>{tool.title}</span>
+                            </span>
+                            <span className='shrink-0 transition duration-300 group-open:-rotate-180'>
+                              <Arrow />
+                            </span>
+                          </summary>
+
+                          <ul className='px-4'>
+                            {tool.options.map(
+                              ({ id, title, transformations }) => {
+                                return (
+                                  <button
+                                    key={id}
+                                    className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
+                                    onClick={() =>
+                                      handleTransformBackground(transformations)
+                                    }
+                                  >
+                                    {tool.icon && tool.icon()}
+                                    {title}
+                                  </button>
+                                )
+                              }
+                            )}
+                          </ul>
+                        </details>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
+                          onClick={() => handleTransform(tool)}
+                        >
+                          {tool.icon && tool.icon()}
+                          {tool.title}
+                        </button>
+                      </>
+                    )}
                   </li>
                 ))}
             </ul>
@@ -146,7 +235,7 @@ export default function ListOfTools() {
 
       <div className='flex justify-center gap-5 mt-10'>
         <button
-          className='flex items-center gap-x-2 font-bold p-2 text-sm bg-red-500 text-white rounded-lg'
+          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-500 text-white rounded-lg'
           onClick={handleUndo}
           disabled={!(image.appliedTransformations || []).length}
         >
@@ -154,7 +243,7 @@ export default function ListOfTools() {
           Deshacer
         </button>
         <button
-          className='flex items-center gap-x-2 font-bold p-2 text-sm bg-red-800 text-white rounded-lg'
+          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-800 text-white rounded-lg'
           onClick={handleReset}
           disabled={!(image.appliedTransformations || []).length}
         >
