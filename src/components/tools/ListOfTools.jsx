@@ -7,110 +7,65 @@ import { ViewImageStateEnum } from '@/lib/types'
 import Trash from '@/components/icons/Trash'
 import Undo from '@/components/icons/Undo'
 import Arrow from '@/components/icons/Arrow'
-import { applyGenerativeReplace } from '@/lib'
-import { pollForProcessingImage } from '@cloudinary-util/util'
 
 export default function ListOfTools() {
-  const { image, changeImage, changeViewImage, changeLoading } = useEditor()
+  const { image, changeImage, changeViewImage } = useEditor()
   const { transformImage } = useTransform()
-  const handleTransformBackground = async (newTransformations) => {
-    const appliedTransformations = image.appliedTransformations || []
-
-    // Verificamos si ya se aplicó la transformación de fondo
-    const hasTransformationBeenApplied = appliedTransformations.some(
-      (transformation) =>
-        JSON.stringify(transformation) === JSON.stringify(newTransformations)
-    )
-
-    if (!hasTransformationBeenApplied) {
-      const updatedTransformations = [
-        ...appliedTransformations,
-        newTransformations,
-      ]
-
-      // Generamos la URL con las transformaciones acumuladas
-      const combinedTransformations = updatedTransformations.reduce(
-        (acc, transformation) => {
-          return { ...acc, ...transformation }
-        },
-        {}
-      )
-
-      changeViewImage(ViewImageStateEnum.EDIT)
-
-      const transformedUrl = await transformImage({
-        publicId: image.public_id,
-        transformations: combinedTransformations,
-      })
-
-      if (transformedUrl) {
-        // Guardamos la nueva URL y el historial de transformaciones
-        changeImage({
-          ...image,
-          transformedUrl,
-          appliedTransformations: updatedTransformations, // Guardamos el historial
-        })
-      }
-    } else {
-      console.log('La transformación de fondo ya ha sido aplicada')
-    }
-  }
 
   const handleTransform = async (tool) => {
     const appliedTransformations = image.appliedTransformations || []
 
-    if (tool.category === 'Transformar') {
-      changeLoading(true)
-      const { fromObject, toObject } = tool.transformations
-      const transformedUrl = applyGenerativeReplace(
-        image.public_id,
-        fromObject,
-        toObject
-      )
-
-      changeViewImage(ViewImageStateEnum.EDIT)
-      changeImage({
-        ...image,
-        transformedUrl,
-        appliedTransformations: [
-          ...appliedTransformations,
-          { fromObject, toObject },
-        ],
-      })
-      await pollForProcessingImage({ src: transformedUrl })
-      changeLoading(false)
-    } else {
+    if (tool.replace) {
+      const replace = { replace: tool.replace }
+      
       const hasTransformationBeenApplied = appliedTransformations.some(
         (transformation) =>
-          JSON.stringify(transformation) ===
-          JSON.stringify(tool.transformations)
+          JSON.stringify(transformation) === JSON.stringify(replace)
+      )
+
+      if (!hasTransformationBeenApplied) {
+        const updatedTransformations = [...appliedTransformations, replace]
+
+        const transformedUrl = await transformImage({
+          publicId: image.public_id,
+          transformations: updatedTransformations,
+        })
+
+        if (transformedUrl) {
+          changeImage({
+            ...image,
+            transformedUrl,
+            appliedTransformations: updatedTransformations,
+          })
+        }
+      } else {
+        console.log('La transformación ya ha sido aplicada')
+      }
+      return
+    } else {
+      const newTransformations = tool
+
+      const hasTransformationBeenApplied = appliedTransformations.some(
+        (transformation) =>
+          JSON.stringify(transformation) === JSON.stringify(newTransformations)
       )
 
       if (!hasTransformationBeenApplied) {
         const updatedTransformations = [
           ...appliedTransformations,
-          tool.transformations,
+          newTransformations,
         ]
 
-        const combinedTransformations = updatedTransformations.reduce(
-          (acc, transformation) => {
-            return { ...acc, ...transformation }
-          },
-          {}
-        )
-
-        changeViewImage(ViewImageStateEnum.EDIT)
         const transformedUrl = await transformImage({
           publicId: image.public_id,
-          transformations: combinedTransformations,
+          transformations: updatedTransformations,
         })
 
         if (transformedUrl) {
-          // Guardamos la nueva URL y el historial de transformaciones
           changeImage({
             ...image,
             transformedUrl,
-            appliedTransformations: updatedTransformations, // Guardamos el historial
+            appliedTransformations: updatedTransformations,
           })
         }
       } else {
@@ -125,17 +80,9 @@ export default function ListOfTools() {
     if (appliedTransformations.length > 0) {
       const updatedHistory = appliedTransformations.slice(0, -1)
 
-      const combinedTransformations = updatedHistory.reduce(
-        (acc, transformation) => {
-          return { ...acc, ...transformation }
-        },
-        {}
-      )
-
-      changeViewImage(ViewImageStateEnum.EDIT)
       const transformedUrl = await transformImage({
         publicId: image.public_id,
-        transformations: combinedTransformations,
+        transformations: updatedHistory,
       })
 
       changeImage({
@@ -149,7 +96,7 @@ export default function ListOfTools() {
   const handleReset = async () => {
     const transformedUrl = await transformImage({
       publicId: image.public_id,
-      transformations: {},
+      transformations: [],
     })
     changeViewImage(ViewImageStateEnum.ORIGINAL)
     changeImage({
@@ -203,7 +150,7 @@ export default function ListOfTools() {
                                     key={id}
                                     className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
                                     onClick={() =>
-                                      handleTransformBackground(transformations)
+                                      handleTransform(transformations)
                                     }
                                   >
                                     {tool.icon && tool.icon()}
