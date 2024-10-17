@@ -11,7 +11,11 @@ export default function CtlImageEdit() {
   const { transformedUrl } = image
 
   if (loading) {
-    return <Loader />
+    return (
+      <div className='h-[400px]'>
+        <Loader />
+      </div>
+    )
   }
 
   if (!transformedUrl || JSON.stringify(transformedUrl) === '{}') {

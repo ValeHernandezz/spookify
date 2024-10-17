@@ -12,7 +12,7 @@ import Button from '@/components/utils/Button'
 export default function ChangeImage() {
   const { changeViewImage } = useEditor()
   return (
-    <div className='flex flex-col gap-y-5 xl:gap-y-0 xl:flex-row items-center xl:justify-between w-full max-w-[800px] mx-auto'>
+    <div className='flex flex-col gap-y-5 lg:gap-y-0 lg:flex-row items-center lg:justify-between w-full max-w-[880px] lg:px-20 mx-auto'>
       <div className='flex items-center gap-5 xl:gap-10'>
         <Button
           color='bg-primary'

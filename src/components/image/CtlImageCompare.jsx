@@ -10,12 +10,11 @@ export default function CtlImageCompare() {
   const twoUpRef = useRef(null)
 
   useEffect(() => {
-    // Verifica si el componente está en el lado del cliente
     if (typeof window !== 'undefined') {
       import('two-up-element')
     }
   }, [])
-  console.log(transformedUrl)
+
   if (!transformedUrl || JSON.stringify(transformedUrl) === '{}')
     return (
       <h3 className='text-black font-bold text-3xl text-center py-10'>
