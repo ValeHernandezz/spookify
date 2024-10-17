@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import Background from '@/components/utils/Background'
-import { Providers } from '@/store/Providers'
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 
@@ -40,13 +39,12 @@ export default function RootLayout({
         <div className="fondo absolute inset-0 bg-[url('/background.jpg')] bg-cover bg-center -z-10"></div>
 
         <Background z={false} />
-        <Providers>
-          <div id='app'>
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </Providers>
+
+        <div id='app'>
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   )
