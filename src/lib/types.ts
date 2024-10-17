@@ -1,24 +1,12 @@
 export interface CloudinaryUploadResponse {
-  asset_id: string
   public_id: string
-  version: number
-  version_id: string
-  signature: string
   width: number
   height: number
-  format: string
-  resource_type: string
   created_at: string
-  tags: string[]
-  bytes: number
-  type: string
-  etag: string
-  placeholder: boolean
   url: string
-  secure_url: string
-  folder: string
-  access_mode: string
   original_filename: string
+  transformations?: string
+  transformedUrl?: string
 }
 
 export enum ViewImageStateEnum {
@@ -35,9 +23,10 @@ export interface Tool {
   id: number
   title: string
   category: ToolCategoryEnum
-  transformations?: Record<string, any>
+  transformations?: object
   icon?: () => JSX.Element
   options?: object
+  replace?: { from: string; to: string; preserveGeometry: true }
 }
 
 export enum ToolCategoryEnum {
