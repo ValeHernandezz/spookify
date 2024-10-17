@@ -5,7 +5,7 @@ export default function Background({ z }) {
     <div
       className={`${
         z ? 'z-[-1]' : 'z-[-50]'
-      } fixed inset-0 h-[130vh] w-[130vw] bg-gradient-to-b from-zinc-900 to-zinc-800`}
+      } fixed inset-0 h-[130vh] w-[130vw] bg-gradient-to-b from-black to-zinc-950`}
     ></div>
   )
 }

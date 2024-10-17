@@ -23,6 +23,7 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -39,7 +40,7 @@ h1 {
   font-size: 3rem;
   font-weight: 700;
   line-height: 1;
-  filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(-2px 0px 10px rgba(0, 0, 0, 0.8));
 }
 
 .sombra {
@@ -83,11 +84,11 @@ h1 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background-image);
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-corner {
-  background: var(--background-image);
+  background: #09090b;
 }
 header {
   filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.8));
