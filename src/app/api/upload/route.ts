@@ -22,7 +22,10 @@ export async function POST(request: Request) {
     }
   )
 
-  const data = await response.json()
+  const { public_id, width, height, created_at, url, original_filename } =
+    await response.json()
+
+  const data = { public_id, width, height, created_at, url, original_filename }
 
   return NextResponse.json({ data })
 }
