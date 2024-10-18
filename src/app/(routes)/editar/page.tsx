@@ -9,7 +9,7 @@ export default function EditorPage() {
     <main className='min-h-[100vh]'>
       <Background z={true} />
       <section className='flex'>
-        <div className='flex h-screen flex-col bg-white w-[400px]'>
+        <div className='flex min-h-screen flex-col bg-white w-[450px]'>
           <div className='px-4'>
             <h2 className='text-2xl xl:text-3xl text-center font-bold text-black pt-5'>
               Edita tu imagen

@@ -12,23 +12,19 @@ export default function ViewImage() {
 
   if (!image.public_id) return <Loader />
 
-  if (viewImage === ViewImageStateEnum.ORIGINAL)
-    return <CtlImage publicId={image.public_id} />
+  if (viewImage === ViewImageStateEnum.ORIGINAL) return <CtlImage />
 
-  if (viewImage === ViewImageStateEnum.EDIT)
-    return <CtlImageEdit publicId={image.public_id} />
+  if (viewImage === ViewImageStateEnum.EDIT) return <CtlImageEdit />
 
   if (viewImage === ViewImageStateEnum.COMPARE) return <CtlImageCompare />
 }
 
-/* 
-'use client'
+/* 'use client'
 import React from 'react'
 import ImageContainer from './ImageContainer'
 import Image from 'next/image'
 
 export default function ViewImage() {
-
   return (
     <ImageContainer>
       <Image
@@ -41,5 +37,4 @@ export default function ViewImage() {
       />
     </ImageContainer>
   )
-
 } */
