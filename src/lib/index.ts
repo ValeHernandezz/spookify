@@ -34,35 +34,33 @@ export const toolCategories: Record<string, ToolCategory> = {
 export const tools: Tool[] = [
   {
     id: 1,
-    title: 'Generar fondo con IA',
+    title: 'Apocalíptico',
     icon: Sparkles,
     category: ToolCategoryEnum.Background,
-    options: [
-      {
-        id: 1,
-        title: 'Apocalipsis',
-        transformations: {
-          replaceBackground: 'Dark clouds over ruined city',
-        },
-      },
-      {
-        id: 2,
-        title: 'Cementerio',
-        transformations: {
-          replaceBackground: 'Foggy graveyard with spooky tombstones',
-        },
-      },
-      {
-        id: 3,
-        title: 'Invasión zombie',
-        transformations: {
-          replaceBackground: 'Horde of zombies attacking streets',
-        },
-      },
-    ],
+    transformations: {
+      replaceBackground: 'Dark clouds over ruined city',
+    },
   },
   {
     id: 2,
+    title: 'Cementerio',
+    icon: Sparkles,
+    category: ToolCategoryEnum.Background,
+    transformations: {
+      replaceBackground: 'Foggy graveyard with spooky tombstones',
+    },
+  },
+  {
+    id: 3,
+    title: 'Invasión zombie',
+    icon: Sparkles,
+    category: ToolCategoryEnum.Background,
+    transformations: {
+      replaceBackground: 'Horde of zombies attacking streets',
+    },
+  },
+  {
+    id: 4,
     title: 'Rellenar imagen',
     icon: InputSpark,
     category: ToolCategoryEnum.Crop,
@@ -74,7 +72,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 3,
+    id: 5,
     title: 'Parte importante',
     icon: CropZone,
     category: ToolCategoryEnum.Crop,
@@ -91,7 +89,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 4,
+    id: 6,
     title: 'Remplazar fondo',
     icon: PhotoSpark,
     category: ToolCategoryEnum.Background,
@@ -102,7 +100,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 5,
+    id: 7,
     title: 'Mascara de Jason',
     category: ToolCategoryEnum.Overlay,
     replace: {
@@ -112,7 +110,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 6,
+    id: 8,
     title: 'Máscara de Michael Myers',
     category: ToolCategoryEnum.Overlay,
     replace: {
@@ -122,7 +120,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 7,
+    id: 9,
     title: 'Máscara de Ghostface',
     category: ToolCategoryEnum.Overlay,
     replace: {
@@ -132,7 +130,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 8,
+    id: 10,
     title: 'Máscara de Leatherface',
     category: ToolCategoryEnum.Overlay,
     replace: {
@@ -142,7 +140,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 9,
+    id: 11,
     title: 'Convertir en zombi',
     icon: Zombie,
     category: ToolCategoryEnum.Transform,
@@ -153,7 +151,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 10,
+    id: 12,
     title: 'Convertir en fantasma',
     icon: Ghost2,
     category: ToolCategoryEnum.Transform,
@@ -164,7 +162,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 11,
+    id: 13,
     title: 'Convertir en demonio',
     icon: Devil,
     category: ToolCategoryEnum.Transform,
@@ -175,7 +173,7 @@ export const tools: Tool[] = [
     },
   },
   {
-    id: 12,
+    id: 14,
     title: 'Convertir en esqueleto',
     icon: Skeleton,
     category: ToolCategoryEnum.Transform,
