@@ -20,7 +20,7 @@ export default function Home() {
           </div>
         </section>
         <section id='ejemplos' className='pt-20 pb-40'>
-          <h2 className='text-4xl font-bold text-center text-white mb-10 w-[15ch] md:w-auto mx-auto'>
+          <h2 className='text-4xl font-bold text-center text-white mb-16 w-[15ch] md:w-auto mx-auto'>
             ¡Transforma tus imágenes en{' '}
             <span className='text-gradient'>pesadillas</span>!
           </h2>
