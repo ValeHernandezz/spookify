@@ -218,8 +218,8 @@ export const sections = [
   },
   {
     id: 2,
-    name: 'Qué se yo',
-    url: '#que-se-yo',
+    name: 'Herramientas',
+    url: '#herramientas',
   },
   {
     id: 3,
