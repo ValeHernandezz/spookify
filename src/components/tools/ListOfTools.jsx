@@ -3,74 +3,84 @@ import React from 'react'
 import useTransform from '@/hooks/useTransform'
 import useEditor from '@/store/Providers'
 import { toolCategories, tools } from '@/lib'
-import { ViewImageStateEnum } from '@/lib/types'
+import { ViewImageStateEnum, ToolCategoryEnum } from '@/lib/types'
 import Trash from '@/components/icons/Trash'
 import Undo from '@/components/icons/Undo'
 import Arrow from '@/components/icons/Arrow'
+import GenerateTransform from '@/components/tools/GenerateTransform'
 
 export default function ListOfTools() {
   const { image, changeImage, changeViewImage } = useEditor()
   const { transformImage } = useTransform()
 
-  const handleTransform = async (tool) => {
+  const applyTransformation = async (newTransformation) => {
     const appliedTransformations = image.appliedTransformations || []
 
+    const hasTransformationBeenApplied = appliedTransformations.some(
+      (transformation) =>
+        JSON.stringify(transformation) === JSON.stringify(newTransformation)
+    )
+
+    if (!hasTransformationBeenApplied) {
+      const updatedTransformations = [
+        ...appliedTransformations,
+        newTransformation,
+      ]
+
+      const transformedUrl = await transformImage({
+        publicId: image.public_id,
+        transformations: updatedTransformations,
+      })
+
+      if (transformedUrl) {
+        changeImage({
+          ...image,
+          transformedUrl,
+          appliedTransformations: updatedTransformations,
+        })
+      }
+    }
+  }
+
+  const normalizeApiResponse = (data) => {
+    if (data.replace) {
+      return { replace: data.replace }
+    } else if (data.replaceBackground) {
+      return { replaceBackground: data.replaceBackground }
+    }
+    return data
+  }
+
+  const handleTransformCustom = async (e) => {
+    e.preventDefault()
+    const fields = Object.fromEntries(new window.FormData(e.target))
+    try {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fields),
+      })
+
+      const { data } = await response.json()
+
+      if (response.ok) {
+        const normalizedData = normalizeApiResponse(data)
+        await applyTransformation(normalizedData)
+      } else {
+        console.error('Error al generar transformación:', data.error)
+      }
+    } catch (error) {
+      console.error('Error de red:', error)
+    }
+  }
+
+  const handleTransform = async (tool) => {
     if (tool.replace) {
-      const replace = { replace: tool.replace }
-      
-      const hasTransformationBeenApplied = appliedTransformations.some(
-        (transformation) =>
-          JSON.stringify(transformation) === JSON.stringify(replace)
-      )
-
-      if (!hasTransformationBeenApplied) {
-        const updatedTransformations = [...appliedTransformations, replace]
-
-        const transformedUrl = await transformImage({
-          publicId: image.public_id,
-          transformations: updatedTransformations,
-        })
-
-        if (transformedUrl) {
-          changeImage({
-            ...image,
-            transformedUrl,
-            appliedTransformations: updatedTransformations,
-          })
-        }
-      } else {
-        console.log('La transformación ya ha sido aplicada')
-      }
-      return
+      await applyTransformation({ replace: tool.replace })
     } else {
-      const newTransformations = tool
-
-      const hasTransformationBeenApplied = appliedTransformations.some(
-        (transformation) =>
-          JSON.stringify(transformation) === JSON.stringify(newTransformations)
-      )
-
-      if (!hasTransformationBeenApplied) {
-        const updatedTransformations = [
-          ...appliedTransformations,
-          newTransformations,
-        ]
-
-        const transformedUrl = await transformImage({
-          publicId: image.public_id,
-          transformations: updatedTransformations,
-        })
-
-        if (transformedUrl) {
-          changeImage({
-            ...image,
-            transformedUrl,
-            appliedTransformations: updatedTransformations,
-          })
-        }
-      } else {
-        console.log('La transformación ya ha sido aplicada')
-      }
+      await applyTransformation(tool)
     }
   }
 
@@ -128,53 +138,22 @@ export default function ListOfTools() {
               {tools
                 .filter((tool) => tool.category === category.label)
                 .map((tool) => (
-                  <li key={tool.id}>
-                    {tool.id === 1 ? (
-                      <>
-                        <details className='group [&_summary::-webkit-details-marker]:hidden'>
-                          <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
-                            <span className='text-sm font-medium text-black flex items-center'>
-                              {tool.icon()}
-                              <span className='ml-2'>{tool.title}</span>
-                            </span>
-                            <span className='shrink-0 transition duration-300 group-open:-rotate-180'>
-                              <Arrow />
-                            </span>
-                          </summary>
-
-                          <ul className='px-4'>
-                            {tool.options.map(
-                              ({ id, title, transformations }) => {
-                                return (
-                                  <button
-                                    key={id}
-                                    className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
-                                    onClick={() =>
-                                      handleTransform(transformations)
-                                    }
-                                  >
-                                    {tool.icon && tool.icon()}
-                                    {title}
-                                  </button>
-                                )
-                              }
-                            )}
-                          </ul>
-                        </details>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
-                          onClick={() => handleTransform(tool)}
-                        >
-                          {tool.icon && tool.icon()}
-                          {tool.title}
-                        </button>
-                      </>
-                    )}
+                  <li className='' key={tool.id}>
+                    <button
+                      className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
+                      onClick={() => handleTransform(tool)}
+                    >
+                      {tool.icon && tool.icon()}
+                      {tool.title}
+                    </button>
                   </li>
                 ))}
+              {category.label !== ToolCategoryEnum.Crop && (
+                <GenerateTransform
+                  handleTransformCustom={handleTransformCustom}
+                  categoryLabel={category.label}
+                />
+              )}
             </ul>
           </details>
         ))}
