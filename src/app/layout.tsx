@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import Background from '@/components/utils/Background'
-import Header from '@/components/header/Header'
-import Hamburguer from '@/components/header/Hamburguer'
-import Footer from '@/components/footer/Footer'
+import Header from '@/sections/header/Header'
+import Hamburguer from '@/sections/header/Hamburguer'
+import Footer from '@/sections/Footer'
 
 import './globals.css'
 
