@@ -31,7 +31,6 @@ body {
 }
 
 .fondo {
-  background-image: url('/background.webp');
   filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
   mask-image: linear-gradient(to bottom, white 80%, transparent 100%);
 }
