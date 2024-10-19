@@ -1,6 +1,6 @@
 'use client'
-import { Providers } from '@/store/Providers'
 import React from 'react'
+import { Providers } from '@/store/Providers'
 
 export default function EditorLayout({
   children,
