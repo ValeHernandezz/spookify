@@ -135,9 +135,12 @@ export default function ListOfTools() {
     })
   }
 
+  const hasTransformationBeenApplied = !(image.appliedTransformations || [])
+    .length
+
   return (
     <div>
-      <ul className='mt-6 space-y-1'>
+      <div className='mt-6 space-y-1'>
         {Object.values(toolCategories).map((category, index) => (
           <details
             className='group [&_summary::-webkit-details-marker]:hidden'
@@ -177,21 +180,29 @@ export default function ListOfTools() {
             </ul>
           </details>
         ))}
-      </ul>
+      </div>
 
       <div className='flex justify-center gap-5 mt-10'>
         <button
-          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-500 text-white rounded-lg cursor-pointer hover:contrast-125'
+          className={`flex items-center gap-x-1 font-medium py-1 px-2 text-sm bg-red-500 text-white rounded-lg ${
+            hasTransformationBeenApplied
+              ? 'cursor-not-allowed opacity-50'
+              : 'cursor-pointer hover:contrast-125'
+          }`}
           onClick={handleUndo}
-          disabled={!(image.appliedTransformations || []).length}
+          disabled={hasTransformationBeenApplied}
         >
           <Undo />
           Deshacer
         </button>
         <button
-          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-800 text-white rounded-lg cursor-pointer hover:contrast-125'
+          className={`flex items-center gap-x-1 font-medium py-1 px-2 text-sm bg-red-800 text-white rounded-lg ${
+            hasTransformationBeenApplied
+              ? 'cursor-not-allowed opacity-50'
+              : 'cursor-pointer hover:saturate-150'
+          }`}
           onClick={handleReset}
-          disabled={!(image.appliedTransformations || []).length}
+          disabled={hasTransformationBeenApplied}
         >
           <Trash />
           Limpiar
