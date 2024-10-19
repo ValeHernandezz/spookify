@@ -189,12 +189,12 @@ export const images = [
   {
     id: 1,
     title: 'Original',
-    image: '/gallery/original.jpg',
+    image: '/gallery/original.webp',
   },
   {
     id: 2,
     title: 'Transformada',
-    image: '/gallery/transformada.jpeg',
+    image: '/gallery/transformada.webp',
   },
   {
     id: 3,
@@ -204,7 +204,7 @@ export const images = [
   {
     id: 4,
     title: 'Sin límites',
-    image: '/gallery/todo.png',
+    image: '/gallery/todo.webp',
   },
 ]
 
