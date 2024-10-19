@@ -212,16 +212,16 @@ export const sections = [
   {
     id: 1,
     name: 'Ejemplos',
-    url: '#ejemplos',
+    url: '/#examples'
   },
   {
     id: 2,
     name: 'Herramientas',
-    url: '#herramientas',
+    url: '/#tools'
   },
   {
     id: 3,
     name: 'Galería',
-    url: '/galeria',
-  },
+    url: '/galeria'
+  }
 ]
