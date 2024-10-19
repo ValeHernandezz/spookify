@@ -37,7 +37,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="fondo absolute w-[105vw] inset-0 bg-[url('/background.jpg')] bg-cover bg-center -z-10"></div>
+        <div className="fondo absolute w-[105vw] inset-0 bg-[url('/background.webp')] bg-cover bg-center -z-10"></div>
 
         <Background z={false} />
         <Hamburguer />
