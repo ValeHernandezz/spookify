@@ -5,7 +5,7 @@ export default function Tools() {
   return (
     <section id='tools' className="text-slate-200 text-[17px] pt-10 md:pt-20 pb-60 grid xl:grid-cols-[650px_1fr] max-w-[700px] xl:max-w-[1400px] mx-auto gap-10 place-items-center">
       <div className="px-6 md:px-0">
-        <img src="/tools/tools.png" alt="Imagen de herramientas" />
+        <img src="/tools/tools.webp" alt="Imagen de herramientas" />
       </div>
       <aside className='px-6 md:px-0'>
         <h2 className="text-4xl text-center md:text-left font-bold mb-8 w-[15ch] md:w-auto mx-auto">
