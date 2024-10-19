@@ -8,9 +8,16 @@ import Trash from '@/components/icons/Trash'
 import Undo from '@/components/icons/Undo'
 import Arrow from '@/components/icons/Arrow'
 import GenerateTransform from '@/components/tools/GenerateTransform'
+import Swal from 'sweetalert2'
 
 export default function ListOfTools() {
-  const { image, changeImage, changeViewImage } = useEditor()
+  const {
+    image,
+    changeImage,
+    changeViewImage,
+    loadingPrompt,
+    changeLoadingPrompt,
+  } = useEditor()
   const { transformImage } = useTransform()
 
   const applyTransformation = async (newTransformation) => {
@@ -44,6 +51,7 @@ export default function ListOfTools() {
 
   const handleTransformCustom = async (e) => {
     e.preventDefault()
+    changeLoadingPrompt(true)
     const fields = Object.fromEntries(new window.FormData(e.target))
     try {
       const response = await fetch('/api/generate', {
@@ -57,32 +65,34 @@ export default function ListOfTools() {
       const { data } = await response.json()
 
       if (response.ok) {
-        const normalizedData = normalizeApiResponse(data)
-        await applyTransformation(normalizedData)
+        await handleTransform(data)
+        changeLoadingPrompt(false)
       } else {
         console.error('Error al generar transformación:', data.error)
       }
     } catch (error) {
       console.error('Error de red:', error)
+      changeLoadingPrompt(false)
     }
   }
 
   const handleTransform = async (tool) => {
     if (tool.replace) {
       await applyTransformation({ replace: tool.replace })
-    } else {
+    } else if (tool.replaceBackground) {
+      await applyTransformation({ replaceBackground: tool.replaceBackground })
+    } else if (tool.transformations) {
       await applyTransformation(tool.transformations)
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'error',
+        confirmButtonText: 'Cool',
+      })
     }
   }
 
-  const normalizeApiResponse = (data) => {
-    if (data.replace) {
-      return { replace: data.replace }
-    } else if (data.replaceBackground) {
-      return { replaceBackground: data.replaceBackground }
-    }
-    return data
-  }
   const handleUndo = async () => {
     const appliedTransformations = image.appliedTransformations || []
 
@@ -102,12 +112,26 @@ export default function ListOfTools() {
     }
   }
 
-  const handleReset = () => {
-    changeViewImage(ViewImageStateEnum.ORIGINAL)
-    changeImage({
-      ...image.url,
-      transformedUrl,
-      appliedTransformations: [],
+  const handleReset = async () => {
+    Swal.fire({
+      title: '¿Seguro que deseas limpiar todos los efectos?',
+      text: 'Se quitaran todos los efectos aplicados',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        changeViewImage(ViewImageStateEnum.ORIGINAL)
+
+        changeImage({
+          ...image,
+          transformedUrl: null,
+          appliedTransformations: [],
+        })
+      }
     })
   }
 
@@ -145,6 +169,7 @@ export default function ListOfTools() {
                 ))}
               {category.label !== ToolCategoryEnum.Crop && (
                 <GenerateTransform
+                  loading={loadingPrompt}
                   handleTransformCustom={handleTransformCustom}
                   categoryLabel={category.label}
                 />
@@ -156,7 +181,7 @@ export default function ListOfTools() {
 
       <div className='flex justify-center gap-5 mt-10'>
         <button
-          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-500 text-white rounded-lg'
+          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-500 text-white rounded-lg cursor-pointer hover:contrast-125'
           onClick={handleUndo}
           disabled={!(image.appliedTransformations || []).length}
         >
@@ -164,7 +189,7 @@ export default function ListOfTools() {
           Deshacer
         </button>
         <button
-          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-800 text-white rounded-lg'
+          className='flex items-center gap-x-1 font-bold py-1 px-2 text-sm bg-red-800 text-white rounded-lg cursor-pointer hover:contrast-125'
           onClick={handleReset}
           disabled={!(image.appliedTransformations || []).length}
         >

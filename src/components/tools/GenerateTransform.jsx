@@ -4,6 +4,7 @@ import React from 'react'
 export default function GenerateTransform({
   handleTransformCustom,
   categoryLabel,
+  loading,
 }) {
   function getCustomTexts(categoryLabel) {
     switch (categoryLabel) {
@@ -45,23 +46,27 @@ export default function GenerateTransform({
         />
 
         <span className='absolute inset-y-0 end-0 grid w-10 pt-2 place-content-center'>
-          <button type='submit' className='text-gray-600 hover:text-gray-700'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              className='size-5 text-primary'
-            >
-              <path d='M0 0h24v24H0z' stroke='none' />
-              <path d='M4.698 4.034 21 12 4.698 19.966a.503.503 0 0 1-.546-.124.555.555 0 0 1-.12-.568L6.5 12 4.032 4.726a.555.555 0 0 1 .12-.568.503.503 0 0 1 .546-.124zM6.5 12H21' />
-            </svg>
-          </button>
+          {loading ? (
+            <div className='loaderCircle mr-2'></div>
+          ) : (
+            <button type='submit' className='text-gray-600 hover:text-gray-700'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                className='size-5 text-primary'
+              >
+                <path d='M0 0h24v24H0z' stroke='none' />
+                <path d='M4.698 4.034 21 12 4.698 19.966a.503.503 0 0 1-.546-.124.555.555 0 0 1-.12-.568L6.5 12 4.032 4.726a.555.555 0 0 1 .12-.568.503.503 0 0 1 .546-.124zM6.5 12H21' />
+              </svg>
+            </button>
+          )}
         </span>
       </div>
     </form>

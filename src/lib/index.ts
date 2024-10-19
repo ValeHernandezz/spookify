@@ -37,27 +37,21 @@ export const tools: Tool[] = [
     title: 'Apocalíptico',
     icon: Sparkles,
     category: ToolCategoryEnum.Background,
-    transformations: {
-      replaceBackground: 'Dark clouds over ruined city',
-    },
+    replaceBackground: 'Dark clouds over ruined city',
   },
   {
     id: 2,
     title: 'Cementerio',
     icon: Sparkles,
     category: ToolCategoryEnum.Background,
-    transformations: {
-      replaceBackground: 'Foggy graveyard with spooky tombstones',
-    },
+    replaceBackground: 'Foggy graveyard with spooky tombstones',
   },
   {
     id: 3,
     title: 'Invasión zombie',
     icon: Sparkles,
     category: ToolCategoryEnum.Background,
-    transformations: {
-      replaceBackground: 'Horde of zombies attacking streets',
-    },
+    replaceBackground: 'Horde of zombies attacking streets',
   },
   {
     id: 4,
@@ -212,16 +206,16 @@ export const sections = [
   {
     id: 1,
     name: 'Ejemplos',
-    url: '/#examples'
+    url: '/#examples',
   },
   {
     id: 2,
     name: 'Herramientas',
-    url: '/#tools'
+    url: '/#tools',
   },
   {
     id: 3,
     name: 'Galería',
-    url: '/galeria'
-  }
+    url: '/galeria',
+  },
 ]

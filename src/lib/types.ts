@@ -22,11 +22,11 @@ export type ViewImageState = {
 export interface Tool {
   id: number
   title: string
+  icon?: () => JSX.Element
   category: ToolCategoryEnum
   transformations?: object
-  icon?: () => JSX.Element
-  options?: object
   replace?: { from: string; to: string; preserveGeometry: true }
+  replaceBackground?: string
 }
 
 export enum ToolCategoryEnum {
