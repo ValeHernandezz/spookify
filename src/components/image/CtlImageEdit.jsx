@@ -12,7 +12,7 @@ export default function CtlImageEdit() {
 
   if (loading) {
     return (
-      <div className='h-[400px]'>
+      <div className='h-[400px] flex items-center justify-center'>
         <Loader />
       </div>
     )
