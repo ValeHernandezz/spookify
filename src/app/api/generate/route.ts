@@ -66,7 +66,6 @@ async function generateCustomTransform(transform: string) {
         'Failed to parse JSON response, attempting to extract object'
       )
 
-      // Intenta extraer el objeto entre llaves
       jsonResponse = extractObjectFromText(textResponse)
 
       if (!jsonResponse) {
@@ -74,37 +73,35 @@ async function generateCustomTransform(transform: string) {
       }
     }
 
-    // Verifica si el JSON incluye 'replace' o 'replaceBackground'
     if (jsonResponse.replace || jsonResponse.replaceBackground) {
       return jsonResponse
     }
 
-    // Si no contiene 'replace' o 'replaceBackground', lo tratamos como transformaciones
     return {
       transformations: jsonResponse,
     }
   } catch (error) {
     console.error('Error generating custom transform:', error)
-    throw error // O manejar el error según sea necesario
+    throw error
   }
 }
 
 function extractObjectFromText(text: string) {
-  const match = text.match(`/\{.*?\}/s`) // Busca el contenido entre llaves
+  const match = text.match(`/\{.*?\}/s`) 
   if (match) {
     try {
-      return JSON.parse(match[0]) // Intenta parsear el objeto extraído
+      return JSON.parse(match[0]) 
     } catch {
       console.error('Failed to extract valid JSON from text')
     }
   }
-  return null // Retorna null si no encuentra o no puede parsear el JSON
+  return null
 }
 
 export async function POST(request: Request) {
   try {
     const { transform } = await request.json()
-    console.log('transform', transform)
+
     if (!transform) {
       return NextResponse.json({ data: null, error: 'No transform provided' })
     }
