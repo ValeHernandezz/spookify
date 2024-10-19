@@ -8,7 +8,7 @@ import CropZone from '@/components/icons/CropZone'
 import InputSpark from '@/components/icons/InputSpark'
 import Wand from '@/components/icons/Wand'
 import Zombie from '@/components/icons/Zombie'
-import Ghost2 from '@/components/icons/Ghost2'
+import Alien from '@/components/icons/Alien'
 import Devil from '@/components/icons/Devil'
 import Skeleton from '@/components/icons/Skeleton'
 
@@ -139,19 +139,19 @@ export const tools: Tool[] = [
     icon: Zombie,
     category: ToolCategoryEnum.Transform,
     replace: {
-      from: 'person',
+      from: 'appearance',
       to: 'zombie_devil',
       preserveGeometry: true,
     },
   },
   {
     id: 12,
-    title: 'Convertir en fantasma',
-    icon: Ghost2,
+    title: 'Convertir en alien',
+    icon: Alien,
     category: ToolCategoryEnum.Transform,
     replace: {
-      from: 'person',
-      to: 'ghostly_devil',
+      from: 'appearance',
+      to: 'gray_alien',
       preserveGeometry: true,
     },
   },
@@ -162,7 +162,7 @@ export const tools: Tool[] = [
     category: ToolCategoryEnum.Transform,
     replace: {
       from: 'person',
-      to: 'demonic_devil',
+      to: 'demon_from_hell',
       preserveGeometry: true,
     },
   },

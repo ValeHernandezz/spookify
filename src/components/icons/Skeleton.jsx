@@ -4,18 +4,221 @@ export default function Skeleton() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width='32'
-      height='32'
-      viewBox='0 0 48 48'
+      viewBox='0 0 32 32'
       className='size-5'
     >
-      <g fill='currentColor'>
-        <path d='M23 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 2a2 2 0 1 0 0-4 2 2 0 0 0 0 4' />
+      <g fill='none'>
+        <g filter='url(#a)'>
+          <path
+            fill='url(#b)'
+            d='M16 2C8.27 2 2 8.268 2 15.995c0 5.178 2.82 6.568 7 6.918V28c0 1.1.9 2 2 2s2-.9 2-2v-2.508a.5.5 0 1 1 1 0V28c0 1.1.9 1.999 2 1.999s2-.9 2-2v-2.508a.5.5 0 1 1 1 0V28c0 1.1.9 1.999 2 1.999s2-.9 2-2v-5.087c4.18-.36 7-1.74 7-6.918C30 8.268 23.73 2 16 2'
+          />
+        </g>
         <path
+          fill='url(#c)'
+          d='M16 2C8.27 2 2 8.268 2 15.995c0 5.178 2.82 6.568 7 6.918V28c0 1.1.9 2 2 2s2-.9 2-2v-2.508a.5.5 0 1 1 1 0V28c0 1.1.9 1.999 2 1.999s2-.9 2-2v-2.508a.5.5 0 1 1 1 0V28c0 1.1.9 1.999 2 1.999s2-.9 2-2v-5.087c4.18-.36 7-1.74 7-6.918C30 8.268 23.73 2 16 2'
+        />
+        <path
+          fill='url(#d)'
+          d='M14 16.762C14 19.392 11.987 20 9.5 20S5 19.393 5 16.762 7.013 12 9.5 12s4.5 2.13 4.5 4.762'
+        />
+        <path
+          fill='url(#e)'
+          d='M27 16.762C27 19.392 24.987 20 22.5 20s-4.5-.607-4.5-3.238S20.013 12 22.5 12s4.5 2.13 4.5 4.762'
+        />
+        <path
+          fill='url(#f)'
+          d='M16.98 21.97h-1.97c-.5 0-.85-.49-.69-.96l.36-1.08c.19-.55.72-.93 1.31-.93s1.11.37 1.3.93l.37 1.08c.17.47-.18.96-.68.96'
+        />
+        <g filter='url(#g)' opacity='.32'>
+          <rect width='1.5' height='4' x='11' y='25' fill='#fff' rx='.75' />
+        </g>
+        <g filter='url(#h)' opacity='.38'>
+          <rect width='1.5' height='5' x='16' y='24' fill='#fff' rx='.75' />
+        </g>
+        <g filter='url(#i)' opacity='.8'>
+          <path
+            fill='#fff'
+            d='M19.75 23h2.5v5.25a.75.75 0 0 1-1.5 0v-2.704c0-.682-.202-1.349-.58-1.916z'
+          />
+        </g>
+        <path
+          fill='url(#j)'
           fillRule='evenodd'
-          d='M16.615 17.348c0 2.035 1.385 2.487 1.847 2.487s.615 1.356.615 2.26c0 .776 1.921.887 3.923.902V24.5h-6.5c-2.892 0-4.268 2.146-4.882 3.923a11.7 11.7 0 0 0-.541 2.447 12 12 0 0 0-.077 1.1V32a1 1 0 0 0 2 0v-.05l.008-.18c.007-.16.023-.391.056-.671a9.7 9.7 0 0 1 .444-2.022c.51-1.474 1.384-2.577 2.992-2.577H23v1.209c-.834.047-1.65.156-2.365.33-.5.121-.98.282-1.392.495-.401.206-.82.502-1.091.936a1 1 0 0 0 1.696 1.06s.015-.023.066-.065.13-.095.244-.153a4.4 4.4 0 0 1 .95-.33 11.3 11.3 0 0 1 1.892-.27v1.997c-.834.047-1.65.156-2.365.33-.5.121-.98.282-1.392.495-.401.206-.82.502-1.091.936a1 1 0 0 0 1.696 1.06s.015-.023.066-.065.13-.095.244-.153a4.4 4.4 0 0 1 .95-.33 11.3 11.3 0 0 1 1.892-.27V36h-4c-1.108 0-1.939.527-2.513 1.24-.549.68-.876 1.538-1.08 2.32C15 41.122 15 42.723 15 42.996V43a1 1 0 1 0 2 0c0-.241.002-1.63.343-2.935.17-.656.406-1.204.701-1.57.27-.335.564-.495.956-.495h10c.392 0 .686.16.956.495.295.366.53.914.701 1.57.34 1.305.343 2.694.343 2.935a1 1 0 1 0 2 0v-.004c0-.273 0-1.874-.407-3.436-.204-.782-.531-1.64-1.08-2.32C30.939 36.527 30.108 36 29 36h-4v-2.287c.692.044 1.344.136 1.892.27.403.097.722.212.95.33q.168.087.244.152c.05.042.066.065.066.065a1 1 0 0 0 1.696-1.06c-.271-.434-.69-.73-1.09-.936a6.4 6.4 0 0 0-1.393-.495 13.4 13.4 0 0 0-2.365-.33v-1.996c.692.044 1.344.136 1.892.27.403.097.722.212.95.33q.168.087.244.152c.05.042.066.065.066.065a1 1 0 0 0 1.696-1.06c-.271-.434-.69-.73-1.09-.936a6.4 6.4 0 0 0-1.393-.495 13.4 13.4 0 0 0-2.365-.33V26.5h6.5c1.608 0 2.482 1.104 2.992 2.577a9.7 9.7 0 0 1 .444 2.022 10 10 0 0 1 .064.893v.009A1 1 0 0 0 37 32h-1c1 0 1-.002 1-.002v-.028l-.001-.051v-.015l-.009-.233c-.01-.196-.029-.472-.067-.801a11.7 11.7 0 0 0-.54-2.447c-.615-1.776-1.99-3.923-4.883-3.923H25v-1.503c2.002-.015 3.923-.126 3.923-.901 0-.905.577-2.261.616-2.261.038 0 1.846-.453 1.846-2.487 0-.805.252-1.186.558-1.646C32.41 15 33 14.112 33 11.243c0-9.657-18-9.657-18 0 0 2.87.59 3.757 1.057 4.46.306.46.558.84.558 1.645m2.08.498-.01-.021c-.023-.054-.07-.198-.07-.477 0-1.484-.657-2.43-.968-2.877q-.078-.112-.12-.181c-.174-.292-.527-.931-.527-3.047 0-1.701.756-2.933 1.976-3.806C20.256 6.522 22.074 6 24 6s3.745.522 5.024 1.437C30.244 8.31 31 9.542 31 11.243c0 2.116-.353 2.755-.526 3.047q-.043.07-.121.18c-.31.447-.968 1.394-.968 2.878 0 .2-.042.293-.06.327a.4.4 0 0 1-.103.12.7.7 0 0 1-.16.096l-.006.003a2 2 0 0 0-1.042.644 2 2 0 0 0-.301.461 5 5 0 0 0-.13.286 10 10 0 0 0-.517 1.619c-.795.093-1.882.096-3.066.096-1.146 0-2.201-.003-2.99-.087a8 8 0 0 0-.111-.703 4 4 0 0 0-.403-1.128c-.171-.306-.722-1.13-1.802-1.236'
+          d='M14.471 29.286c.324-.55.529-1.37.529-2.286 0-1.657-.672-3-1.5-3S12 25.343 12 27c0 .916.205 1.736.529 2.286.293-.348.471-.797.471-1.285v-2.51a.5.5 0 1 1 1 0v2.51c0 .488.178.937.471 1.285'
           clipRule='evenodd'
         />
+        <path
+          fill='url(#k)'
+          fillRule='evenodd'
+          d='M19.471 29.286c.324-.55.529-1.37.529-2.286 0-1.657-.672-3-1.5-3S17 25.343 17 27c0 .916.205 1.736.529 2.286.294-.348.471-.797.471-1.285v-2.51a.5.5 0 1 1 1 0v2.51c0 .488.177.937.471 1.285'
+          clipRule='evenodd'
+        />
+        <defs>
+          <radialGradient
+            id='b'
+            cx='0'
+            cy='0'
+            r='1'
+            gradientTransform='matrix(-14.99988 20.99262 -20.99506 -15.00163 20.5 8.498)'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop offset='.213' stopColor='#F2F0F4' />
+            <stop offset='.743' stopColor='#D1BBE0' />
+          </radialGradient>
+          <radialGradient
+            id='d'
+            cx='0'
+            cy='0'
+            r='1'
+            gradientTransform='rotate(-49.968 22.303 -.227) scale(6.26052 7.3918)'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop offset='.445' stopColor='#3D2C36' />
+            <stop offset='1' stopColor='#1A1016' />
+          </radialGradient>
+          <radialGradient
+            id='e'
+            cx='0'
+            cy='0'
+            r='1'
+            gradientTransform='matrix(4.02685 -4.7936 5.6598 4.7545 21.13 16.996)'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop offset='.445' stopColor='#3D2C36' />
+            <stop offset='1' stopColor='#1A1016' />
+          </radialGradient>
+          <radialGradient
+            id='f'
+            cx='0'
+            cy='0'
+            r='1'
+            gradientTransform='matrix(1.53137 -1.77962 2.10935 1.8151 15.472 20.855)'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop offset='.445' stopColor='#3D2C36' />
+            <stop offset='1' stopColor='#1A1016' />
+          </radialGradient>
+          <radialGradient
+            id='j'
+            cx='0'
+            cy='0'
+            r='1'
+            gradientTransform='matrix(0 2.5 -1.12061 0 13.5 26.5)'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop stopColor='#7A6E85' />
+            <stop offset='1' stopColor='#B29EC2' stopOpacity='0' />
+          </radialGradient>
+          <radialGradient
+            id='k'
+            cx='0'
+            cy='0'
+            r='1'
+            gradientTransform='matrix(0 2.5 -1.12061 0 18.5 26.5)'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop stopColor='#7A6E85' />
+            <stop offset='1' stopColor='#B29EC2' stopOpacity='0' />
+          </radialGradient>
+          <filter
+            id='a'
+            width='29'
+            height='29'
+            x='2'
+            y='1'
+            colorInterpolationFilters='sRGB'
+            filterUnits='userSpaceOnUse'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feBlend
+              in='SourceGraphic'
+              in2='BackgroundImageFix'
+              result='shape'
+            />
+            <feColorMatrix
+              in='SourceAlpha'
+              result='hardAlpha'
+              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+            />
+            <feOffset dx='1' dy='-1' />
+            <feGaussianBlur stdDeviation='1.5' />
+            <feComposite in2='hardAlpha' k2='-1' k3='1' operator='arithmetic' />
+            <feColorMatrix values='0 0 0 0 0.801456 0 0 0 0 0.658291 0 0 0 0 0.911898 0 0 0 1 0' />
+            <feBlend in2='shape' result='effect1_innerShadow_31_1452' />
+          </filter>
+          <filter
+            id='g'
+            width='3.5'
+            height='6'
+            x='10'
+            y='24'
+            colorInterpolationFilters='sRGB'
+            filterUnits='userSpaceOnUse'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feBlend
+              in='SourceGraphic'
+              in2='BackgroundImageFix'
+              result='shape'
+            />
+            <feGaussianBlur
+              result='effect1_foregroundBlur_31_1452'
+              stdDeviation='.5'
+            />
+          </filter>
+          <filter
+            id='h'
+            width='3.5'
+            height='7'
+            x='15'
+            y='23'
+            colorInterpolationFilters='sRGB'
+            filterUnits='userSpaceOnUse'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feBlend
+              in='SourceGraphic'
+              in2='BackgroundImageFix'
+              result='shape'
+            />
+            <feGaussianBlur
+              result='effect1_foregroundBlur_31_1452'
+              stdDeviation='.5'
+            />
+          </filter>
+          <filter
+            id='i'
+            width='6.5'
+            height='10'
+            x='17.75'
+            y='21'
+            colorInterpolationFilters='sRGB'
+            filterUnits='userSpaceOnUse'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feBlend
+              in='SourceGraphic'
+              in2='BackgroundImageFix'
+              result='shape'
+            />
+            <feGaussianBlur
+              result='effect1_foregroundBlur_31_1452'
+              stdDeviation='1'
+            />
+          </filter>
+          <linearGradient
+            id='c'
+            x1='8.5'
+            x2='-1'
+            y1='15'
+            y2='10'
+            gradientUnits='userSpaceOnUse'
+          >
+            <stop stopColor='#E5C9C5' stopOpacity='0' />
+            <stop offset='1' stopColor='#FFD099' />
+          </linearGradient>
+        </defs>
       </g>
     </svg>
   )
