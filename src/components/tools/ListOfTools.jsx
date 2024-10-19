@@ -42,15 +42,6 @@ export default function ListOfTools() {
     }
   }
 
-  const normalizeApiResponse = (data) => {
-    if (data.replace) {
-      return { replace: data.replace }
-    } else if (data.replaceBackground) {
-      return { replaceBackground: data.replaceBackground }
-    }
-    return data
-  }
-
   const handleTransformCustom = async (e) => {
     e.preventDefault()
     const fields = Object.fromEntries(new window.FormData(e.target))
@@ -80,10 +71,18 @@ export default function ListOfTools() {
     if (tool.replace) {
       await applyTransformation({ replace: tool.replace })
     } else {
-      await applyTransformation(tool)
+      await applyTransformation(tool.transformations)
     }
   }
 
+  const normalizeApiResponse = (data) => {
+    if (data.replace) {
+      return { replace: data.replace }
+    } else if (data.replaceBackground) {
+      return { replaceBackground: data.replaceBackground }
+    }
+    return data
+  }
   const handleUndo = async () => {
     const appliedTransformations = image.appliedTransformations || []
 
@@ -103,14 +102,10 @@ export default function ListOfTools() {
     }
   }
 
-  const handleReset = async () => {
-    const transformedUrl = await transformImage({
-      publicId: image.public_id,
-      transformations: [],
-    })
+  const handleReset = () => {
     changeViewImage(ViewImageStateEnum.ORIGINAL)
     changeImage({
-      ...image,
+      ...image.url,
       transformedUrl,
       appliedTransformations: [],
     })
