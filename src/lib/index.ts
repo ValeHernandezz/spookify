@@ -143,7 +143,7 @@ export const tools: Tool[] = [
     icon: Zombie,
     category: ToolCategoryEnum.Transform,
     replace: {
-      from: 'appearance',
+      from: 'person',
       to: 'zombie_devil',
       preserveGeometry: true,
     },
