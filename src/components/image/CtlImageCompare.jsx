@@ -1,13 +1,19 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import useEditor from '@/store/Providers'
 import ImageContainer from './ImageContainer'
-import 'two-up-element'
 
 export default function CtlImageCompare() {
   const { image } = useEditor()
   const { transformedUrl } = image
+  const twoUpRef = useRef(null)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('two-up-element')
+    }
+  }, [])
 
   if (!transformedUrl || JSON.stringify(transformedUrl) === '{}')
     return (
@@ -18,8 +24,8 @@ export default function CtlImageCompare() {
 
   return (
     <ImageContainer>
-      <div className='w-full'>
-        <two-up>
+      <div ref={twoUpRef} className='w-full'>
+        <two-up className='my-two-up'>
           <Image
             id='original'
             className='w-full object-cover'
