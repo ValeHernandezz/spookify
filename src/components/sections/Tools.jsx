@@ -39,7 +39,7 @@ export default function Tools() {
                   <Icon className="size-5 mr-2" />
                   <div className="group relative w-max">
                     {title}
-                    <span class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-primary group-hover:w-full"></span>
                   </div>
                 </a>
               </li>
