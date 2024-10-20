@@ -1,6 +1,6 @@
 'use client'
 import { Providers } from '@/store/Providers'
-import Gallery from '@/sections/Gallery'
+import Gallery from '@/components/sections/Examples'
 import Hero from '@/sections/Hero'
 import Tools from '@/sections/Tools'
 

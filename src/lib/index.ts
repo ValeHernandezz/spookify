@@ -260,12 +260,7 @@ export const sections = [
     id: 2,
     name: 'Herramientas',
     url: '/#tools',
-  },
-  {
-    id: 3,
-    name: 'Galería',
-    url: '/galeria',
-  },
+  }
 ]
 
 export const toolsLinks = [
