@@ -227,22 +227,22 @@ export const tools: Tool[] = [
 export const images = [
   {
     id: 1,
-    title: 'Original',
+    title: 'Antes del susto',
     image: '/gallery/original.webp',
   },
   {
     id: 2,
-    title: 'Transformada',
+    title: 'Conviértete en zombie',
     image: '/gallery/transformada.webp',
   },
   {
     id: 3,
-    title: 'Fondo tenebroso',
+    title: 'Ambiente aterrador',
     image: '/gallery/fondo-tenebroso.avif',
   },
   {
     id: 4,
-    title: 'Sin límites',
+    title: 'Desata el horror',
     image: '/gallery/todo.webp',
   },
 ]
