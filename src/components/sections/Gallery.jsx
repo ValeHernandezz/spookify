@@ -3,13 +3,13 @@ import { images } from '@/lib'
 
 export default function Gallery() {
   return (
-    <section id="examples" className="pt-20 pb-20 md:pb-40">
+    <section id="examples" className="pt-20 pb-20 md:pb-40 px-6 md:px-0">
       <h2 className="text-4xl font-bold text-center text-white mb-16 w-[15ch] md:w-auto mx-auto">
         ¡Transforma tus imágenes en{' '}
         <span className="text-gradient">pesadillas</span>!
       </h2>
 
-      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 text-slate-200 place-items-center max-w-[700px] xl:max-w-[1400px] mx-auto">
+      <ul className="grid grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-10 text-slate-200 place-items-center max-w-[700px] xl:max-w-[1400px] mx-auto">
         {images.map(({ id, title, image }) => {
           return (
             <li
@@ -17,11 +17,13 @@ export default function Gallery() {
               className="hover:scale-105 cursor-crosshair transition"
             >
               <img
-                className="rounded-3xl mb-4 max-w-[300px]"
+                className="rounded-3xl mb-4 w-full"
                 src={image}
                 alt={`Imagen de ${title}`}
               />
-              <span className="flex justify-center text-xl">{title}</span>
+              <span className="flex justify-center text-sm sm:text-xl">
+                {title}
+              </span>
             </li>
           )
         })}
