@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Sparkles from '@/components/icons/Sparkles'
 
 export default function GenerateTransform({
   handleTransformCustom,
@@ -23,6 +24,11 @@ export default function GenerateTransform({
           title: 'Personalizado',
           placeholder: 'Ej. Máscara de Jason...',
         }
+      case 'Disfraces':
+        return {
+          title: 'Personalizado',
+          placeholder: 'Ej. Disfraz de esqueleto...',
+        }
       default:
         return {
           title: `${categoryLabel} Custom`,
@@ -35,7 +41,9 @@ export default function GenerateTransform({
 
   return (
     <form className='pl-4' onSubmit={handleTransformCustom}>
-      <label className='text-sm font-semibold'>{title}</label>
+      <label className='text-sm font-semibold flex items-center gap-x-1'>
+        <Sparkles /> {title}
+      </label>
 
       <div className='relative pt-2'>
         <input

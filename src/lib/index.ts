@@ -11,6 +11,7 @@ import Zombie from '@/components/icons/Zombie'
 import Alien from '@/components/icons/Alien'
 import Devil from '@/components/icons/Devil'
 import Skeleton from '@/components/icons/Skeleton'
+import Clothe from '@/components/icons/Clothe'
 
 export const toolCategories: Record<string, ToolCategory> = {
   Transform: {
@@ -24,6 +25,10 @@ export const toolCategories: Record<string, ToolCategory> = {
   Overlay: {
     label: 'Overlay',
     icon: Overlay,
+  },
+  Costumes: {
+    label: 'Disfraces',
+    icon: Clothe,
   },
   Crop: {
     label: 'Cortar',
@@ -59,8 +64,6 @@ export const tools: Tool[] = [
     icon: InputSpark,
     category: ToolCategoryEnum.Crop,
     transformations: {
-      width: 960,
-      height: 600,
       fillBackground: true,
       crop: 'pad',
     },
@@ -75,8 +78,6 @@ export const tools: Tool[] = [
       height: 300,
       crop: {
         type: 'thumb',
-        width: 600,
-        height: 600,
         source: true,
       },
       sizes: '100vw',
@@ -174,6 +175,50 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'skeletal_devil',
+      preserveGeometry: true,
+    },
+  },
+  {
+    id: 15,
+    title: 'Disfraz de Freddy Krueger',
+    icon: Skeleton,
+    category: ToolCategoryEnum.Costumes,
+    replace: {
+      from: 'clothes_overalls_shoes',
+      to: 'Transforms the clothes into Freddy Krueger is iconic striped sweater and hat',
+      preserveGeometry: true,
+    },
+  },
+  {
+    id: 16,
+    title: 'Disfraz de Jason Voorhees',
+    icon: Skeleton,
+    category: ToolCategoryEnum.Costumes,
+    replace: {
+      from: 'clothes_overalls_shoes',
+      to: 'Transforms the clothes into Jason Voorhees outfit with his iconic hockey mask.',
+      preserveGeometry: true,
+    },
+  },
+  {
+    id: 17,
+    title: 'Disfraz de Michael Myers',
+    icon: Skeleton,
+    category: ToolCategoryEnum.Costumes,
+    replace: {
+      from: 'clothes_overalls_shoes',
+      to: "Transforms the clothes into Michael Myers' dark blue jumpsuit and his eerie white mask.",
+      preserveGeometry: true,
+    },
+  },
+  {
+    id: 18,
+    title: 'Disfraz de Chucky',
+    icon: Skeleton,
+    category: ToolCategoryEnum.Costumes,
+    replace: {
+      from: 'clothes_overalls_shoes',
+      to: "Transforms the clothes into Chucky's overalls with his striped shirt and menacing doll-like appearance.",
       preserveGeometry: true,
     },
   },

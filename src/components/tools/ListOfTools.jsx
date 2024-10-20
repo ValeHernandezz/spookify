@@ -39,13 +39,21 @@ export default function ListOfTools() {
         transformations: updatedTransformations,
       })
 
-      if (transformedUrl) {
-        changeImage({
-          ...image,
-          transformedUrl,
-          appliedTransformations: updatedTransformations,
+      if (!transformedUrl) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Algo salio mal, vuelve a intentarlo',
+          icon: 'error',
+          confirmButtonText: 'Cool',
         })
+        return
       }
+
+      changeImage({
+        ...image,
+        transformedUrl,
+        appliedTransformations: updatedTransformations,
+      })
     }
   }
 
@@ -83,13 +91,6 @@ export default function ListOfTools() {
       await applyTransformation({ replaceBackground: tool.replaceBackground })
     } else if (tool.transformations) {
       await applyTransformation(tool.transformations)
-    } else {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        icon: 'error',
-        confirmButtonText: 'Cool',
-      })
     }
   }
 
@@ -160,14 +161,18 @@ export default function ListOfTools() {
               {tools
                 .filter((tool) => tool.category === category.label)
                 .map((tool) => (
-                  <li className='' key={tool.id}>
-                    <button
-                      className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
-                      onClick={() => handleTransform(tool)}
-                    >
-                      {tool.icon && tool.icon()}
-                      {tool.title}
-                    </button>
+                  <li key={tool.id}>
+                    {tool.id === 4 || tool.id === 5 ? (
+                      <CustomForm
+                        tool={tool}
+                        handleTransform={handleTransform}
+                      />
+                    ) : (
+                      <DefaultButton
+                        tool={tool}
+                        handleTransform={handleTransform}
+                      />
+                    )}
                   </li>
                 ))}
               {category.label !== ToolCategoryEnum.Crop && (
@@ -211,3 +216,58 @@ export default function ListOfTools() {
     </div>
   )
 }
+const CustomForm = ({ tool, handleTransform }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const newTransformation = {
+      transformations: {
+        width: formData.get('width'),
+        height: formData.get('heigth'),
+        ...tool.transformations,
+      },
+    }
+
+    handleTransform(newTransformation)
+  }
+
+  return (
+    <form key={tool.id} className='pl-4 pb-4' onSubmit={handleSubmit}>
+      <label className='w-full flex items-center gap-x-1 text-left rounded-lg text-sm font-medium text-gray-600'>
+        {tool.icon && tool.icon()}
+        {tool.title}
+      </label>
+
+      <div className='flex items-center gap-x-2 py-3'>
+        <input
+          type='number'
+          name='width'
+          placeholder='Ancho'
+          className='w-full rounded-md bg-slate-400/20 pl-2 border-gray-500 py-2 pe-2 shadow-sm text-sm'
+        />
+        <input
+          type='number'
+          name='heigth'
+          placeholder='Alto'
+          className='w-full rounded-md bg-slate-400/20 pl-2 border-gray-500 py-2 pe-2 shadow-sm text-sm'
+        />
+      </div>
+
+      <button className='inline-flex items-center gap-2 rounded-lg border border-indigo-600 bg-indigo-600 px-3 py-1 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500'>
+        <span className='text-sm font-medium'>
+          {tool.id === 5 ? 'Cortar' : 'Rellenar'}
+        </span>
+      </button>
+    </form>
+  )
+}
+
+const DefaultButton = ({ tool, handleTransform }) => (
+  <button
+    className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
+    onClick={() => handleTransform(tool)}
+  >
+    {tool.icon && tool.icon()}
+    {tool.title}
+  </button>
+)
