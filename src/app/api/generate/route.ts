@@ -22,8 +22,9 @@ async function generateCustomTransform(transform: string) {
     - Cambiar fondo: { replaceBackground: "Descripción del nuevo fondo (máximo 6 palabras en inglés, debe ser aterrador)" }
     - Poner una máscara: { replace: { from: "face", to: "nombre_máscara (debe terminar con la palabra 'mask' y ser un elemento aterrador)", preserveGeometry: true } }
     - Convertir en zombi: { replace: { from: "person", to: "específica transformación de terror en inglés", preserveGeometry: true } }
-  
-  Reglas:
+    - Disfrazar o cambiar la ropa: replace: { from: 'clothes_overalls_shoes', to: 'Transforms the clothes into Jason Voorhees outfit with his iconic hockey mask.', preserveGeometry: true },
+ 
+    Reglas:
   1. Las transformaciones deben ser temáticas de Halloween y dar miedo.
   2. Todo el contenido debe estar en inglés.
   3. Si es una transformación de cara (face), el valor de 'to' debe terminar siempre con la palabra 'mask' y estar relacionado con algo aterrador.
@@ -87,10 +88,10 @@ async function generateCustomTransform(transform: string) {
 }
 
 function extractObjectFromText(text: string) {
-  const match = text.match(`/\{.*?\}/s`) 
+  const match = text.match(`/\{.*?\}/s`)
   if (match) {
     try {
-      return JSON.parse(match[0]) 
+      return JSON.parse(match[0])
     } catch {
       console.error('Failed to extract valid JSON from text')
     }
