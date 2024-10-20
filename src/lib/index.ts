@@ -231,22 +231,22 @@ export const images = [
   {
     id: 1,
     title: 'Antes del susto',
-    image: '/gallery/original.webp',
+    image: '/examples/original.webp',
   },
   {
     id: 2,
     title: 'Conviértete en zombie',
-    image: '/gallery/transformada.webp',
+    image: '/examples/transformada.webp',
   },
   {
     id: 3,
     title: 'Ambiente aterrador',
-    image: '/gallery/fondo-tenebroso.avif',
+    image: '/examples/fondo-tenebroso.avif',
   },
   {
     id: 4,
     title: 'Desata el horror',
-    image: '/gallery/todo.webp',
+    image: '/examples/todo.webp',
   },
 ]
 
