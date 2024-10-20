@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import ViewImage from '@/components/image/ViewImage'
 import ChangeImage from '@/components/image/ChangeImage'
@@ -17,7 +18,7 @@ export default function EditorPage() {
             <ListOfTools />
           </aside>
         </div>
-        <div className='flex bg-slate-200 flex-col w-full'>
+        <div className='flex bg-slate-200 flex-col w-full pb-10'>
           <ViewImage />
 
           <ChangeImage />
