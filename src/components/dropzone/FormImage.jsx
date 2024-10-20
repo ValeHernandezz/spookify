@@ -44,7 +44,7 @@ export default function FormImage() {
     <section {...getRootProps({ className: 'dropzone' })} className='card'>
       <div className='text'>
         <span className='mb-5'>¡Sube una imagen!</span>
-        <p className='subtitle'>O arrástrala</p>
+        <p className='subtitle'>O arrástrala aquí</p>
       </div>
       <div className='icons'>
         <input {...getInputProps()} />
@@ -59,7 +59,7 @@ export default function FormImage() {
             </>
           ) : (
             <>
-              <Paperclip size='size-6 mr-2' /> Subir imagen
+              <Paperclip size='size-6 mr-2' /> Seleccionar imagen
             </>
           )}
         </button>
