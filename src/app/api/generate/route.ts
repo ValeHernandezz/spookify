@@ -15,24 +15,25 @@ function buildPrompt(prompt: string): [{ role: 'user'; content: string }] {
   ]
 }
 
-async function generateCustomTransform(transform: string) {
+async function generateCustomTransform(transform: string, category: string) {
   try {
     const prompt = `Actúa como un generador de instrucciones de transformación de imágenes de Halloween. Las transformaciones que realices deben ser aterradoras y estar relacionadas con temas de terror. A continuación te doy una descripción de la transformación que quiero realizar, y necesito que me devuelvas un objeto JSON con la estructura siguiente:
 
     - Cambiar fondo: { replaceBackground: "Descripción del nuevo fondo (máximo 6 palabras en inglés, debe ser aterrador)" }
-    - Poner una máscara: { replace: { from: "face", to: "nombre_máscara (debe terminar con la palabra 'mask' y ser un elemento aterrador)", preserveGeometry: true } }
-    - Convertir en zombi: { replace: { from: "person", to: "específica transformación de terror en inglés", preserveGeometry: true } }
+    - Poner una máscara: { replace: { from: "face", to: "cambiar sutilmente algunas características faciales (color, sombras, detalles) para mantener la identidad original pero con un efecto aterrador)", preserveGeometry: true } }
+    - Convertir en zombi: { replace: { from: "person", to: "aplicar efectos de zombi (piel pálida, ojos oscuros, rasgos desgastados) sin alterar las facciones ni la ropa original, preservando la estructura y geometría del cuerpo", preserveGeometry: true } }
     - Disfrazar o cambiar la ropa: replace: { from: 'clothes_overalls_shoes', to: 'Transforms the clothes into Jason Voorhees outfit with his iconic hockey mask.', preserveGeometry: true },
  
     Reglas:
   1. Las transformaciones deben ser temáticas de Halloween y dar miedo.
   2. Todo el contenido debe estar en inglés.
-  3. Si es una transformación de cara (face), el valor de 'to' debe terminar siempre con la palabra 'mask' y estar relacionado con algo aterrador.
+  3. Si es una transformación de cara (face), el valor de 'to' debe estar relacionado con algo aterrador.
   4. Si es convertir a una persona (person), la transformación debe ser específica y relacionada con el terror.
   5. La descripción para reemplazar el fondo (replaceBackground) debe ser aterradora y no debe tener más de 6 palabras.
   
   Genera exclusivamente un objeto JSON que siga la estructura dada, sin agregar explicaciones ni texto adicional. Solo devuelve el JSON.
   
+  Tipo de transformacion: ${category}
   Solicitud de transformación: ${transform}
   
   Solo devuelve el JSON.`
@@ -101,13 +102,13 @@ function extractObjectFromText(text: string) {
 
 export async function POST(request: Request) {
   try {
-    const { transform } = await request.json()
+    const { transform, categoryLabel } = await request.json()
 
     if (!transform) {
       return NextResponse.json({ data: null, error: 'No transform provided' })
     }
 
-    const response = await generateCustomTransform(transform)
+    const response = await generateCustomTransform(transform, categoryLabel)
 
     if (!response || response.error) {
       return NextResponse.json({

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import useTransform from '@/hooks/useTransform'
 import useEditor from '@/store/Providers'
 import { toolCategories, tools } from '@/lib'
@@ -19,45 +19,105 @@ export default function ListOfTools() {
     changeLoadingPrompt,
   } = useEditor()
   const { transformImage } = useTransform()
+  const [openIndex, setOpenIndex] = useState(null)
 
-  const applyTransformation = async (newTransformation) => {
-    const appliedTransformations = image.appliedTransformations || []
-
-    const hasTransformationBeenApplied = appliedTransformations.some(
-      (transformation) =>
-        JSON.stringify(transformation) === JSON.stringify(newTransformation)
-    )
-
-    if (!hasTransformationBeenApplied) {
-      const updatedTransformations = [
-        ...appliedTransformations,
-        newTransformation,
-      ]
-
-      const transformedUrl = await transformImage({
-        publicId: image.public_id,
-        transformations: updatedTransformations,
-      })
-
-      if (!transformedUrl) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Algo salio mal, vuelve a intentarlo',
-          icon: 'error',
-          confirmButtonText: 'Cool',
-        })
-        return
-      }
-
-      changeImage({
-        ...image,
-        transformedUrl,
-        appliedTransformations: updatedTransformations,
-      })
+  const handleToggle = (index, e) => {
+    const isOpen = e.target.open
+    if (isOpen) {
+      setOpenIndex(index)
     }
   }
 
-  const handleTransformCustom = async (e) => {
+  const isReplace = (transformation, from) => {
+    return transformation.replace && transformation.replace.from === from
+  }
+
+  const isReplaceBackground = (transformation) => {
+    return transformation.replaceBackground !== undefined
+  }
+
+  const applyTransformation = async (newTransformation) => {
+    let appliedTransformations = image.appliedTransformations || []
+
+    appliedTransformations = appliedTransformations.filter((transformation) => {
+      if (newTransformation.replace) {
+        const from = newTransformation.replace.from
+
+        if (
+          from === 'appearance' ||
+          from === 'face' ||
+          from === 'clothes_overalls_shoes' ||
+          from === 'person'
+        ) {
+          return !isReplace(transformation, from)
+        }
+      }
+
+      if (newTransformation.replaceBackground) {
+        return !isReplaceBackground(transformation)
+      }
+
+      if (
+        newTransformation.replace &&
+        newTransformation.replace.from === 'person'
+      ) {
+        return (
+          !isReplace(transformation, 'clothes_overalls_shoes') &&
+          !isReplace(transformation, 'face') &&
+          !isReplace(transformation, 'person')
+        )
+      }
+
+      if (
+        newTransformation.replace &&
+        newTransformation.replace.from === 'clothes_overalls_shoes'
+      ) {
+        return (
+          !isReplace(transformation, 'person') &&
+          !isReplace(transformation, 'face')
+        )
+      }
+
+      if (
+        newTransformation.replace &&
+        newTransformation.replace.from === 'face'
+      ) {
+        return (
+          !isReplace(transformation, 'person') &&
+          !isReplace(transformation, 'clothes_overalls_shoes')
+        )
+      }
+
+      return true
+    })
+
+    appliedTransformations.push(newTransformation)
+
+    console.log('updatedTransformations', appliedTransformations)
+
+    const transformedUrl = await transformImage({
+      publicId: image.public_id,
+      transformations: appliedTransformations,
+    })
+
+    if (!transformedUrl) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Algo salió mal, vuelve a intentarlo',
+        icon: 'error',
+        confirmButtonText: 'Cool',
+      })
+      return
+    }
+
+    changeImage({
+      ...image,
+      transformedUrl,
+      appliedTransformations,
+    })
+  }
+
+  const handleTransformCustom = async (e, categoryLabel) => {
     e.preventDefault()
     changeLoadingPrompt(true)
     const fields = Object.fromEntries(new window.FormData(e.target))
@@ -67,7 +127,10 @@ export default function ListOfTools() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({
+          ...fields,
+          category: categoryLabel,
+        }),
       })
 
       const { data } = await response.json()
@@ -146,6 +209,8 @@ export default function ListOfTools() {
           <details
             className='group [&_summary::-webkit-details-marker]:hidden'
             key={index}
+            open={openIndex === index} // Solo abre si es el índice seleccionado
+            onToggle={(e) => handleToggle(index, e)} // Controlamos el estado con onToggle
           >
             <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
               <span className='text-sm font-medium text-black flex items-center'>

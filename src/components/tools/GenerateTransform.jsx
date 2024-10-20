@@ -40,7 +40,10 @@ export default function GenerateTransform({
   const { title, placeholder } = getCustomTexts(categoryLabel)
 
   return (
-    <form className='pl-4' onSubmit={handleTransformCustom}>
+    <form
+      className='pl-4'
+      onSubmit={(e) => handleTransformCustom(e, categoryLabel)}
+    >
       <label className='text-sm font-semibold flex items-center gap-x-1'>
         <Sparkles /> {title}
       </label>
