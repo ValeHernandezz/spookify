@@ -2,33 +2,40 @@
 import { useState, useEffect, createContext, useContext } from 'react'
 import {
   CloudinaryUploadResponse,
-  ViewImageState,
+  EditorContextType,
   ViewImageStateEnum,
 } from '@/lib/types'
 
-const EditorContext = createContext({})
+const EditorContext = createContext<EditorContextType | undefined>(undefined)
 
 interface Props {
   children: React.ReactNode
 }
 
 export const Providers = ({ children }: Props) => {
-  const [image, setImage] = useState({})
-  const [viewImage, setViewImage] = useState<{ state: ViewImageStateEnum }>({
-    state: ViewImageStateEnum.ORIGINAL,
+  const [image, setImage] = useState<CloudinaryUploadResponse>({
+    public_id: '',
+    width: 0,
+    height: 0,
+    created_at: '',
+    url: '',
+    original_filename: '',
+    appliedTransformations: [],
+    transformedUrl: '',
   })
-  const [loading, setLoading] = useState(false)
-  const [loadingPrompt, setLoadingPrompt] = useState(false)
+  const [viewImage, setViewImage] = useState<ViewImageStateEnum>(
+    ViewImageStateEnum.ORIGINAL
+  )
+  const [loading, setLoading] = useState<boolean>(false)
+  const [loadingPrompt, setLoadingPrompt] = useState<boolean>(false)
 
   useEffect(() => {
     const imageOld = JSON.parse(localStorage.getItem('image') ?? '{}')
-
     setImage(imageOld)
 
     const viewImageOld = JSON.parse(
       localStorage.getItem('view') ?? '{"state": "original"}'
     )
-
     setViewImage(viewImageOld)
   }, [])
 
@@ -37,7 +44,7 @@ export const Providers = ({ children }: Props) => {
     setImage(newImage)
   }
 
-  function changeViewImage(newState: ViewImageState) {
+  function changeViewImage(newState: ViewImageStateEnum) {
     localStorage.setItem('view', JSON.stringify(newState))
     setViewImage(newState)
   }
@@ -49,6 +56,7 @@ export const Providers = ({ children }: Props) => {
   function changeLoadingPrompt(newState: boolean) {
     setLoadingPrompt(newState)
   }
+
   return (
     <EditorContext.Provider
       value={{
@@ -68,7 +76,11 @@ export const Providers = ({ children }: Props) => {
 }
 
 const useEditor = () => {
-  return useContext(EditorContext)
+  const context = useContext(EditorContext)
+  if (!context) {
+    throw new Error('useEditor must be used within an EditorProvider')
+  }
+  return context
 }
 
 export default useEditor
