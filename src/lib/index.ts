@@ -12,6 +12,9 @@ import Alien from '@/components/icons/Alien'
 import Devil from '@/components/icons/Devil'
 import Skeleton from '@/components/icons/Skeleton'
 import Clothe from '@/components/icons/Clothe'
+import Arrow from '@/components/icons/tools/Arrow'
+import Cloudinary from '@/components/icons/tools/Cloudinary'
+import Perplexity from '@/components/icons/tools/Perplexity'
 
 export const toolCategories: Record<string, ToolCategory> = {
   Transform: {
@@ -263,4 +266,25 @@ export const sections = [
     name: 'Galería',
     url: '/galeria',
   },
+]
+
+export const toolsLinks = [
+  {
+    id: 1,
+    title: 'Prueba las demos de Cloudinary aquí',
+    href: 'https://cloudinary.com/demos',
+    icon: Arrow
+  },
+  {
+    id: 2,
+    title: 'Documentación API de Cloudinary',
+    href: 'https://next.cloudinary.dev/cldimage/examples',
+    icon: Cloudinary
+  },
+  {
+    id: 3,
+    title: 'Documentación API de Perplexity',
+    href: 'https://docs.perplexity.ai/home',
+    icon: Perplexity
+  }
 ]
