@@ -24,6 +24,9 @@ const config: Config = {
         ...defaultTheme.screens,
       },
     },
+    fontFamily: {
+      halloweenNight: ['Creepster', 'sans-serif']
+    }
   },
   plugins: [],
 };

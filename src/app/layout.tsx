@@ -1,22 +1,12 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import Background from '@/components/utils/Background'
 import Header from '@/sections/header/Header'
 import Hamburguer from '@/sections/header/Hamburguer'
 import Footer from '@/sections/Footer'
 
-import './globals.css'
+import '@fontsource-variable/figtree'
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-})
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-})
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Spookify • Tu portal a la edición sobrenatural',
@@ -34,9 +24,7 @@ export default function RootLayout({
       <head>
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <div className="fondo absolute w-[105vw] inset-0 bg-[url('/background.webp')] bg-cover bg-center -z-10"></div>
 
         <Background z={false} />
