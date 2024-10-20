@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cloudinary-util/util": "^3.3.2",
+    "@cloudinary-util/util": "3.3.2",
     "next": "14.2.15",
     "next-cloudinary": "6.14.1",
-    "openai": "^4.68.1",
+    "openai": "4.68.1",
     "react": "18",
     "react-dom": "18",
     "react-dropzone": "14.2.9",
-    "sweetalert2": "^11.14.3"
+    "sweetalert2": "11.14.3"
   },
   "devDependencies": {
     "@types/node": "20",
@@ -26,7 +26,7 @@
     "eslint-config-next": "14.2.15",
     "postcss": "8",
     "tailwindcss": "3.4.1",
-    "two-up-element": "^1.0.1",
+    "two-up-element": "1.0.1",
     "typescript": "5"
   }
 }
