@@ -17,7 +17,7 @@
 
   --color-primary: #f98128;
   --color-secondary: #1c1c1c;
-  --color-tertiary: #ffffff;
+  --color-tertiary: #e2e8f0;
   --color-fourth: #b00020;
   --background-image: #000000;
 }
@@ -186,18 +186,20 @@ h1 {
 .loader {
   width: fit-content;
   font-weight: bold;
-  font-family: monospace;
+  font-family: 'Creepster', sans-serif;
   font-size: 30px;
-  background: radial-gradient(circle closest-side, #000 94%, #0000)
+  background: radial-gradient(circle closest-side, #fff 94%, #0000)
     right/calc(200% - 1em) 100%;
   animation: l24 1s infinite alternate linear;
+  
 }
 .loader::before {
   content: 'Transformando...';
   line-height: 1em;
+  letter-spacing: 1;
   color: #0000;
   background: inherit;
-  background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+  background-image: radial-gradient(circle closest-side, #111 94%, #fff);
   -webkit-background-clip: text;
   background-clip: text;
 }
