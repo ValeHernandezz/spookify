@@ -12,7 +12,7 @@ export interface CloudinaryUploadResponse {
 export enum ViewImageStateEnum {
   ORIGINAL = 'original',
   EDIT = 'edit',
-  COMPARE = 'compare',
+  COMPARE = 'compare'
 }
 
 export interface Tool {
@@ -27,10 +27,10 @@ export interface Tool {
 
 export enum ToolCategoryEnum {
   Background = 'Fondos',
-  Crop = 'Cortar',
+  Adjust = 'Ajustar',
   Overlay = 'Overlay',
   Transform = 'Transformar',
-  Costumes = 'Disfraces',
+  Costumes = 'Disfraces'
 }
 
 export interface ToolCategory {
@@ -47,4 +47,6 @@ export interface EditorContextType {
   changeLoading: (newState: boolean) => void
   loadingPrompt: boolean
   changeLoadingPrompt: (newState: boolean) => void
+  toggleAside: () => void
+  isAsideVisible: boolean
 }
