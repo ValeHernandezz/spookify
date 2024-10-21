@@ -3,7 +3,7 @@ import { useState, useEffect, createContext, useContext } from 'react'
 import {
   CloudinaryUploadResponse,
   EditorContextType,
-  ViewImageStateEnum,
+  ViewImageStateEnum
 } from '@/lib/types'
 
 const EditorContext = createContext<EditorContextType | undefined>(undefined)
@@ -21,13 +21,19 @@ export const Providers = ({ children }: Props) => {
     url: '',
     original_filename: '',
     appliedTransformations: [],
-    transformedUrl: '',
+    transformedUrl: ''
   })
   const [viewImage, setViewImage] = useState<ViewImageStateEnum>(
     ViewImageStateEnum.ORIGINAL
   )
   const [loading, setLoading] = useState<boolean>(false)
   const [loadingPrompt, setLoadingPrompt] = useState<boolean>(false)
+
+  const [isAsideVisible, setIsAsideVisible] = useState(false)
+
+  const toggleAside = () => {
+    setIsAsideVisible(!isAsideVisible)
+  }
 
   useEffect(() => {
     const imageOld = JSON.parse(localStorage.getItem('image') ?? '{}')
@@ -68,6 +74,8 @@ export const Providers = ({ children }: Props) => {
         changeLoading,
         loadingPrompt,
         changeLoadingPrompt,
+        toggleAside,
+        isAsideVisible
       }}
     >
       {children}
