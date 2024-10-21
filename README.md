@@ -1,14 +1,19 @@
 
 # 👻 Spookify
 
-[...]
+¡Convierte tus fotos en imágenes aterradoras con Spookify! Genera fondos espeluznantes, transforma personas en criaturas de miedo, añade disfraces o máscaras, y descarga tus creaciones para compartirlas con amigos. ¡Todo esto usando la magia de la inteligencia artificial!
 
 ![spookify](https://github.com/user-attachments/assets/328fb59f-6899-495e-b227-ad17c2b1ebc6)
 
 ## ✔ Funcionalidades
 
-[...]
-
+- **Generar fondos de terror**: Cambia el fondo de tus imágenes por escenarios espeluznantes como cementerios embrujados o paisajes apocalípticos.
+- **Transformar las personas**: Aplica efectos terroríficos a las personas en tus fotos, como convertirlas en zombis o monstruos.
+- **Poner máscaras**: Añade máscaras icónicas de personajes de películas de terror como Jason Voorhees o Freddy Krueger.
+- **Rellenar fotos o recortarlas**: Ajusta el tamaño de tus imágenes, añade o recorta áreas para lograr el encuadre perfecto.
+- **Ponerle disfraz a las personas**: Transforma la ropa de los personajes en disfraces aterradores, perfectos para la temática de Halloween.
+- **Efectos personalizados con IA**: Si no te gustan los efectos predeterminados, puedes crear el efecto que se te ocurra mediante inteligencia artificial.
+- **Descargar y compartir tus fotos**: Guarda y comparte tus creaciones terroríficas con amigos y familiares a través de redes sociales.
 
 ## 🛠️ Construido con
 
@@ -19,7 +24,6 @@
 - [![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Lenguaje de programación para desarrollar funciones interactivas en páginas web.
 - [![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/es/) - Superconjunto de JavaScript que añade tipos estáticos y objetos basados en clases.
 - [![Tailwind_CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/) - Framework de CSS para crear diseños web con clases predefinidas.
-
 
 ## 💻 Desarrollado por
 
