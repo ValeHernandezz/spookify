@@ -3,7 +3,9 @@
 
 ¡Convierte tus fotos en imágenes aterradoras con Spookify! Genera fondos espeluznantes, transforma personas en criaturas de miedo, añade disfraces o máscaras, y descarga tus creaciones para compartirlas con amigos. ¡Todo esto usando la magia de la inteligencia artificial!
 
-![spookify](https://github.com/user-attachments/assets/328fb59f-6899-495e-b227-ad17c2b1ebc6)
+![mockup-desktop](https://github.com/user-attachments/assets/2f89b6d8-d4f2-49c4-b281-9e00e98d2407)
+
+![mockup-mobile](https://github.com/user-attachments/assets/ce7d43da-0545-40f9-93a0-38f790e50bc5)
 
 ## ✔ Funcionalidades
 
