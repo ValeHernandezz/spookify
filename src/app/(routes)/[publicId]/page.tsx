@@ -90,7 +90,7 @@ export default function SharedPage({ params }: Props) {
 
           <div className="flex flex-col lg:flex-row justify-center gap-4 lg:gap-8">
             <Link
-              className="flex items-center gap-2 w-full rounded text-lg lg:text-xl px-6 py-2 font-medium bg-primary text-white shadow hover:opacity-85 transition duration-300 lg:w-auto"
+              className="flex items-center justify-center gap-2 w-full rounded text-lg lg:text-xl px-6 py-2 font-medium bg-primary text-white shadow hover:opacity-85 transition duration-300 lg:w-auto"
               href="/"
             >
               <Rocket className='size-4 lg:size-5' />
@@ -98,7 +98,7 @@ export default function SharedPage({ params }: Props) {
             </Link>
 
             <Link
-              className="flex items-center gap-2 w-full rounded text-lg lg:text-xl px-6 py-2 font-medium bg-zinc-900/45 text-primary shadow hover:opacity-85 transition duration-300 lg:w-auto"
+              className="flex items-center justify-center gap-2 w-full rounded text-lg lg:text-xl px-6 py-2 font-medium bg-zinc-900/45 text-primary shadow hover:opacity-85 transition duration-300 lg:w-auto"
               href="/#examples"
             >
               <MagnifyingGlassPlus className='size-4 lg:size-5' />
