@@ -191,14 +191,16 @@ export default function ListOfTools() {
 
   const handleReset = async () => {
     Swal.fire({
-      title: '¿Seguro que deseas limpiar todos los efectos?',
-      text: 'Se quitaran todos los efectos aplicados',
+      title: '¿Estás seguro de que deseas eliminar todos los efectos?',
+      text: 'Esta acción no se puede deshacer y removerá todos los efectos aplicados a la imagen.',
       icon: 'warning',
       showCancelButton: true,
+      background: "#111",
+      color: "#e2e8f0",
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si',
-      cancelButtonText: 'No'
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         changeViewImage(ViewImageStateEnum.ORIGINAL)
