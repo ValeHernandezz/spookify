@@ -6,6 +6,8 @@ import { getCldImageUrl } from 'next-cloudinary'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Rocket from '@/components/icons/shared/Rocket'
+import MagnifyingGlassPlus from '@/components/icons/shared/MagnifyingGlassPlus'
 
 interface Props {
   params: { publicId: string }
@@ -17,12 +19,12 @@ export default function SharedPage({ params }: Props) {
   console.log(publicId)
 
   const url = getCldImageUrl({
-    src: `spookify/${publicId}`,
+    src: `spookify/${publicId}`
   })
 
   const downloadImage = async () => {
     const urlImage = getCldImageUrl({
-      src: `spookify/${publicId}`,
+      src: `spookify/${publicId}`
     })
     const response = await fetch(urlImage)
     const blob = await response.blob()
@@ -53,52 +55,55 @@ export default function SharedPage({ params }: Props) {
   }, [url])
 
   return (
-    <main className='min-h-[100vh]'>
+    <main className="min-h-[100vh] mb-32 lg:mb-60">
       <Background z={true} />
+      <section className="flex flex-col gap-8 px-6 lg:px-0 items-center justify-center">
+        <img
+          className="w-full mx-auto rounded-2xl lg:max-w-2xl"
+          src={url}
+          alt="Imagen creada por Spookify"
+        />
 
-      <img
-        className='w-full p-5 lg:p-16 mx-auto rounded-lg lg:max-w-[800px]'
-        src={url}
-        alt='Imagen creada por Spookify'
-      />
-
-      <div className='flex items-center justify-center'>
-        <Button color='bg-primary' title='Descargar' onClick={downloadImage}>
-          <Download size='size-4 xl:size-5' />
+        <Button
+          color="bg-primary text-slate-100 "
+          title="Descargar"
+          onClick={downloadImage}
+        >
+          <Download size="size-4 xl:size-5" />
         </Button>
-      </div>
+      </section>
 
-      <section className='text-white'>
-        <div className='mx-auto max-w-screen-xl px-4 pt-16 pb-28 lg:flex lg:items-center'>
-          <div className='mx-auto max-w-xl text-center'>
-            <h1 className='text-3xl font-extrabold sm:text-5xl leading-tight'>
-              Sube una imagen y &nbsp;
-              <strong className='text-gradient sm:block sm:pt-4'>
-                experimenta el miedo
-              </strong>
-            </h1>
+      <section className="text-white px-6 lg:px-0">
+        <div className="mx-auto max-w-xl text-center mt-20">
+          <h1 className="text-3xl font-extrabold sm:text-5xl leading-tight">
+            Sube una imagen y &nbsp;
+            <strong className="text-gradient sm:block sm:pt-4">
+              experimenta el miedo
+            </strong>
+          </h1>
 
-            <p className='mt-4 sm:text-xl/relaxed text-pretty'>
-              Explora Spookify y generar imágenes espeluznantes al instante.
-              ¡Prueba la magia del terror y comparte tus creaciones con tus
-              amigos!
-            </p>
+          <p className="mt-6 lg:mt-8 mb-8 lg:mb-10 sm:text-xl/relaxed text-pretty">
+            Explora Spookify y generar imágenes espeluznantes al instante.
+            ¡Prueba la magia del terror y comparte tus creaciones con tus
+            amigos!
+          </p>
 
-            <div className='mt-8 flex flex-wrap justify-center gap-4'>
-              <Link
-                className='block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow transition-all hover:opacity-80 focus:outline-none focus:ring sm:w-auto'
-                href='/'
-              >
-                Comienza ahora
-              </Link>
+          <div className="flex flex-col lg:flex-row justify-center gap-4 lg:gap-8">
+            <Link
+              className="flex items-center gap-2 w-full rounded text-lg lg:text-xl px-6 py-2 font-medium bg-primary text-white shadow hover:opacity-85 transition duration-300 lg:w-auto"
+              href="/"
+            >
+              <Rocket className='size-4 lg:size-5' />
+              Comienza ahora
+            </Link>
 
-              <Link
-                className='block w-full rounded px-12 py-3 text-sm font-medium text-primary shadow hover:text-white focus:outline-none focus:ring sm:w-auto'
-                href='/#examples'
-              >
-                Descubre más
-              </Link>
-            </div>
+            <Link
+              className="flex items-center gap-2 w-full rounded text-lg lg:text-xl px-6 py-2 font-medium bg-zinc-900/45 text-primary shadow hover:opacity-85 transition duration-300 lg:w-auto"
+              href="/#examples"
+            >
+              <MagnifyingGlassPlus className='size-4 lg:size-5' />
+              Descubre más
+            </Link>
           </div>
         </div>
       </section>
