@@ -4,7 +4,8 @@ import Background from '@/components/utils/Background'
 import Button from '@/components/utils/Button'
 import { getCldImageUrl } from 'next-cloudinary'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   params: { publicId: string }
@@ -12,7 +13,7 @@ interface Props {
 
 export default function SharedPage({ params }: Props) {
   const { publicId } = params
-
+  const router = useRouter()
   console.log(publicId)
 
   const url = getCldImageUrl({
@@ -34,16 +35,33 @@ export default function SharedPage({ params }: Props) {
     document.body.removeChild(a)
     window.URL.revokeObjectURL(url)
   }
+  const validateUrl = async (url: string) => {
+    try {
+      const response = await fetch(url, { method: 'HEAD' })
+      if (response.ok) {
+        return
+      } else {
+        return router.push('/')
+      }
+    } catch {
+      return router.push('/')
+    }
+  }
+
+  useEffect(() => {
+    validateUrl(url)
+  }, [url])
 
   return (
     <main className='min-h-[100vh]'>
       <Background z={true} />
 
       <img
-        className='p-10 xl:p-20 mx-auto rounded-lg'
+        className='w-full p-5 lg:p-16 mx-auto rounded-lg lg:max-w-[800px]'
         src={url}
         alt='Imagen creada por Spookify'
       />
+
       <div className='flex items-center justify-center'>
         <Button color='bg-primary' title='Descargar' onClick={downloadImage}>
           <Download size='size-4 xl:size-5' />
@@ -51,19 +69,19 @@ export default function SharedPage({ params }: Props) {
       </div>
 
       <section className='text-white'>
-        <div className='mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center'>
+        <div className='mx-auto max-w-screen-xl px-4 pt-16 pb-28 lg:flex lg:items-center'>
           <div className='mx-auto max-w-xl text-center'>
             <h1 className='text-3xl font-extrabold sm:text-5xl leading-tight'>
-             Sube una imagen y
-              <strong className='text-gradient sm:block'>
+              Sube una imagen y &nbsp;
+              <strong className='text-gradient sm:block sm:pt-4'>
                 experimenta el miedo
               </strong>
             </h1>
 
-            <p className='mt-4 sm:text-xl/relaxed'>
-              Explora Spookify y generar imágenes espeluznantes
-              al instante. ¡Prueba la magia del terror y comparte tus creaciones
-              con tus amigos!
+            <p className='mt-4 sm:text-xl/relaxed text-pretty'>
+              Explora Spookify y generar imágenes espeluznantes al instante.
+              ¡Prueba la magia del terror y comparte tus creaciones con tus
+              amigos!
             </p>
 
             <div className='mt-8 flex flex-wrap justify-center gap-4'>
