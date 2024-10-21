@@ -11,7 +11,30 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Spookify • Tu portal a la edición sobrenatural',
   description:
-    'Spookify es una aplicación web que te permite transformar tus fotos y videos en creaciones aterradoras y espectaculares. Sube tus medios y aplica efectos espeluznantes utilizando tecnología de IA y las potentes herramientas de Cloudinary. ¡Convierte lo ordinario en lo extraordinariamente escalofriante!',
+    'Spookify es una aplicación web que transforma tus fotos y videos en creaciones aterradoras con tecnología de IA y herramientas avanzadas. ¡Convierte lo ordinario en escalofriante!',
+  openGraph: {
+    title: 'Spookify • Edición sobrenatural de fotos y videos',
+    description:
+      'Con Spookify, transforma tus fotos y videos en creaciones aterradoras utilizando efectos espeluznantes impulsados por IA y las potentes herramientas de Cloudinary.',
+    url: 'https://spookify-ai.vercel.app/',
+    siteName: 'Spookify',
+    images: [
+      {
+        url: 'https://spookify-ai.vercel.app/metaimg.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Una imagen escalofriante transformada con Spookify',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Spookify • Edición sobrenatural de fotos y videos',
+    description:
+      'Transforma tus fotos y videos con Spookify y crea efectos aterradores usando IA y Cloudinary. ¡Dale un toque espeluznante a tus creaciones!',
+    images: ['https://spookify-ai.vercel.app/metaimg.webp'],
+  },
 }
 
 export default function RootLayout({
