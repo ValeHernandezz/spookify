@@ -96,8 +96,6 @@ export default function ListOfTools() {
 
     appliedTransformations.push(newTransformation)
 
-    console.log('updatedTransformations', appliedTransformations)
-
     const transformedUrl = await transformImage({
       publicId: image.public_id,
       transformations: appliedTransformations

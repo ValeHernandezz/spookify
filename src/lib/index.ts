@@ -2,7 +2,6 @@ import { Tool, ToolCategory, ToolCategoryEnum } from './types'
 import Background from '@/components/icons/listOfTools/general/Background'
 import Ruler from '@/components/icons/listOfTools/general/Ruler'
 import Overlay from '@/components/icons/listOfTools/general/Overlay'
-import PhotoSpark from '@/components/icons/PhotoSpark'
 import CropZone from '@/components/icons/listOfTools/adjust/CropZone'
 import Expand from '@/components/icons/listOfTools/adjust/Expand'
 import Wand from '@/components/icons/listOfTools/general/Wand'
@@ -14,7 +13,7 @@ import MushroomCloud from '@/components/icons/listOfTools/background/MushroomClo
 import Biohazard from '@/components/icons/listOfTools/background/Biohazard'
 import JasonVoorhees from '@/components/icons/listOfTools/overlay/JasonVoorhees'
 import MichaelMyers from '@/components/icons/listOfTools/overlay/MichaelMyers'
-import Ghostface from '@/components/icons/listOfTools/overlay/Ghostface'
+import Pennywise from '@/components/icons/listOfTools/overlay/Pennywise'
 import Leatherface from '@/components/icons/listOfTools/overlay/Leatherface'
 import FreddyKrueger from '@/components/icons/listOfTools/costumes/FreddyKrueger'
 import Chucky from '@/components/icons/listOfTools/costumes/Chucky'
@@ -27,24 +26,24 @@ import Perplexity from '@/components/icons/tools/Perplexity'
 export const toolCategories: Record<string, ToolCategory> = {
   Transform: {
     label: 'Transformar',
-    icon: Wand
+    icon: Wand,
   },
   Background: {
     label: 'Fondos',
-    icon: Background
+    icon: Background,
   },
   Overlay: {
     label: 'Overlay',
-    icon: Overlay
+    icon: Overlay,
   },
   Costumes: {
     label: 'Disfraces',
-    icon: Clothe
+    icon: Clothe,
   },
   Adjust: {
     label: 'Ajustar',
-    icon: Ruler
-  }
+    icon: Ruler,
+  },
 }
 
 export const tools: Tool[] = [
@@ -53,21 +52,21 @@ export const tools: Tool[] = [
     title: 'Apocalíptico',
     icon: MushroomCloud,
     category: ToolCategoryEnum.Background,
-    replaceBackground: 'Dark clouds over ruined city'
+    replaceBackground: 'Dark clouds over ruined city',
   },
   {
     id: 2,
     title: 'Cementerio',
     icon: Grave,
     category: ToolCategoryEnum.Background,
-    replaceBackground: 'Foggy graveyard with spooky tombstones'
+    replaceBackground: 'Foggy graveyard with spooky tombstones',
   },
   {
     id: 3,
     title: 'Invasión zombie',
     icon: Biohazard,
     category: ToolCategoryEnum.Background,
-    replaceBackground: 'Horde of zombies attacking streets'
+    replaceBackground: 'Horde of zombies attacking streets',
   },
   {
     id: 4,
@@ -76,8 +75,8 @@ export const tools: Tool[] = [
     category: ToolCategoryEnum.Adjust,
     transformations: {
       fillBackground: true,
-      crop: 'pad'
-    }
+      crop: 'pad',
+    },
   },
   {
     id: 5,
@@ -89,21 +88,10 @@ export const tools: Tool[] = [
       height: 300,
       crop: {
         type: 'thumb',
-        source: true
+        source: true,
       },
-      sizes: '100vw'
-    }
-  },
-  {
-    id: 6,
-    title: 'Remplazar fondo',
-    icon: PhotoSpark,
-    category: ToolCategoryEnum.Background,
-    transformations: {
-      removeBackground: true,
-      underlay: 'c1v0fyzn8xphbkoqdbgb',
-      sizes: '100vw'
-    }
+      sizes: '100vw',
+    },
   },
   {
     id: 7,
@@ -113,8 +101,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'face',
       to: 'jason_mask',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 8,
@@ -124,19 +112,19 @@ export const tools: Tool[] = [
     replace: {
       from: 'face',
       to: 'michael_myers_mask',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 9,
-    title: 'Máscara de Ghostface',
-    icon: Ghostface,
+    title: 'Máscara de Pennywise',
+    icon: Pennywise,
     category: ToolCategoryEnum.Overlay,
     replace: {
       from: 'face',
-      to: 'ghostface_mask',
-      preserveGeometry: true
-    }
+      to: 'pennywise_from_it_movie',
+      preserveGeometry: true,
+    },
   },
   {
     id: 10,
@@ -146,8 +134,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'face',
       to: 'leatherface_mask',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 11,
@@ -157,8 +145,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'zombie_devil',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 12,
@@ -168,8 +156,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'appearance',
       to: 'gray_alien',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 13,
@@ -178,9 +166,9 @@ export const tools: Tool[] = [
     category: ToolCategoryEnum.Transform,
     replace: {
       from: 'person',
-      to: 'demon_from_hell',
-      preserveGeometry: true
-    }
+      to: 'demon_red_from_hell',
+      preserveGeometry: true,
+    },
   },
   {
     id: 14,
@@ -190,8 +178,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'skeletal_devil',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 15,
@@ -201,8 +189,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'clothes_overalls_shoes',
       to: 'Transforms the clothes into Freddy Krueger is iconic striped sweater and hat',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 16,
@@ -212,8 +200,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'clothes_overalls_shoes',
       to: 'Transforms the clothes into Jason Voorhees outfit with his iconic hockey mask.',
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 17,
@@ -223,8 +211,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'clothes_overalls_shoes',
       to: "Transforms the clothes into Michael Myers' dark blue jumpsuit and his eerie white mask.",
-      preserveGeometry: true
-    }
+      preserveGeometry: true,
+    },
   },
   {
     id: 18,
@@ -234,45 +222,45 @@ export const tools: Tool[] = [
     replace: {
       from: 'clothes_overalls_shoes',
       to: "Transforms the clothes into Chucky's overalls with his striped shirt and menacing doll-like appearance.",
-      preserveGeometry: true
-    }
-  }
+      preserveGeometry: true,
+    },
+  },
 ]
 
 export const images = [
   {
     id: 1,
     title: 'Antes del susto',
-    image: '/examples/original.webp'
+    image: '/examples/original.webp',
   },
   {
     id: 2,
     title: 'Conviértete en zombie',
-    image: '/examples/transformada.webp'
+    image: '/examples/transformada.webp',
   },
   {
     id: 3,
     title: 'Ambiente aterrador',
-    image: '/examples/fondo-tenebroso.avif'
+    image: '/examples/fondo-tenebroso.avif',
   },
   {
     id: 4,
     title: 'Desata el horror',
-    image: '/examples/todo.webp'
-  }
+    image: '/examples/todo.webp',
+  },
 ]
 
 export const sections = [
   {
     id: 1,
     name: 'Ejemplos',
-    url: '/#examples'
+    url: '/#examples',
   },
   {
     id: 2,
     name: 'Herramientas',
-    url: '/#tools'
-  }
+    url: '/#tools',
+  },
 ]
 
 export const toolsLinks = [
@@ -280,18 +268,18 @@ export const toolsLinks = [
     id: 1,
     title: 'Prueba las demos de Cloudinary aquí',
     href: 'https://cloudinary.com/demos',
-    icon: Arrow
+    icon: Arrow,
   },
   {
     id: 2,
     title: 'Documentación API de Cloudinary',
     href: 'https://next.cloudinary.dev/cldimage/examples',
-    icon: Cloudinary
+    icon: Cloudinary,
   },
   {
     id: 3,
     title: 'Documentación API de Perplexity',
     href: 'https://docs.perplexity.ai/home',
-    icon: Perplexity
-  }
+    icon: Perplexity,
+  },
 ]
