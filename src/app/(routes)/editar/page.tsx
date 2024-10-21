@@ -14,10 +14,10 @@ export default function EditorPage() {
       <Background z={true} />
 
       <button
-        className="block lg:hidden absolute top-36 right-5 w-max z-20 p-2 bg-gray-800 text-white rounded"
+        className="block lg:hidden absolute top-36 right-5 w-max z-20 py-1.5 px-3 bg-zinc-800 text-white rounded"
         onClick={toggleAside}
       >
-        {isAsideVisible ? 'Cerrar Menú' : 'Abrir Menú'}
+        {isAsideVisible ? 'Cerrar menú' : 'Abrir menú'}
       </button>
 
       <section className="grid grid-cols-1 lg:grid-cols-[350px_1fr] px-4 2xl:px-0">
