@@ -17,6 +17,7 @@ export default function ListOfTools() {
     changeViewImage,
     loadingPrompt,
     changeLoadingPrompt,
+    toggleAside
   } = useEditor()
   const { transformImage } = useTransform()
   const [openIndex, setOpenIndex] = useState(null)
@@ -38,6 +39,8 @@ export default function ListOfTools() {
 
   const applyTransformation = async (newTransformation) => {
     let appliedTransformations = image.appliedTransformations || []
+
+    toggleAside()
 
     appliedTransformations = appliedTransformations.filter((transformation) => {
       if (newTransformation.replace) {
@@ -216,7 +219,7 @@ export default function ListOfTools() {
 
   return (
     <div>
-      <div className='mt-6 space-y-1'>
+      <div className='space-y-1'>
         {Object.values(toolCategories).map((category, index) => (
           <details
             className='group [&_summary::-webkit-details-marker]:hidden'
@@ -224,8 +227,8 @@ export default function ListOfTools() {
             open={openIndex === index} // Solo abre si es el índice seleccionado
             onToggle={(e) => handleToggle(index, e)} // Controlamos el estado con onToggle
           >
-            <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
-              <span className='text-sm font-medium text-black flex items-center'>
+            <summary className='flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-slate-200/90 hover:bg-zinc-950/35 hover:text-slate-400 transition duration-300'>
+              <span className='text-sm font-medium text-slate-200 flex items-center'>
                 {category.icon()}
                 <span className='ml-2'>{category.label}</span>
               </span>
@@ -252,7 +255,7 @@ export default function ListOfTools() {
                     )}
                   </li>
                 ))}
-              {category.label !== ToolCategoryEnum.Crop && (
+              {category.label !== ToolCategoryEnum.Adjust && (
                 <GenerateTransform
                   loading={loadingPrompt}
                   handleTransformCustom={handleTransformCustom}
@@ -266,10 +269,10 @@ export default function ListOfTools() {
 
       <div className='flex justify-center gap-5 mt-10'>
         <button
-          className={`flex items-center gap-x-1 font-medium py-1 px-2 text-sm bg-red-500 text-white rounded-lg ${
+          className={`flex items-center gap-x-2 font-medium px-2 text-sm py-1 lg:px-3 lg:text-base border-[1px] border-primary bg-primary text-slate-100 rounded-lg transition duration-300 ${
             hasTransformationBeenApplied
               ? 'cursor-not-allowed opacity-50'
-              : 'cursor-pointer hover:contrast-125'
+              : 'cursor-pointer hover:opacity-85'
           }`}
           onClick={handleUndo}
           disabled={hasTransformationBeenApplied}
@@ -278,10 +281,10 @@ export default function ListOfTools() {
           Deshacer
         </button>
         <button
-          className={`flex items-center gap-x-1 font-medium py-1 px-2 text-sm bg-red-800 text-white rounded-lg ${
+          className={`flex items-center gap-x-2 font-medium px-2 text-sm lg:py-1 lg:px-3 sm:text-base border-[1px] border-primary bg-slate-200 text-primary rounded-lg transition duration-300 ${
             hasTransformationBeenApplied
               ? 'cursor-not-allowed opacity-50'
-              : 'cursor-pointer hover:saturate-150'
+              : 'cursor-pointer hover:opacity-85'
           }`}
           onClick={handleReset}
           disabled={hasTransformationBeenApplied}
@@ -310,7 +313,7 @@ const CustomForm = ({ tool, handleTransform }) => {
 
   return (
     <form key={tool.id} className='pl-4 pb-4' onSubmit={handleSubmit}>
-      <label className='w-full flex items-center gap-x-1 text-left rounded-lg text-sm font-medium text-gray-600'>
+      <label className='w-full flex items-center gap-x-2 text-left rounded-lg text-sm font-medium text-slate-300'>
         {tool.icon && tool.icon()}
         {tool.title}
       </label>
@@ -320,19 +323,19 @@ const CustomForm = ({ tool, handleTransform }) => {
           type='number'
           name='width'
           placeholder='Ancho'
-          className='w-full rounded-md bg-slate-400/20 pl-2 border-gray-500 py-2 pe-2 shadow-sm text-sm'
+          className='w-full rounded-md text-slate-200/90 bg-slate-400/20 pl-2 border-gray-500 py-2 pe-2 shadow-sm text-sm'
         />
         <input
           type='number'
           name='heigth'
           placeholder='Alto'
-          className='w-full rounded-md bg-slate-400/20 pl-2 border-gray-500 py-2 pe-2 shadow-sm text-sm'
+          className='w-full rounded-md text-slate-200/90 bg-slate-400/20 pl-2 border-gray-500 py-2 pe-2 shadow-sm text-sm'
         />
       </div>
 
-      <button className='inline-flex items-center gap-2 rounded-lg border border-indigo-600 bg-indigo-600 px-3 py-1 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500'>
+      <button className='inline-flex items-center gap-2 rounded-lg bg-primary px-3 py-1 text-slate-100 hover:opacity-85 transition duration-300'>
         <span className='text-sm font-medium'>
-          {tool.id === 5 ? 'Cortar' : 'Rellenar'}
+          {tool.id === 5 ? 'Recortar' : 'Expandir'}
         </span>
       </button>
     </form>
@@ -341,7 +344,7 @@ const CustomForm = ({ tool, handleTransform }) => {
 
 const DefaultButton = ({ tool, handleTransform }) => (
   <button
-    className='w-full flex items-center gap-x-1 text-left rounded-lg px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700'
+    className='w-full flex items-center gap-x-2 text-left rounded-lg px-4 py-2 text-sm font-medium text-slate-300 hover:bg-zinc-950/35 hover:text-slate-300/90 transition duration-300'
     onClick={() => handleTransform(tool)}
   >
     {tool.icon && tool.icon()}

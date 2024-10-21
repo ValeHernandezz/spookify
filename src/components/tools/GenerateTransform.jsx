@@ -12,7 +12,7 @@ export default function GenerateTransform({
       case 'Transformar':
         return {
           title: 'Personalizado',
-          placeholder: 'Ej. Convertir en satanas...',
+          placeholder: 'Ej. Convertir en satanás...',
         }
       case 'Fondos':
         return {
@@ -41,10 +41,10 @@ export default function GenerateTransform({
 
   return (
     <form
-      className='pl-4'
+      className='pl-4 pt-2'
       onSubmit={(e) => handleTransformCustom(e, categoryLabel)}
     >
-      <label className='text-sm font-semibold flex items-center gap-x-1'>
+      <label className='text-sm font-semibold flex items-center gap-x-1 text-slate-200/90'>
         <Sparkles /> {title}
       </label>
 
@@ -53,7 +53,7 @@ export default function GenerateTransform({
           type='text'
           name='transform'
           placeholder={placeholder}
-          className='w-full rounded-md bg-slate-400/20 pl-2 border-gray-500 py-2 pe-10 shadow-sm text-sm'
+          className='w-full rounded-md text-slate-200/90 bg-slate-400/20 pl-2 border-gray-500 py-2 pe-10 shadow-sm text-sm '
         />
 
         <span className='absolute inset-y-0 end-0 grid w-10 pt-2 place-content-center'>
