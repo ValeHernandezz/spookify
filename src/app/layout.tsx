@@ -4,6 +4,8 @@ import Header from '@/sections/header/Header'
 import Hamburguer from '@/sections/header/Hamburguer'
 import Footer from '@/sections/Footer'
 
+import { Analytics } from "@vercel/analytics/react"
+
 import '@fontsource-variable/figtree'
 
 import './globals.css'
@@ -57,6 +59,8 @@ export default function RootLayout({
           {children}
           <Footer />
         </div>
+        
+        <Analytics />
       </body>
     </html>
   )
