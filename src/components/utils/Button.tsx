@@ -15,7 +15,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`flex items-center gap-x-1 text-sm py-1.5 px-2.5 rounded-lg ${color}`}
+      className={`flex items-center gap-x-2 text-sm lg:text-base py-1.5 px-3 font-medium rounded-lg hover:opacity-85 transition duration-300 ${color}`}
       onClick={onClick}
     >
       {children}

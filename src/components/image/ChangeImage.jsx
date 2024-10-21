@@ -6,11 +6,12 @@ import Photo from '@/components/icons/Photo'
 import Edit from '@/components/icons/Edit'
 import Compare from '@/components/icons/Compare'
 import Download from '@/components/icons/Download'
+import Copy from '@/components/icons/viewImage/Copy'
 import Share from '@/components/icons/Share'
 import Button from '@/components/utils/Button'
 
 export default function ChangeImage() {
-  const { changeViewImage, image } = useEditor()
+  const { changeViewImage, image, viewImage } = useEditor()
   const [copied, setCopied] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -36,7 +37,7 @@ export default function ChangeImage() {
 
     const response = await fetch('/api/shared', {
       method: 'POST',
-      body: formData,
+      body: formData
     })
 
     const { data } = await response.json()
@@ -53,65 +54,68 @@ export default function ChangeImage() {
     }, 1300)
   }
 
+  const styleButtonSelected = 'inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1.5 text-sm lg:text-base text-slate-100 shadow-sm focus:relative'
+
+  const styleButtonNoSelected = 'inline-flex items-center gap-2 rounded-md px-3 py-1 text-sm lg:text-base text-slate-600 hover:text-slate-900 hover: focus:relative transition duration-300'
+
   return (
-    <div className='flex flex-col gap-y-5 lg:gap-y-0 lg:flex-row items-center lg:justify-between w-full max-w-[880px] lg:px-20 mx-auto'>
-      <div className='flex items-center gap-5 xl:gap-10'>
-        <Button
-          color='bg-primary'
-          title='Original'
+    <div className="flex flex-col gap-y-5 lg:gap-y-0 lg:flex-row items-center lg:justify-between w-full max-w-[880px] lg:px-20 mx-auto">
+      <div className="inline-flex rounded-lg bg-slate-200">
+        <button
+          className={
+            viewImage === ViewImageStateEnum.ORIGINAL
+              ? styleButtonSelected
+              : styleButtonNoSelected
+          }
           onClick={() => changeViewImage(ViewImageStateEnum.ORIGINAL)}
         >
-          <Photo size='size-4 xl:size-5' />
-        </Button>
+          <Photo size="size-4 xl:size-5" />
+          Original
+        </button>
 
-        <Button
-          color='bg-primary'
-          title='Editada'
+        <button
+          className={
+            viewImage === ViewImageStateEnum.EDIT
+              ? styleButtonSelected
+              : styleButtonNoSelected
+          }
           onClick={() => changeViewImage(ViewImageStateEnum.EDIT)}
         >
-          <Edit size='size-4 xl:size-5' />
-        </Button>
+          <Edit size="size-4 xl:size-5" />
+          Editada
+        </button>
 
-        <Button
-          color='bg-primary'
-          title='Comparar'
+        <button
+          className={
+            viewImage === ViewImageStateEnum.COMPARE
+              ? styleButtonSelected
+              : styleButtonNoSelected
+          }
           onClick={() => changeViewImage(ViewImageStateEnum.COMPARE)}
         >
-          <Compare size='size-4 xl:size-5' />
-        </Button>
+          <Compare size='size-4 xl:size-5'/>
+          Comparar
+        </button>
       </div>
 
-      <div className='flex items-center gap-5 xl:gap-10'>
-        <Button color='bg-primary' title='Descargar' onClick={downloadImage}>
-          <Download size='size-4 xl:size-5' />
+      <div className="flex items-center gap-4">
+        <Button color="bg-primary text-slate-100 " title="Descargar" onClick={downloadImage}>
+          <Download size="size-4 xl:size-5" />
         </Button>
 
         <Button
-          color='bg-primary'
+          color="bg-primary text-slate-100 w-[124px] lg:w-[136px] flex justify-center"
           title={!loading ? (copied ? 'Copiado' : 'Compartir') : 'Generando'}
           onClick={sharedImage}
         >
           {!loading ? (
             copied ? (
-              <svg
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                className='size-5'
-              >
-                <path d='M0 0h24v24H0z' stroke='none' />
-                <path d='M0 0h24v24H0z' stroke='none' />
-                <path d='M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z' />
-                <path d='M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1M11 14l2 2 4-4' />
-              </svg>
+              <Copy className='size-4 xl:size-5'/>
             ) : (
-              <Share size='size-4 xl:size-5' />
+              <Share size="size-4 xl:size-5" />
             )
           ) : (
-            <div className='loaderCircleSmall mr-2'></div>
+            <div className="loaderCircleSmall mr-2"></div>
           )}
         </Button>
       </div>
