@@ -1,17 +1,26 @@
 import { Tool, ToolCategory, ToolCategoryEnum } from './types'
-import Background from '@/components/icons/Background'
-import Cut from '@/components/icons/Cut'
-import Overlay from '@/components/icons/Overlay'
+import Background from '@/components/icons/listOfTools/general/Background'
+import Ruler from '@/components/icons/listOfTools/general/Ruler'
+import Overlay from '@/components/icons/listOfTools/general/Overlay'
 import Sparkles from '@/components/icons/Sparkles'
 import PhotoSpark from '@/components/icons/PhotoSpark'
-import CropZone from '@/components/icons/CropZone'
-import InputSpark from '@/components/icons/InputSpark'
-import Wand from '@/components/icons/Wand'
-import Zombie from '@/components/icons/Zombie'
-import Alien from '@/components/icons/Alien'
-import Devil from '@/components/icons/Devil'
-import Skeleton from '@/components/icons/Skeleton'
-import Clothe from '@/components/icons/Clothe'
+import CropZone from '@/components/icons/listOfTools/adjust/CropZone'
+import Expand from '@/components/icons/listOfTools/adjust/Expand'
+import Wand from '@/components/icons/listOfTools/general/Wand'
+import Zombie from '@/components/icons/listOfTools/transform/Zombie'
+import Alien from '@/components/icons/listOfTools/transform/Alien'
+import Devil from '@/components/icons/listOfTools/transform/Devil'
+import Skeleton from '@/components/icons/listOfTools/transform/Skeleton'
+import MushroomCloud from '@/components/icons/listOfTools/background/MushroomCloud'
+import Biohazard from '@/components/icons/listOfTools/background/Biohazard'
+import JasonVoorhees from '@/components/icons/listOfTools/overlay/JasonVoorhees'
+import MichaelMyers from '@/components/icons/listOfTools/overlay/MichaelMyers'
+import Ghostface from '@/components/icons/listOfTools/overlay/Ghostface'
+import Leatherface from '@/components/icons/listOfTools/overlay/Leatherface'
+import FreddyKrueger from '@/components/icons/listOfTools/costumes/FreddyKrueger'
+import Chucky from '@/components/icons/listOfTools/costumes/Chucky'
+import Grave from '@/components/icons/listOfTools/background/Grave'
+import Clothe from '@/components/icons/listOfTools/general/Clothe'
 import Arrow from '@/components/icons/tools/Arrow'
 import Cloudinary from '@/components/icons/tools/Cloudinary'
 import Perplexity from '@/components/icons/tools/Perplexity'
@@ -19,72 +28,72 @@ import Perplexity from '@/components/icons/tools/Perplexity'
 export const toolCategories: Record<string, ToolCategory> = {
   Transform: {
     label: 'Transformar',
-    icon: Wand,
+    icon: Wand
   },
   Background: {
     label: 'Fondos',
-    icon: Background,
+    icon: Background
   },
   Overlay: {
     label: 'Overlay',
-    icon: Overlay,
+    icon: Overlay
   },
   Costumes: {
     label: 'Disfraces',
-    icon: Clothe,
+    icon: Clothe
   },
-  Crop: {
-    label: 'Cortar',
-    icon: Cut,
-  },
+  Adjust: {
+    label: 'Ajustar',
+    icon: Ruler
+  }
 }
 
 export const tools: Tool[] = [
   {
     id: 1,
     title: 'Apocalíptico',
-    icon: Sparkles,
+    icon: MushroomCloud,
     category: ToolCategoryEnum.Background,
-    replaceBackground: 'Dark clouds over ruined city',
+    replaceBackground: 'Dark clouds over ruined city'
   },
   {
     id: 2,
     title: 'Cementerio',
-    icon: Sparkles,
+    icon: Grave,
     category: ToolCategoryEnum.Background,
-    replaceBackground: 'Foggy graveyard with spooky tombstones',
+    replaceBackground: 'Foggy graveyard with spooky tombstones'
   },
   {
     id: 3,
     title: 'Invasión zombie',
-    icon: Sparkles,
+    icon: Biohazard,
     category: ToolCategoryEnum.Background,
-    replaceBackground: 'Horde of zombies attacking streets',
+    replaceBackground: 'Horde of zombies attacking streets'
   },
   {
     id: 4,
-    title: 'Rellenar imagen',
-    icon: InputSpark,
-    category: ToolCategoryEnum.Crop,
+    title: 'Expandir imagen',
+    icon: Expand,
+    category: ToolCategoryEnum.Adjust,
     transformations: {
       fillBackground: true,
-      crop: 'pad',
-    },
+      crop: 'pad'
+    }
   },
   {
     id: 5,
-    title: 'Parte importante',
+    title: 'Área importante',
     icon: CropZone,
-    category: ToolCategoryEnum.Crop,
+    category: ToolCategoryEnum.Adjust,
     transformations: {
       width: 300,
       height: 300,
       crop: {
         type: 'thumb',
-        source: true,
+        source: true
       },
-      sizes: '100vw',
-    },
+      sizes: '100vw'
+    }
   },
   {
     id: 6,
@@ -94,48 +103,52 @@ export const tools: Tool[] = [
     transformations: {
       removeBackground: true,
       underlay: 'c1v0fyzn8xphbkoqdbgb',
-      sizes: '100vw',
-    },
+      sizes: '100vw'
+    }
   },
   {
     id: 7,
-    title: 'Mascara de Jason',
+    title: 'Máscara de Jason Voorhees',
+    icon: JasonVoorhees,
     category: ToolCategoryEnum.Overlay,
     replace: {
       from: 'face',
       to: 'jason_mask',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 8,
     title: 'Máscara de Michael Myers',
+    icon: MichaelMyers,
     category: ToolCategoryEnum.Overlay,
     replace: {
       from: 'face',
       to: 'michael_myers_mask',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 9,
     title: 'Máscara de Ghostface',
+    icon: Ghostface,
     category: ToolCategoryEnum.Overlay,
     replace: {
       from: 'face',
       to: 'ghostface_mask',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 10,
     title: 'Máscara de Leatherface',
+    icon: Leatherface,
     category: ToolCategoryEnum.Overlay,
     replace: {
       from: 'face',
       to: 'leatherface_mask',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 11,
@@ -145,8 +158,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'zombie_devil',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 12,
@@ -156,8 +169,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'appearance',
       to: 'gray_alien',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 13,
@@ -167,8 +180,8 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'demon_from_hell',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 14,
@@ -178,88 +191,88 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'skeletal_devil',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 15,
     title: 'Disfraz de Freddy Krueger',
-    icon: Skeleton,
+    icon: FreddyKrueger,
     category: ToolCategoryEnum.Costumes,
     replace: {
       from: 'clothes_overalls_shoes',
       to: 'Transforms the clothes into Freddy Krueger is iconic striped sweater and hat',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 16,
     title: 'Disfraz de Jason Voorhees',
-    icon: Skeleton,
+    icon: JasonVoorhees,
     category: ToolCategoryEnum.Costumes,
     replace: {
       from: 'clothes_overalls_shoes',
       to: 'Transforms the clothes into Jason Voorhees outfit with his iconic hockey mask.',
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 17,
     title: 'Disfraz de Michael Myers',
-    icon: Skeleton,
+    icon: MichaelMyers,
     category: ToolCategoryEnum.Costumes,
     replace: {
       from: 'clothes_overalls_shoes',
       to: "Transforms the clothes into Michael Myers' dark blue jumpsuit and his eerie white mask.",
-      preserveGeometry: true,
-    },
+      preserveGeometry: true
+    }
   },
   {
     id: 18,
     title: 'Disfraz de Chucky',
-    icon: Skeleton,
+    icon: Chucky,
     category: ToolCategoryEnum.Costumes,
     replace: {
       from: 'clothes_overalls_shoes',
       to: "Transforms the clothes into Chucky's overalls with his striped shirt and menacing doll-like appearance.",
-      preserveGeometry: true,
-    },
-  },
+      preserveGeometry: true
+    }
+  }
 ]
 
 export const images = [
   {
     id: 1,
     title: 'Antes del susto',
-    image: '/examples/original.webp',
+    image: '/examples/original.webp'
   },
   {
     id: 2,
     title: 'Conviértete en zombie',
-    image: '/examples/transformada.webp',
+    image: '/examples/transformada.webp'
   },
   {
     id: 3,
     title: 'Ambiente aterrador',
-    image: '/examples/fondo-tenebroso.avif',
+    image: '/examples/fondo-tenebroso.avif'
   },
   {
     id: 4,
     title: 'Desata el horror',
-    image: '/examples/todo.webp',
-  },
+    image: '/examples/todo.webp'
+  }
 ]
 
 export const sections = [
   {
     id: 1,
     name: 'Ejemplos',
-    url: '/#examples',
+    url: '/#examples'
   },
   {
     id: 2,
     name: 'Herramientas',
-    url: '/#tools',
+    url: '/#tools'
   }
 ]
 
