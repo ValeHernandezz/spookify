@@ -59,7 +59,7 @@ export default function ChangeImage() {
   const styleButtonNoSelected = 'inline-flex items-center gap-2 rounded-md px-3 py-1 text-sm lg:text-base text-slate-600 hover:text-slate-900 hover: focus:relative transition duration-300'
 
   return (
-    <div className="flex flex-col gap-y-5 lg:gap-y-0 lg:flex-row items-center lg:justify-between w-full max-w-[880px] lg:px-20 mx-auto">
+    <div className="flex flex-col gap-y-5 xl:gap-y-0 xl:flex-row items-center xl:justify-between w-full  xl:max-w-[880px] lg:px-20 mx-auto">
       <div className="inline-flex rounded-lg bg-slate-200">
         <button
           className={

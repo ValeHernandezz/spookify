@@ -3,7 +3,7 @@ import { images } from '@/lib'
 
 export default function Gallery() {
   return (
-    <section id="examples" className="pt-20 pb-20 md:pb-40 px-6 md:px-0">
+    <section id="examples" className="pt-20 pb-20 md:pb-40 px-6 md:px-10">
       <h2 className="text-4xl font-bold text-center text-white mb-16 w-[15ch] md:w-auto mx-auto">
         ¡Transforma tus imágenes en{' '}
         <span className="text-gradient">pesadillas</span>!
