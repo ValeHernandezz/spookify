@@ -17,6 +17,52 @@
 - **Efectos personalizados con IA**: Si no te gustan los efectos predeterminados, puedes crear el efecto que se te ocurra mediante inteligencia artificial.
 - **Descargar y compartir tus fotos**: Guarda y comparte tus creaciones terroríficas con amigos y familiares a través de redes sociales.
 
+## 🔧 Configuración del entorno
+
+Antes de ejecutar la aplicación, asegúrate de configurar las variables de entorno en un archivo `.env` en el directorio raíz del proyecto. A continuación, se muestran las variables requeridas:
+
+```sh
+NEXT_PUBLIC_CLOUDINARY_URL= #tu_cloudinary_url
+CLOUDINARY_API_KEY= #tu_api_key
+CLOUDINARY_API_SECRET= #tu_api_secret
+CLOUDINARY_UPLOAD_PRESET= #tu_upload_preset
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME= #tu_cloud_name
+PERPLEXITY_API_KEY= #tu_perplexity_api_key
+NEXT_PUBLIC_URL_FRONTEND= #http://localhost:3000
+```
+
+### 📦 Instalación de dependencias
+
+Para instalar los paquetes necesarios, puedes utilizar cualquiera de los siguientes gestores de paquetes:
+
+- `pnpm` (recomendado por su eficiencia y rapidez)
+
+  ```sh
+  npm install -g pnpm
+  ```
+
+- `npm`
+
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### 🚀 Iniciar el proyecto
+
+Una vez que hayas configurado tu archivo `.env`, puedes iniciar el proyecto usando uno de los siguientes comandos:
+
+### ▶️ Ejecutar el proyecto
+
+```sh
+pnpm run dev
+```
+
+o
+
+```sh
+npm run dev
+```
+
 ## 🛠️ Construido con
 
 - [![Cloudinary_API](https://img.shields.io/badge/Cloudinary_API-3448C5?style=for-the-badge&logo=Cloudinary&logoColor=white)](https://next.cloudinary.dev/cldimage/examples) - Plataforma para gestionar, optimizar y transformar imágenes y videos a través de su API.
