@@ -17,7 +17,7 @@ export default function CtlImageCompare() {
 
   if (!transformedUrl || JSON.stringify(transformedUrl) === '{}')
     return (
-      <h3 className='text-black font-bold text-3xl text-center py-10'>
+      <h3 className='flex items-center justify-center text-slate-200 font-bold text-3xl text-center py-10 h-[400px]'>
         No has usado ningun efecto
       </h3>
     )
