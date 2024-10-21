@@ -100,12 +100,15 @@ export default function ListOfTools() {
       transformations: appliedTransformations,
     })
 
-    if (!transformedUrl) {
+    const isUrlValid = await validateUrl(transformedUrl)
+
+    if (!isUrlValid) {
       Swal.fire({
-        title: 'Error!',
-        text: 'Algo salió mal, vuelve a intentarlo',
-        icon: 'error',
-        confirmButtonText: 'Cool',
+        position: 'center',
+        icon: 'Error!',
+        title: 'La URL generada no es válida, vuelve a intentarlo',
+        showConfirmButton: false,
+        timer: 1500,
       })
       return
     }
@@ -115,6 +118,15 @@ export default function ListOfTools() {
       transformedUrl,
       appliedTransformations,
     })
+  }
+
+  const validateUrl = async (url) => {
+    try {
+      const response = await fetch(url, { method: 'HEAD' })
+      return response.ok // Si es true, la URL es válida
+    } catch {
+      return false
+    }
   }
 
   const handleTransformCustom = async (e, categoryLabel) => {
