@@ -38,13 +38,13 @@ Para instalar los paquetes necesarios, puedes utilizar cualquiera de los siguien
 - `pnpm` (recomendado por su eficiencia y rapidez)
 
   ```sh
-  npm install -g pnpm
+  npm i
   ```
 
 - `npm`
 
   ```sh
-  npm install npm@latest -g
+  npm i
   ```
 
 ### 🚀 Iniciar el proyecto
