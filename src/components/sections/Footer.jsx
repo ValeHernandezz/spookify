@@ -6,7 +6,7 @@ import { sections } from '@/lib'
 
 export default function Footer() {
   return (
-    <footer className="w-full py-10 px-6 xl:px-0 border-t border-slate-200/50">
+    <footer className="w-full py-10 px-6 md:px-10 border-t border-slate-200/50">
       <div className="w-full mx-auto flex flex-col justify-center gap-12">
         <div className="flex justify-center">
           <Logo href="#inicio" />
