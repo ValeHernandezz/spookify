@@ -31,16 +31,17 @@ export default function useTransform() {
         src: publicId,
         ...combinedTransformations,
       })
-
+    
       if (url) {
         await pollForProcessingImage({ src: url })
         changeLoading(false)
         return url
       } else {
+        changeViewImage(ViewImageStateEnum.ORIGINAL)
         throw new Error('Transformación fallida')
       }
-    } catch (error) {
-      console.error('Error en la transformación:', error)
+    } catch {
+      changeViewImage(ViewImageStateEnum.ORIGINAL)
       changeLoading(false)
       return null
     }
