@@ -4,7 +4,7 @@ import Header from '@/sections/header/Header'
 import Hamburguer from '@/sections/header/Hamburguer'
 import Footer from '@/sections/Footer'
 
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from '@vercel/analytics/react'
 
 import '@fontsource-variable/figtree'
 
@@ -50,7 +50,7 @@ export default function RootLayout({
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </head>
       <body>
-        <div className="fondo absolute w-[105vw] inset-0 bg-[url('/background.webp')] bg-cover bg-center -z-10"></div>
+        <div className="fondo absolute w-full inset-0 bg-[url('/background.webp')] bg-cover bg-center -z-10"></div>
 
         <Background z={false} />
         <Hamburguer />
@@ -59,7 +59,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </div>
-        
+
         <Analytics />
       </body>
     </html>
