@@ -38,7 +38,7 @@ Para instalar los paquetes necesarios, puedes utilizar cualquiera de los siguien
 - `pnpm` (recomendado por su eficiencia y rapidez)
 
   ```sh
-  npm i
+  pnpm i
   ```
 
 - `npm`
