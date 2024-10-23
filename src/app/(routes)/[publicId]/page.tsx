@@ -1,5 +1,5 @@
 'use client'
-import Download from '@/components/icons/Download'
+import Download from '@/components/icons/viewImage/Download'
 import Background from '@/components/utils/Background'
 import Button from '@/components/utils/Button'
 import { getCldImageUrl } from 'next-cloudinary'

@@ -6,7 +6,7 @@ import { toolCategories, tools } from '@/lib'
 import { ViewImageStateEnum, ToolCategoryEnum } from '@/lib/types'
 import Trash from '@/components/icons/listOfTools/general/Trash'
 import Undo from '@/components/icons/listOfTools/general/Undo'
-import Arrow from '@/components/icons/Arrow'
+import Arrow from '@/components/icons/listOfTools/general/Arrow'
 import GenerateTransform from '@/components/tools/GenerateTransform'
 import Swal from 'sweetalert2'
 

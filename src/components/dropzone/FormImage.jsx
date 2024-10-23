@@ -3,7 +3,7 @@ import useEditor from '@/store/Providers'
 import { useDropzone } from 'react-dropzone'
 import { useRouter } from 'next/navigation'
 
-import Paperclip from '@/components/icons/PaperClip'
+import Paperclip from '@/components/icons/dropdown/PaperClip'
 import { ViewImageStateEnum } from '@/lib/types'
 import Swal from 'sweetalert2'
 

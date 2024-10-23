@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Ghost from '@/components/icons/Ghost'
+import Ghost from '@/components/icons/header/Ghost'
 
 export default function Logo({ href, className}) {
   return (
