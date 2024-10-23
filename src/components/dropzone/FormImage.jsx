@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import Paperclip from '@/components/icons/PaperClip'
 import { ViewImageStateEnum } from '@/lib/types'
+import Swal from 'sweetalert2'
 
 export default function FormImage() {
   const { changeImage, loading, changeLoading, changeViewImage } = useEditor()
@@ -28,16 +29,28 @@ export default function FormImage() {
       formData.append('file', file)
     })
 
-    const response = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData,
-    })
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
 
-    const { data } = await response.json()
-    changeViewImage(ViewImageStateEnum.ORIGINAL)
-    changeImage(data)
-    changeLoading(false)
-    router.push('/editar')
+      const { data } = await response.json()
+      changeViewImage(ViewImageStateEnum.ORIGINAL)
+      changeImage(data)
+      router.push('/editar')
+      changeLoading(false)
+    } catch {
+      changeLoading(false)
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        titleText: 'Error!',
+        text: 'No se pudo subir la imagen, vuelve a intentarlo',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }
   }
 
   return (
