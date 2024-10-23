@@ -1,6 +1,5 @@
-import { Alien, Arrow, Background, Biohazard, Chucky, CloudinaryLogo, Clothe, CropZone, Devil, Expand, FreddyKrueger, Grave, JasonVoorhees, Leatherface, MichaelMyers, MushroomCloud, Overlay, Pennywise, Perplexity, Ruler, Skeleton, Wand, Zombie } from '@/icons/index'
+import { Alien, Arrow, Background,  Biohazard, Chucky, CloudinaryLogo, Clothe, CropZone, Devil, Expand, FreddyKrueger, Grave, JasonVoorhees, Joker, Leatherface, MichaelMyers, MushroomCloud, Overlay, Pennywise, Perplexity, Ruler, Skeleton, Wand, Zombie } from '@/icons/index'
 import { Tool, ToolCategory, ToolCategoryEnum } from './types'
-
 
 export const toolCategories: Record<string, ToolCategory> = {
   Transform: {
@@ -157,6 +156,17 @@ export const tools: Tool[] = [
     replace: {
       from: 'person',
       to: 'skeletal_devil',
+      preserveGeometry: true,
+    },
+  },
+  {
+    id: 6,
+    title: 'Convertir en Joker',
+    icon: Joker,
+    category: ToolCategoryEnum.Transform,
+    replace: {
+      from: 'person',
+      to: 'joker the villan to batman',
       preserveGeometry: true,
     },
   },

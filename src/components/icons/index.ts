@@ -19,6 +19,7 @@ import Ghost from '@/icons/header/Ghost'
 import GitHub from '@/icons/footer/GitHub'
 import Grave from '@/icons/listOfTools/background/Grave'
 import JasonVoorhees from '@/icons/listOfTools/overlay/JasonVoorhees'
+import Joker from '@/icons/listOfTools/transform/Joker'
 import Leatherface from '@/icons/listOfTools/overlay/Leatherface'
 import MagnifyingGlassPlus from '@/icons/shared/MagnifyingGlassPlus'
 import Menu from '@/icons/hamburger/Menu'
@@ -62,6 +63,7 @@ export {
   GitHub,
   Grave,
   JasonVoorhees,
+  Joker,
   Leatherface,
   MagnifyingGlassPlus,
   Menu,
@@ -81,5 +83,5 @@ export {
   Undo,
   Wand,
   X,
-  Zombie
+  Zombie,
 }
