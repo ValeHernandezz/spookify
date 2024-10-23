@@ -9,6 +9,7 @@ import Download from '@/components/icons/Download'
 import Copy from '@/components/icons/viewImage/Copy'
 import Share from '@/components/icons/Share'
 import Button from '@/components/utils/Button'
+import Swal from 'sweetalert2'
 
 export default function ChangeImage() {
   const { changeViewImage, image, viewImage } = useEditor()
@@ -16,6 +17,16 @@ export default function ChangeImage() {
   const [loading, setLoading] = useState(false)
 
   const downloadImage = async () => {
+    if (!image.transformedUrl)
+      return Swal.fire({
+        position: 'center',
+        icon: 'error',
+        titleText: 'Debes aplicar un efecto',
+        text: 'No has aplicado ningun efecto',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+
     const response = await fetch(image.transformedUrl)
     const blob = await response.blob()
     const url = window.URL.createObjectURL(blob)
@@ -29,6 +40,16 @@ export default function ChangeImage() {
   }
 
   const sharedImage = async () => {
+    if (!image.transformedUrl)
+      return Swal.fire({
+        position: 'center',
+        icon: 'error',
+        titleText: 'Debes aplicar un efecto',
+        text: 'No has aplicado ningun efecto',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+
     setLoading(true)
     const imageResponse = await fetch(image.transformedUrl)
     const blob = await imageResponse.blob()
@@ -37,7 +58,7 @@ export default function ChangeImage() {
 
     const response = await fetch('/api/shared', {
       method: 'POST',
-      body: formData
+      body: formData,
     })
 
     const { data } = await response.json()
@@ -54,13 +75,15 @@ export default function ChangeImage() {
     }, 1300)
   }
 
-  const styleButtonSelected = 'inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1.5 text-sm lg:text-base text-slate-100 shadow-sm focus:relative'
+  const styleButtonSelected =
+    'inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1.5 text-sm lg:text-base text-slate-100 shadow-sm focus:relative'
 
-  const styleButtonNoSelected = 'inline-flex items-center gap-2 rounded-md px-3 py-1 text-sm lg:text-base text-slate-600 hover:text-slate-900 hover: focus:relative transition duration-300'
+  const styleButtonNoSelected =
+    'inline-flex items-center gap-2 rounded-md px-3 py-1 text-sm lg:text-base text-slate-600 hover:text-slate-900 hover: focus:relative transition duration-300'
 
   return (
-    <div className="flex flex-col gap-y-5 xl:gap-y-0 xl:flex-row items-center xl:justify-between w-full  xl:max-w-[880px] lg:px-20 mx-auto">
-      <div className="inline-flex rounded-lg bg-slate-200">
+    <div className='flex flex-col gap-y-5 xl:gap-y-0 xl:flex-row items-center xl:justify-between w-full  xl:max-w-[880px] lg:px-20 mx-auto'>
+      <div className='inline-flex rounded-lg bg-slate-200'>
         <button
           className={
             viewImage === ViewImageStateEnum.ORIGINAL
@@ -69,7 +92,7 @@ export default function ChangeImage() {
           }
           onClick={() => changeViewImage(ViewImageStateEnum.ORIGINAL)}
         >
-          <Photo size="size-4 xl:size-5" />
+          <Photo size='size-4 xl:size-5' />
           Original
         </button>
 
@@ -81,7 +104,7 @@ export default function ChangeImage() {
           }
           onClick={() => changeViewImage(ViewImageStateEnum.EDIT)}
         >
-          <Edit size="size-4 xl:size-5" />
+          <Edit size='size-4 xl:size-5' />
           Editada
         </button>
 
@@ -93,29 +116,35 @@ export default function ChangeImage() {
           }
           onClick={() => changeViewImage(ViewImageStateEnum.COMPARE)}
         >
-          <Compare size='size-4 xl:size-5'/>
+          <Compare size='size-4 xl:size-5' />
           Comparar
         </button>
       </div>
 
-      <div className="flex items-center gap-4">
-        <Button color="bg-primary text-slate-100 " title="Descargar" onClick={downloadImage}>
-          <Download size="size-4 xl:size-5" />
+      <div className='flex items-center gap-4'>
+        <Button
+          color='bg-primary text-slate-100 '
+          title='Descargar'
+          onClick={downloadImage}
+          disabled={!image.transformedUrl}
+        >
+          <Download size='size-4 xl:size-5' />
         </Button>
 
         <Button
-          color="bg-primary text-slate-100 w-[124px] lg:w-[136px] flex justify-center"
+          color='bg-primary text-slate-100 w-[124px] lg:w-[136px] flex justify-center'
           title={!loading ? (copied ? 'Copiado' : 'Compartir') : 'Generando'}
           onClick={sharedImage}
+          disabled={!image.transformedUrl}
         >
           {!loading ? (
             copied ? (
-              <Copy className='size-4 xl:size-5'/>
+              <Copy className='size-4 xl:size-5' />
             ) : (
-              <Share size="size-4 xl:size-5" />
+              <Share size='size-4 xl:size-5' />
             )
           ) : (
-            <div className="loaderCircleSmall mr-2"></div>
+            <div className='loaderCircleSmall mr-2'></div>
           )}
         </Button>
       </div>
