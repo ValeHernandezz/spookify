@@ -4,10 +4,8 @@ import useTransform from '@/hooks/useTransform'
 import useEditor from '@/store/Providers'
 import { toolCategories, tools } from '@/lib'
 import { ViewImageStateEnum, ToolCategoryEnum } from '@/lib/types'
-import Trash from '@/components/icons/listOfTools/general/Trash'
-import Undo from '@/components/icons/listOfTools/general/Undo'
-import Arrow from '@/components/icons/listOfTools/general/Arrow'
 import GenerateTransform from '@/components/tools/GenerateTransform'
+import { ArrowListOfTools, Trash, Undo } from '@/icons/index'
 import Swal from 'sweetalert2'
 
 export default function ListOfTools() {
@@ -239,7 +237,7 @@ export default function ListOfTools() {
                 <span className='ml-2'>{category.label}</span>
               </span>
               <span className='shrink-0 transition duration-300 group-open:-rotate-180'>
-                <Arrow />
+                <ArrowListOfTools />
               </span>
             </summary>
 

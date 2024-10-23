@@ -1,27 +1,6 @@
+import { Alien, Arrow, Background, Biohazard, Chucky, CloudinaryLogo, Clothe, CropZone, Devil, Expand, FreddyKrueger, Grave, JasonVoorhees, Leatherface, MichaelMyers, MushroomCloud, Overlay, Pennywise, Perplexity, Ruler, Skeleton, Wand, Zombie } from '@/icons/index'
 import { Tool, ToolCategory, ToolCategoryEnum } from './types'
-import Background from '@/components/icons/listOfTools/general/Background'
-import Ruler from '@/components/icons/listOfTools/general/Ruler'
-import Overlay from '@/components/icons/listOfTools/general/Overlay'
-import CropZone from '@/components/icons/listOfTools/adjust/CropZone'
-import Expand from '@/components/icons/listOfTools/adjust/Expand'
-import Wand from '@/components/icons/listOfTools/general/Wand'
-import Zombie from '@/components/icons/listOfTools/transform/Zombie'
-import Alien from '@/components/icons/listOfTools/transform/Alien'
-import Devil from '@/components/icons/listOfTools/transform/Devil'
-import Skeleton from '@/components/icons/listOfTools/transform/Skeleton'
-import MushroomCloud from '@/components/icons/listOfTools/background/MushroomCloud'
-import Biohazard from '@/components/icons/listOfTools/background/Biohazard'
-import JasonVoorhees from '@/components/icons/listOfTools/overlay/JasonVoorhees'
-import MichaelMyers from '@/components/icons/listOfTools/overlay/MichaelMyers'
-import Pennywise from '@/components/icons/listOfTools/overlay/Pennywise'
-import Leatherface from '@/components/icons/listOfTools/overlay/Leatherface'
-import FreddyKrueger from '@/components/icons/listOfTools/costumes/FreddyKrueger'
-import Chucky from '@/components/icons/listOfTools/costumes/Chucky'
-import Grave from '@/components/icons/listOfTools/background/Grave'
-import Clothe from '@/components/icons/listOfTools/general/Clothe'
-import Arrow from '@/components/icons/tools/Arrow'
-import Cloudinary from '@/components/icons/tools/Cloudinary'
-import Perplexity from '@/components/icons/tools/Perplexity'
+
 
 export const toolCategories: Record<string, ToolCategory> = {
   Transform: {
@@ -274,7 +253,7 @@ export const toolsLinks = [
     id: 2,
     title: 'Documentación API de Cloudinary',
     href: 'https://next.cloudinary.dev/cldimage/examples',
-    icon: Cloudinary,
+    icon: CloudinaryLogo,
   },
   {
     id: 3,

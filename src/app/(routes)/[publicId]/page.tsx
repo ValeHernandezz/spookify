@@ -1,13 +1,12 @@
 'use client'
-import Download from '@/components/icons/viewImage/Download'
+
 import Background from '@/components/utils/Background'
 import Button from '@/components/utils/Button'
 import { getCldImageUrl } from 'next-cloudinary'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import Rocket from '@/components/icons/shared/Rocket'
-import MagnifyingGlassPlus from '@/components/icons/shared/MagnifyingGlassPlus'
+import { Download, MagnifyingGlassPlus, Rocket } from '@/icons/index'
 
 interface Props {
   params: { publicId: string }

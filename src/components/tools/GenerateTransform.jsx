@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
-import Sparkles from '@/components/icons/listOfTools/general/Sparkles'
+import { Sparkles } from '@/icons/index'
+
 
 export default function GenerateTransform({
   handleTransformCustom,

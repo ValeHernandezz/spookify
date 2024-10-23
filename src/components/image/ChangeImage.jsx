@@ -2,14 +2,10 @@
 import React, { useState } from 'react'
 import useEditor from '@/store/Providers'
 import { ViewImageStateEnum } from '@/lib/types'
-import Photo from '@/components/icons/viewImage/Photo'
-import Edit from '@/components/icons/viewImage/Edit'
-import Compare from '@/components/icons/viewImage/Compare'
-import Download from '@/components/icons/viewImage/Download'
-import Copy from '@/components/icons/viewImage/Copy'
-import Share from '@/components/icons/viewImage/Share'
-import Button from '@/components/utils/Button'
 import Swal from 'sweetalert2'
+
+import Button from '@/components/utils/Button'
+import { Compare, Copy, Download, Edit, Photo, Share } from '@/icons/index'
 
 export default function ChangeImage() {
   const { changeViewImage, image, viewImage } = useEditor()

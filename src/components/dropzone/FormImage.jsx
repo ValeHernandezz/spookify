@@ -2,10 +2,10 @@
 import useEditor from '@/store/Providers'
 import { useDropzone } from 'react-dropzone'
 import { useRouter } from 'next/navigation'
-
-import Paperclip from '@/components/icons/dropdown/PaperClip'
 import { ViewImageStateEnum } from '@/lib/types'
 import Swal from 'sweetalert2'
+import { PaperClip } from '@/icons/index'
+
 
 export default function FormImage() {
   const { changeImage, loading, changeLoading, changeViewImage } = useEditor()
@@ -72,7 +72,7 @@ export default function FormImage() {
             </>
           ) : (
             <>
-              <Paperclip size='size-6 mr-2' /> Seleccionar imagen
+              <PaperClip size='size-6 mr-2' /> Seleccionar imagen
             </>
           )}
         </button>

@@ -1,8 +1,7 @@
 import React from 'react'
 import Logo from '@/components/utils/Logo'
-import Cloudinary from '@/components/icons/footer/Cloudinary'
-import GitHub from '@/components/icons/footer/GitHub'
 import { sections } from '@/lib'
+import { GitHub, CloudinaryWordmark } from '@/icons/index'
 
 export default function Footer() {
   return (
@@ -64,7 +63,7 @@ export default function Footer() {
               rel="noreferrer noopener"
               href="https://cloudinary.com/"
             >
-              <Cloudinary className="h-8 text-[#3448C5] hover:text-[#3448C5]/80 transition duration-300" />
+              <CloudinaryWordmark className="h-8 text-[#3448C5] hover:text-[#3448C5]/80 transition duration-300" />
             </a>
           </div>
           <span className="flex justify-center md:justify-center items-center text-base text-slate-500 text-center">

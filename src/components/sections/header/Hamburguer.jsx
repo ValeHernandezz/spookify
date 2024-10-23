@@ -1,9 +1,8 @@
 'use client'
 import React, { useState } from 'react'
 import { sections } from '@/lib'
+import { Menu, X } from '@/icons/index'
 
-import X from '@/components/icons/hamburger/X'
-import Menu from '@/components/icons/hamburger/Menu'
 
 export default function Hamburger() {
   const [menuOpen, setMenuOpen] = useState(false)
