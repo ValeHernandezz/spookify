@@ -24,7 +24,7 @@ export default function EditorPage() {
         <div
           className={`flex lg:min-h-screen flex-col bg-[#18181b] transition-transform duration-300 rounded-lg lg:rounded-none lg:rounded-l-lg ${
             isAsideVisible ? 'translate-x-0' : '-translate-x-[110%]'
-          } lg:translate-x-0 lg:block fixed lg:static z-10 w-64 lg:w-auto`}
+          } lg:translate-x-0 lg:block absolute lg:static z-10 w-64 lg:w-auto`}
         >
           <aside className="p-5 lg:pt-10">
             <h2 className="text-2xl lg:text-3xl text-center font-bold text-slate-200">
