@@ -26,9 +26,11 @@ export default function ListOfTools() {
       setOpenIndex(index)
     }
   }
-
   const isReplace = (transformation, from) => {
-    return transformation.replace && transformation.replace.from === from
+    return (
+      transformation.replace !== undefined &&
+      transformation.replace.from === from
+    )
   }
 
   const isReplaceBackground = (transformation) => {
@@ -40,57 +42,34 @@ export default function ListOfTools() {
 
     toggleAside()
 
-    appliedTransformations = appliedTransformations.filter((transformation) => {
-      if (newTransformation.replace) {
-        const from = newTransformation.replace.from
+    const shouldRemoveTransformation = (transformation) => {
+      if (newTransformation.replaceBackground) {
+        return isReplaceBackground(transformation)
+      }
 
-        if (
-          from === 'appearance' ||
-          from === 'face' ||
-          from === 'clothes_overalls_shoes' ||
-          from === 'person'
-        ) {
-          return !isReplace(transformation, from)
+      if (newTransformation.replace) {
+        const newFrom = newTransformation.replace.from
+
+        const exclusiveTypes = [
+          'appearance',
+          'person',
+          'face',
+          'clothes_overalls_shoes',
+        ]
+
+        if (exclusiveTypes.includes(newFrom)) {
+          return exclusiveTypes.some((type) => isReplace(transformation, type))
+        } else {
+          return isReplace(transformation, newFrom)
         }
       }
 
-      if (newTransformation.replaceBackground) {
-        return !isReplaceBackground(transformation)
-      }
+      return false
+    }
 
-      if (
-        newTransformation.replace &&
-        newTransformation.replace.from === 'person'
-      ) {
-        return (
-          !isReplace(transformation, 'clothes_overalls_shoes') &&
-          !isReplace(transformation, 'face') &&
-          !isReplace(transformation, 'person')
-        )
-      }
-
-      if (
-        newTransformation.replace &&
-        newTransformation.replace.from === 'clothes_overalls_shoes'
-      ) {
-        return (
-          !isReplace(transformation, 'person') &&
-          !isReplace(transformation, 'face')
-        )
-      }
-
-      if (
-        newTransformation.replace &&
-        newTransformation.replace.from === 'face'
-      ) {
-        return (
-          !isReplace(transformation, 'person') &&
-          !isReplace(transformation, 'clothes_overalls_shoes')
-        )
-      }
-
-      return true
-    })
+    appliedTransformations = appliedTransformations.filter(
+      (transformation) => !shouldRemoveTransformation(transformation)
+    )
 
     appliedTransformations.push(newTransformation)
 
