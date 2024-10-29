@@ -1,5 +1,4 @@
 'use client'
-
 import Background from '@/components/utils/Background'
 import Button from '@/components/utils/Button'
 import { getCldImageUrl } from 'next-cloudinary'
@@ -15,7 +14,6 @@ interface Props {
 export default function SharedPage({ params }: Props) {
   const { publicId } = params
   const router = useRouter()
-  console.log(publicId)
 
   const url = getCldImageUrl({
     src: `spookify/${publicId}`
