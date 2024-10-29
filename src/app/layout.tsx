@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Providers } from '@/store/Providers'
 import Background from '@/components/utils/Background'
 import Header from '@/sections/header/Header'
 import Hamburguer from '@/sections/header/Hamburguer'
@@ -50,15 +51,17 @@ export default function RootLayout({
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
       </head>
       <body>
-        <div className="fondo absolute w-full inset-0 bg-[url('/background.webp')] bg-cover bg-center -z-10"></div>
+        <Providers>
+          <div className="fondo absolute w-full inset-0 bg-[url('/background.webp')] bg-cover bg-center -z-10"></div>
 
-        <Background z={false} />
-        <Hamburguer />
-        <div id='app'>
-          <Header />
-          {children}
-          <Footer />
-        </div>
+          <Background z={false} />
+          <Hamburguer />
+          <div id='app'>
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </Providers>
 
         <Analytics />
       </body>
