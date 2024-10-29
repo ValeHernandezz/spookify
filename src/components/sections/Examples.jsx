@@ -9,7 +9,7 @@ export default function Gallery() {
         <span className="text-gradient">pesadillas</span>!
       </h2>
 
-      <ul className="grid grid-cols-2 xl:grid-cols-4 gap-5 xl:gap-10 text-slate-200 place-items-center max-w-[700px] xl:max-w-[1400px] mx-auto">
+      <ul className="grid grid-cols-2 xl:grid-cols-4 gap-10 text-slate-200 place-items-center max-w-[700px] xl:max-w-[1400px] mx-auto">
         {images.map(({ id, title, image }) => {
           return (
             <li
