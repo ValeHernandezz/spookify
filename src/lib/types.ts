@@ -12,7 +12,7 @@ export interface CloudinaryUploadResponse {
 export enum ViewImageStateEnum {
   ORIGINAL = 'original',
   EDIT = 'edit',
-  COMPARE = 'compare'
+  COMPARE = 'compare',
 }
 
 export interface Tool {
@@ -30,7 +30,7 @@ export enum ToolCategoryEnum {
   Adjust = 'Ajustar',
   Overlay = 'Overlay',
   Transform = 'Transformar',
-  Costumes = 'Disfraces'
+  Costumes = 'Disfraces',
 }
 
 export interface ToolCategory {
