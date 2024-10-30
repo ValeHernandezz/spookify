@@ -16,12 +16,12 @@ export default function SharedPage({ params }: Props) {
   const router = useRouter()
 
   const url = getCldImageUrl({
-    src: `spookify/${publicId}`
+    src: `${publicId}`
   })
 
   const downloadImage = async () => {
     const urlImage = getCldImageUrl({
-      src: `spookify/${publicId}`
+      src: `${publicId}`
     })
     const response = await fetch(urlImage)
     const blob = await response.blob()

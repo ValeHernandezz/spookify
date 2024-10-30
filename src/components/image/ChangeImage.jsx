@@ -52,23 +52,45 @@ export default function ChangeImage() {
     const formData = new FormData()
     formData.append('file', blob, `${image.original_filename}.jpg`)
 
-    const response = await fetch('/api/shared', {
-      method: 'POST',
-      body: formData,
-    })
+    try {
+      const response = await fetch('/api/shared', {
+        method: 'POST',
+        body: formData,
+      })
 
-    const { data } = await response.json()
-    console.log(data)
-    const urlToShared = `${process.env.NEXT_PUBLIC_URL_FRONTEND}/${data.id}`
+      const { data } = await response.json()
 
-    setLoading(false)
-    setCopied(true)
+      if (!data) {
+        return Swal.fire({
+          position: 'center',
+          icon: 'error',
+          titleText: 'Algo falló',
+          text: 'Tuvimos un error al generar la url, vuelve a intentarlo',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }
 
-    navigator.clipboard.writeText(urlToShared)
+      const urlToShared = `${process.env.NEXT_PUBLIC_URL_FRONTEND}/${data.id}`
 
-    setTimeout(function () {
-      setCopied(false)
-    }, 1300)
+      setLoading(false)
+      setCopied(true)
+
+      navigator.clipboard.writeText(urlToShared)
+
+      setTimeout(function () {
+        setCopied(false)
+      }, 1300)
+    } catch {
+      return Swal.fire({
+        position: 'center',
+        icon: 'error',
+        titleText: 'Algo falló',
+        text: 'Tuvimos un error al generar la url, vuelve a intentarlo',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }
   }
 
   const styleButtonSelected =

@@ -8,25 +8,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ data: null, error: 'No file provided' })
   }
 
-  const uploadData = new FormData()
-  uploadData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET || '')
-  uploadData.append('timestamp', `${Date.now() / 1000}`)
-  uploadData.append('api_key', process.env.CLOUDINARY_API_KEY || '')
-  uploadData.append('file', file)
+  try {
+    const uploadData = new FormData()
+    uploadData.append(
+      'upload_preset',
+      process.env.CLOUDINARY_UPLOAD_PRESET || ''
+    )
+    uploadData.append('timestamp', `${Date.now() / 1000}`)
+    uploadData.append('api_key', process.env.CLOUDINARY_API_KEY || '')
+    uploadData.append('file', file)
 
-  const response = await fetch(
-    'https://api.cloudinary.com/v1_1/djslvlh8h/image/upload',
-    {
-      method: 'POST',
-      body: uploadData,
-    }
-  )
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
+      {
+        method: 'POST',
+        body: uploadData,
+      }
+    )
 
-  const { public_id } = await response.json()
+    const { public_id } = await response.json()
 
-  const id = public_id.split('/')[1]
-
-  const data = { id }
-
-  return NextResponse.json({ data })
+    return NextResponse.json({ data: { id: public_id } })
+  } catch {
+    return NextResponse.json(null)
+  }
 }
