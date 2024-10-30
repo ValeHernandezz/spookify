@@ -50,7 +50,7 @@ export default function ChangeImage() {
     const imageResponse = await fetch(image.transformedUrl)
     const blob = await imageResponse.blob()
     const formData = new FormData()
-    formData.append('file', blob, 'image.jpg') // El tercer parámetro es el nombre del archivo
+    formData.append('file', blob, `${image.original_filename}.jpg`)
 
     const response = await fetch('/api/shared', {
       method: 'POST',
@@ -58,7 +58,7 @@ export default function ChangeImage() {
     })
 
     const { data } = await response.json()
-
+    console.log(data)
     const urlToShared = `${process.env.NEXT_PUBLIC_URL_FRONTEND}/${data.id}`
 
     setLoading(false)
